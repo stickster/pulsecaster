@@ -70,7 +70,7 @@ class PulseSinkInfo(PulseSink):
                              PulseVolumeCtypes(pa_sink_info.volume),
                              PulseClient("Selected Sink"))
 
-    self.desctiption         = pa_sink_info.description
+    self.description         = pa_sink_info.description
     self.sample_spec         = pa_sink_info.sample_spec
     self.channel_map         = pa_sink_info.channel_map
     self.owner_module        = pa_sink_info.owner_module
@@ -115,7 +115,7 @@ class PulseSinkInfo(PulseSink):
   def printDebug(self):
     print "PulseSinkInfo"
     PulseSink.printDebug(self)
-    print "self.desctiption", self.desctiption
+    print "self.description", self.description
     print "self.sample_spec", self.sample_spec
     print "self.channel_map", self.channel_map
     print "self.owner_module", self.owner_module
