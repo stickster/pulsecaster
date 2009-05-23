@@ -1,1 +1,4 @@
 A PulseAudio based podcasting application
+
+Thanks to Harry Karvonen for his Python ctypes-based bindings for
+PulseAudio.
