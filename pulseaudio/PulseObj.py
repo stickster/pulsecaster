@@ -89,7 +89,7 @@ class PulseObj:
     #
     # Context creating
     #
-    self.context = pa_context_new(self.mainloop_api, "PulseApplet")
+    self.context = pa_context_new(self.mainloop_api, "PulseCatcher")
 
     pa_context_set_state_callback(self.context, self.PA_STATE_CB, None)
 
@@ -543,7 +543,7 @@ class PulseObj:
   ###
 
   def reconnect(self):
-    self.context = pa_context_new(self.mainloop_api, "PulseApplet")
+    self.context = pa_context_new(self.mainloop_api, "PulseCatcher")
 
     pa_context_set_state_callback(self.context, self.PA_STATE_CB, None)
 
