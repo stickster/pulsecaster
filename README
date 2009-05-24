@@ -12,3 +12,12 @@ run the following command to try it out:
 
 $ cd /some/path/pulsecaster
 $ ./pulsecaster.py
+
+GSTREAMER
+=========
+The pipeline for capturing from a running PulseAudio source:
+
+gst-launch pulsesrc device-name='<NAME>' \
+	   ! vorbisenc quality=0.5 \
+	   ! oggmux \
+	   ! filesink location=foo.ogg
