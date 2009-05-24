@@ -1,0 +1,5 @@
+I wrote this utility as a one-off, just to see if I understood how
+some of the simpler PulseAudio internals worked.  It's not intended to
+be used by the PulseCaster at this point, but I kept it here just in case.
+
+To compile, run 'make'.
