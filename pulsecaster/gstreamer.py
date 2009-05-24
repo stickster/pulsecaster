@@ -19,6 +19,8 @@
 # Author: Paul W. Frields <stickster@gmail.com>
 
 
+import pygst
+pygst.require('0.10')
 import gst
 
 
