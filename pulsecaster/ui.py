@@ -70,7 +70,7 @@ class PulseCatcherUI:
         self.about.set_program_name(NAME)
 
         # Create PulseAudio backing
-        self.pa = PulseObj()
+        self.pa = PulseObj(clientName=NAME)
 
         # Create and populate combo boxes
         self.combo_vbox = self.xml.get_widget('combo_vbox')
