@@ -35,7 +35,7 @@ def _debugPrint(text):
         print (text)
 
 class PulseCatcherUI:
-    def __init__(self, runlib=True):
+    def __init__(self):
         self.xml = gtk.glade.XML(fname)
         self.logo = gtk.gdk.pixbuf_new_from_file(logofile)
         
@@ -90,10 +90,6 @@ class PulseCatcherUI:
         # Fill the combo boxes initially
         self.repop_sources()
 
-        if not runlib:
-            self.main.show_all()
-            gtk.main()
-        
 
     def repop_sources(self, *args):
         self.sources = self.pa.pulse_source_list()
@@ -128,4 +124,6 @@ class PulseCatcherUI:
 
 
 if __name__ == '__main__':
-    pulseCatcher = PulseCatcherUI(False)
+    pulseCatcher = PulseCatcherUI()
+    pulseCatcher.main.show_all()
+    gtk.main()
