@@ -34,7 +34,7 @@ def _debugPrint(text):
     if _debug:
         print (text)
 
-class PulseCatcherUI:
+class PulseCasterUI:
     def __init__(self):
         self.xml = gtk.glade.XML(fname)
         self.logo = gtk.gdk.pixbuf_new_from_file(logofile)
@@ -124,6 +124,6 @@ class PulseCatcherUI:
 
 
 if __name__ == '__main__':
-    pulseCatcher = PulseCatcherUI()
-    pulseCatcher.main.show_all()
+    pulseCaster = PulseCasterUI()
+    pulseCaster.main.show_all()
     gtk.main()
