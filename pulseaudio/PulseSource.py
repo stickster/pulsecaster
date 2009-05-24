@@ -71,15 +71,17 @@ class PulseSourceInfo(PulseSource):
                              PulseVolumeCtypes(pa_source_info.volume),
                              PulseClient("Selected Source"))
 
-    self.description         = pa_source_info.description
-    self.sample_spec         = pa_source_info.sample_spec
-    self.channel_map         = pa_source_info.channel_map
-    self.owner_module        = pa_source_info.owner_module
-    self.latency             = pa_source_info.latency
-    self.driver              = pa_source_info.driver
-    self.flags               = pa_source_info.flags
-    self.proplist            = pa_source_info.proplist
-    self.configured_latency  = pa_source_info.configured_latency
+    self.description          = pa_source_info.description
+    self.sample_spec          = pa_source_info.sample_spec
+    self.channel_map          = pa_source_info.channel_map
+    self.owner_module         = pa_source_info.owner_module
+    self.monitor_of_sink      = pa_source_info.monitor_of_sink
+    self.monitor_of_sink_name = pa_source_info.monitor_of_sink_name
+    self.latency              = pa_source_info.latency
+    self.driver               = pa_source_info.driver
+    self.flags                = pa_source_info.flags
+    self.proplist             = pa_source_info.proplist
+    self.configured_latency   = pa_source_info.configured_latency
 
     return
 
