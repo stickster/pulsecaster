@@ -26,7 +26,7 @@ from pulseaudio.PulseObj import PulseObj
 import os
 
 # FIXME
-fname = os.getcwd() + '/data/pulsecaster-prefs-glade.glade'
+fname = os.getcwd() + '/data/pulsecaster.glade'
 logofile = os.getcwd() + '/data/icons/scalable/pulsecaster.svg'
 
 class PulseCatcherUI:
