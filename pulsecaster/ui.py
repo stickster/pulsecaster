@@ -41,7 +41,7 @@ class PulseCatcherUI:
         
         # Main dialog basics
         self.main = self.xml.get_widget('main_dialog')
-        self.main.set_title('%s %s' % (NAME, VERSION))
+        self.main.set_title(NAME)
         self.main_title = self.xml.get_widget('main_title')
         self.main_title.set_label('<big><big><big><b><i>' +
                                   NAME + '</i></b></big></big></big>')
@@ -67,7 +67,7 @@ class PulseCatcherUI:
             self.authors.append(contrib)
         self.about.set_authors(self.authors)
         self.about.set_logo(self.logo)
-        self.about.set_program_name('%s %s' % (NAME, VERSION))
+        self.about.set_program_name(NAME)
 
         # Create PulseAudio backing
         self.pa = PulseObj()
@@ -75,11 +75,19 @@ class PulseCatcherUI:
         # Create and populate combo boxes
         self.combo_vbox = self.xml.get_widget('combo_vbox')
         self.user_vox = gtk.combo_box_new_text()
-        # FIXME: Rather than find a signal here, use PulseAudio event
-        # subscription
-        self.user_vox.connect('property-notify-event', self.repop_sources)
         self.subject_vox = gtk.combo_box_new_text()
-        self.subject_vox.connect('property-notify-event', self.repop_sources)
+        self.combo_vbox.add(self.user_vox)
+        self.combo_vbox.add(self.subject_vox)
+
+        # FIXME: Rather than find a signal here, use PulseAudio event
+        # subscription. The signal used here isn't the right one in
+        # any case, and without a proper event subscription, this will
+        # cause big problems if devices are removed while the app is
+        # running.
+        self.user_vox.connect('button-press-event', self.repop_sources)
+        self.subject_vox.connect('button-press-event', self.repop_sources)
+
+        # Fill the combo boxes initially
         self.repop_sources()
 
         if not runlib:
@@ -98,9 +106,7 @@ class PulseCatcherUI:
                 self.user_vox.append_text(source.description)
             else:
                 self.subject_vox.append_text(source.description)
-        self.combo_vbox.add(self.user_vox)
         self.user_vox.set_active(0)
-        self.combo_vbox.add(self.subject_vox)
         self.subject_vox.set_active(0)
         self.combo_vbox.reorder_child(self.user_vox, 0)
         self.combo_vbox.reorder_child(self.subject_vox, 1)
