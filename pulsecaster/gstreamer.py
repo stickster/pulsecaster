@@ -19,6 +19,9 @@
 # Author: Paul W. Frields <stickster@gmail.com>
 
 
-from config import *
-from ui import *
-from gstreamer import *
+import gst
+
+
+class PulseCatcherPipeline:
+    def __init__(self):
+        pass
