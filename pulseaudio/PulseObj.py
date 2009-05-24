@@ -41,7 +41,7 @@ class PulseObj:
   #
   ##############################################################################
 
-  def __init__(self, server = None, retry = False):
+  def __init__(self, server = None, retry = False, clientName = 'Unknown (Python)'):
     "Initialise pulseaudio connection"
 
     # Variables
@@ -89,7 +89,7 @@ class PulseObj:
     #
     # Context creating
     #
-    self.context = pa_context_new(self.mainloop_api, "PulseCatcher")
+    self.context = pa_context_new(self.mainloop_api, clientName)
 
     pa_context_set_state_callback(self.context, self.PA_STATE_CB, None)
 
@@ -543,7 +543,7 @@ class PulseObj:
   ###
 
   def reconnect(self):
-    self.context = pa_context_new(self.mainloop_api, "PulseCatcher")
+    self.context = pa_context_new(self.mainloop_api, clientName)
 
     pa_context_set_state_callback(self.context, self.PA_STATE_CB, None)
 
