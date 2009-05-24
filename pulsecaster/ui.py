@@ -28,6 +28,11 @@ import os
 # FIXME
 fname = os.getcwd() + '/data/pulsecaster.glade'
 logofile = os.getcwd() + '/data/icons/scalable/pulsecaster.svg'
+_debug = True
+
+def _debugPrint(text):
+    if _debug:
+        print (text)
 
 class PulseCatcherUI:
     def __init__(self, runlib=True):
@@ -46,15 +51,6 @@ class PulseCatcherUI:
         self.close = self.xml.get_widget('close_button')
         self.close.connect('clicked', self.on_close)
         
-        # ComboBox setup
-        self.user_vox = self.xml.get_widget('user_vox')
-        self.subject_vox = self.xml.get_widget('subject_vox')
-        self.user_vox = gtk.combo_box_new_text()
-        self.subject_vox = gtk.combo_box_new_text()
-        self.user_vox.append_text('foo')
-        self.user_vox.append_text('bar')
-        self.user_vox.set_active(0)
-
         # About dialog basics
         self.about = self.xml.get_widget('about_dialog')
         self.about.connect('delete_event', self.hideAbout)
@@ -73,33 +69,43 @@ class PulseCatcherUI:
         self.about.set_logo(self.logo)
         self.about.set_program_name('%s %s' % (NAME, VERSION))
 
-        # Populate PulseAudio sources and sink monitors
+        # Create PulseAudio backing
         self.pa = PulseObj()
-        self.sources = self.pa.pulse_source_list()
+
         # Create and populate combo boxes
+        self.combo_vbox = self.xml.get_widget('combo_vbox')
         self.user_vox = gtk.combo_box_new_text()
+        # FIXME: Rather than find a signal here, use PulseAudio event
+        # subscription
+        self.user_vox.connect('property-notify-event', self.repop_sources)
         self.subject_vox = gtk.combo_box_new_text()
+        self.subject_vox.connect('property-notify-event', self.repop_sources)
+        self.repop_sources()
+
+        if not runlib:
+            self.main.show_all()
+            gtk.main()
+        
+
+    def repop_sources(self, *args):
+        self.sources = self.pa.pulse_source_list()
+        l = self.user_vox.get_model()
+        l.clear()
+        l = self.subject_vox.get_model()
+        l.clear()
         for source in self.sources:
             if source.monitor_of_sink_name == None:
                 self.user_vox.append_text(source.description)
             else:
                 self.subject_vox.append_text(source.description)
-
-        self.combo_vbox = self.xml.get_widget('combo_vbox')
         self.combo_vbox.add(self.user_vox)
         self.user_vox.set_active(0)
         self.combo_vbox.add(self.subject_vox)
         self.subject_vox.set_active(0)
         self.combo_vbox.reorder_child(self.user_vox, 0)
         self.combo_vbox.reorder_child(self.subject_vox, 1)
-        
-
         self.combo_vbox.show_all()
 
-        if not runlib:
-            self.main.show_all()
-            gtk.main()
-        
 
     def on_close(self, *args):
         try:
