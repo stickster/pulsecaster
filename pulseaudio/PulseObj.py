@@ -271,7 +271,7 @@ class PulseObj:
 
   def py_subscribe_cb(self, c, event, index, userdata):
     print 'py_subscribe_cb: called'
-    
+    print 'py_subscribe_cb:', c, event, index, userdata
     self.complete_action()
     return 0
 
@@ -565,14 +565,13 @@ class PulseObj:
 
   def pulse_context_set_subscribe_callback(self, callback):
     "Set subscribe callback"
-    self.start_action()
-    print "py_context_set_subscribe_cb:", callback
-    PA_CONTEXT_SUBSCRIBE_CB = PA_CONTEXT_SUBSCRIBE_CB_T(self.py_subscribe_cb)
+    print "py_context_set_subscribe_callback:", callback
+    PA_CONTEXT_SUBSCRIBE_CB = PA_CONTEXT_SUBSCRIBE_CB_T(callback)
 
-    self.operation = pa_context_set_subscribe_callback(self.context,
-                                                       PA_CONTEXT_SUBSCRIBE_CB,
-                                                       None)
-    self.pulse_iterate()
+    # This returns a void, not a PA_OPERATION
+    pa_context_set_subscribe_callback(self.context,
+                                      PA_CONTEXT_SUBSCRIBE_CB,
+                                      None)
     return
 
   ###
