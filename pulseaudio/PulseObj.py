@@ -271,7 +271,7 @@ class PulseObj:
 
   def py_context_set_subscribe_cb(self, c, cb, userdata):
     "Set subscribe callback"
-    #print "py_context_set_subscribe_cb:", c, cb, userdata
+    print "py_context_set_subscribe_cb:", c, cb, userdata
     return
 
   ###
@@ -551,8 +551,8 @@ class PulseObj:
 
   def pulse_context_subscribe(self, c, mask, success, userdata):
     "Subscribe to event"
-    self.start_action()
-    #print "pulse_context_subscribe:", c, mask, success, userdata
+    #self.start_action()
+    print "pulse_context_subscribe:", c, mask, success, userdata
     CONTEXT_SUCCESS = PA_CONTEXT_SUBSCRIBE_CB_T(self.py_context_set_subscribe_cb)
 
     self.operation = pa_context_subscribe(self.context,
