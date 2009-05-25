@@ -553,13 +553,12 @@ class PulseObj:
     "Subscribe to event"
     self.start_action()
     #print "pulse_context_subscribe:", c, mask, success, userdata
-    PA_CONTEXT_SUBSCRIBE_CB = PA_CONTEXT_SUBSCRIBE_CB_T(self.py_context_set_subscribe_cb)
+    CONTEXT_SUCCESS = PA_CONTEXT_SUBSCRIBE_CB_T(self.py_context_set_subscribe_cb)
 
     self.operation = pa_context_subscribe(self.context,
                                           mask,
-                                          PA_CONTEXT_SUCCESS_CB,
+                                          CONTEXT_SUCCESS,
                                           None)
-    self.pulse_iterate()
     return
 
   ###
