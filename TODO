@@ -1,4 +1,4 @@
 TODO:
+* FIXME: Event subscription isn't working!
 * Add GStreamer pipeline builder
-* Add PulseAudio event subscription support to pulseaudio ctypes
 * Provide CLI interface
