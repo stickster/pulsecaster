@@ -50,6 +50,8 @@ class PulseCasterUI:
         self.about_button.connect('clicked', self.showAbout)
         self.close = self.xml.get_widget('close_button')
         self.close.connect('clicked', self.on_close)
+        self.record = self.xml.get_widget('record_button')
+        self.record.connect('clicked', self.on_record)
         
         # About dialog basics
         self.about = self.xml.get_widget('about_dialog')
@@ -108,6 +110,15 @@ class PulseCasterUI:
         self.combo_vbox.reorder_child(self.subject_vox, 1)
         self.combo_vbox.show_all()
 
+    def on_record(self, *args):
+        self.record.set_label(gtk.STOCK_MEDIA_STOP)
+        self.record.connect('clicked', self.on_stop)
+        self.record.show()
+
+    def on_stop(self, *args):
+        self.record.set_label(gtk.STOCK_MEDIA_RECORD)
+        self.record.connect('clicked', self.on_record)
+        self.record.show()
 
     def on_close(self, *args):
         try:
