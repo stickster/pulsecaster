@@ -92,6 +92,11 @@ class PulseCasterUI:
         # Fill the combo boxes initially
         self.repop_sources()
 
+        self.pa.pulse_context_subscribe(self.pa.context, 
+                                        0x2ff, 
+                                        self.repop_sources, 
+                                        None)
+
 
     def repop_sources(self, *args):
         self.sources = self.pa.pulse_source_list()
