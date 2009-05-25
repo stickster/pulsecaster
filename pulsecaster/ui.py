@@ -93,10 +93,10 @@ class PulseCasterUI:
         self.repop_sources()
 
         self.pa.pulse_context_set_subscribe_callback(self.dummy)
-        self.pa.pulse_context_subscribe(0x10, self.dummy)
+        self.pa.pulse_context_subscribe(0x3f)
 
     def dummy(self, c, event, index, userdata):
-        print('Dummy:', c, event, index, userdata)
+        self.repop_sources()
 
     def repop_sources(self, *args):
         self.sources = self.pa.pulse_source_list()
