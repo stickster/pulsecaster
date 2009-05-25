@@ -258,6 +258,40 @@ PA_CONTEXT_SUCCESS_CB_T = CFUNCTYPE(c_void_p,
                                     c_int,
                                     c_void_p)
 
+#   Subscriptions
+(PA_SUBSCRIPTION_EVENT_SINK,
+ PA_SUBSCRIPTION_EVENT_SOURCE,
+ PA_SUBSCRIPTION_EVENT_SINK_INPUT,
+ PA_SUBSCRIPTION_EVENT_SOURCE_OUTPUT,
+ PA_SUBSCRIPTION_EVENT_MODULE,
+ PA_SUBSCRIPTION_EVENT_CLIENT,
+ PA_SUBSCRIPTION_EVENT_SAMPLE_CACHE,
+ PA_SUBSCRIPTION_EVENT_SERVER,
+ PA_SUBSCRIPTION_EVENT_CARD,
+ PA_SUBSCRIPTION_EVENT_FACILITY_MASK,
+ PA_SUBSCRIPTION_EVENT_NEW,
+ PA_SUBSCRIPTION_EVENT_CHANGE,
+ PA_SUBSCRIPTION_EVENT_REMOVE,
+ PA_SUBSCRIPTION_EVENT_TYPE_MASK) = map(c_int, xrange(14))
+
+(PA_SUBSCRIPTION_MASK_NULL,
+ PA_SUBSCRIPTION_MASK_SINK,
+ PA_SUBSCRIPTION_MASK_SOURCE,
+ PA_SUBSCRIPTION_MASK_SINK_INPUT,
+ PA_SUBSCRIPTION_MASK_SOURCE_OUTPUT,
+ PA_SUBSCRIPTION_MASK_MODULE,
+ PA_SUBSCRIPTION_MASK_CLIENT,
+ PA_SUBSCRIPTION_MASK_SAMPLE_CACHE,
+ PA_SUBSCRIPTION_MASK_SERVER,
+ PA_SUBSCRIPTION_MASK_CARD,
+ PA_SUBSCRIPTION_MASK_ALL) = map(c_int, xrange(11))
+
+PA_CONTEXT_SUBSCRIBE_CB_T = CFUNCTYPE(c_void_p,
+                                      POINTER(PA_CONTEXT),
+                                      c_int,
+                                      c_void_p)
+
+
 ################################################################################
 #
 # Functions
@@ -500,6 +534,25 @@ pa_context_get_client_info.argtypes = [
         POINTER(PA_CONTEXT),
         c_uint32,
         PA_CLIENT_INFO_CB_T,
+        c_void_p
+]
+
+#
+# pa_context_*_subscribe*
+pa_context_set_subscribe_callback = pulse.pa_context_set_subscribe_callback
+pa_context_set_subscribe_callback.restype = c_int
+pa_context_set_subscribe_callback.argtypes = [
+        POINTER(PA_CONTEXT),
+        c_int,
+        c_uint32,
+        c_void_p
+]
+
+pa_context_subscribe = pulse.pa_context_subscribe
+pa_context_subscribe.restype = c_int
+pa_context_subscribe.argtypes = [
+        POINTER(PA_CONTEXT),
+        c_int,
         c_void_p
 ]
 
