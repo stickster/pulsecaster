@@ -1,3 +1,7 @@
 *.pyc
 .svn
 utils/palist
+
+# Yes, I like Emacs.
+.\#*
+\#*\#
