@@ -523,7 +523,7 @@ pa_context_set_subscribe_callback.argtypes = [
 ]
 
 pa_context_subscribe = pulse.pa_context_subscribe
-pa_context_subscribe.restype = c_int
+pa_context_subscribe.restype = POINTER(PA_OPERATION)
 pa_context_subscribe.argtypes = [
         POINTER(PA_CONTEXT),
         c_int,
