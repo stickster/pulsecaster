@@ -548,10 +548,10 @@ class PulseObj:
 
   ###
 
-  def pulse_context_subscribe(self, mask, callback):
+  def pulse_context_subscribe(self, mask):
     "Subscribe to event"
     self.start_action()
-    print "pulse_context_subscribe:", mask, callback
+    print "pulse_context_subscribe:", mask
     CONTEXT_SUCCESS = PA_CONTEXT_SUCCESS_CB_T(self.py_context_success)
     
     self.operation = pa_context_subscribe(self.context,
