@@ -22,15 +22,17 @@
 import pygst
 pygst.require('0.10')
 import gst
-
+from sys import stdout
 
 class PulseCatcherPipeline:
-    def __init__(self):
+    def __init__(self, pulseDevice, outfile=stdout):
         self.pipeline = gst.Pipeline('pcPipeline')
         self.source = gst.element_factory_make('pulsesrc', 'source')
+        self.source.set_property('device', pulseDevice)
         self.encoder = gst.element_factory_make('vorbisenc', 'encoder')
         self.encoder.set_property('quality', 0.5)
         self.muxer = gst.element_factory_make('oggmux', 'muxer')
         self.sink = gst.element_factory_make('filesink', 'sink')
+        self.sink.set_property('location', outfile)
 
     
