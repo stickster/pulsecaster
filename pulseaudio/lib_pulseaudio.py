@@ -51,6 +51,9 @@ class PA_MAINLOOP(Structure):
 class PA_MAINLOOP_API(Structure):
   _fields_ = [("_opaque_struct", c_int)]
 
+class PA_SIGNAL_EVENT(Structure):
+  _fields_ = [("_opaque_struct", c_int)]
+
 class PA_CONTEXT(Structure):
   _fields_ = [("_opaque_struct", c_int)]
 
@@ -334,11 +337,11 @@ pa_signal_init.argtypes = [
 ]
 
 pa_signal_new = pulse.pa_signal_new
-pa_signal_new.restype = None #POINTER(c_int) #FIXME PA_SIGNAL_EVENT)
+pa_signal_new.restype = POINTER(PA_SIGNAL_EVENT)
 pa_signal_new.argtypes = [
         c_int,
         PA_SIGNAL_CB_T,
-        POINTER(c_int)
+        c_void_p
 ]
 
 #
@@ -515,8 +518,7 @@ pa_context_set_subscribe_callback = pulse.pa_context_set_subscribe_callback
 pa_context_set_subscribe_callback.restype = c_int
 pa_context_set_subscribe_callback.argtypes = [
         POINTER(PA_CONTEXT),
-        c_int,
-        c_uint32,
+        PA_CONTEXT_SUBSCRIBE_CB_T,
         c_void_p
 ]
 
@@ -525,6 +527,7 @@ pa_context_subscribe.restype = c_int
 pa_context_subscribe.argtypes = [
         POINTER(PA_CONTEXT),
         c_int,
+        PA_CONTEXT_SUCCESS_CB_T,
         c_void_p
 ]
 
