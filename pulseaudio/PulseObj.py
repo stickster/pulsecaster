@@ -517,7 +517,7 @@ class PulseObj:
 
     PA_CONTEXT_SUCCESS_CB = PA_CONTEXT_SUCCESS_CB_T(self.py_context_success)
 
-    self.opertarion = pa_context_set_sink_input_volume(self.context,
+    self.operation = pa_context_set_sink_input_volume(self.context,
                                                        index,
                                                        vol.toCtypes(),
                                                        PA_CONTEXT_SUCCESS_CB,
@@ -537,7 +537,7 @@ class PulseObj:
 
     PA_CONTEXT_SUCCESS_CB = PA_CONTEXT_SUCCESS_CB_T(self.py_context_success)
 
-    self.opertarion = pa_context_set_sink_volume_by_index(self.context,
+    self.operation = pa_context_set_sink_volume_by_index(self.context,
                                                           index,
                                                           vol.toCtypes(),
                                                           PA_CONTEXT_SUCCESS_CB,
