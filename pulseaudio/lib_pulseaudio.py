@@ -264,6 +264,7 @@ PA_CONTEXT_SUCCESS_CB_T = CFUNCTYPE(c_void_p,
 PA_CONTEXT_SUBSCRIBE_CB_T = CFUNCTYPE(c_void_p,
                                       POINTER(PA_CONTEXT),
                                       c_int,
+                                      c_uint32,
                                       c_void_p)
 
 
