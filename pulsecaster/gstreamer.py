@@ -26,4 +26,11 @@ import gst
 
 class PulseCatcherPipeline:
     def __init__(self):
-        pass
+        self.pipeline = gst.Pipeline('pcPipeline')
+        self.source = gst.element_factory_make('pulsesrc', 'source')
+        self.encoder = gst.element_factory_make('vorbisenc', 'encoder')
+        self.encoder.set_property('quality', 0.5)
+        self.muxer = gst.element_factory_make('oggmux', 'muxer')
+        self.sink = gst.element_factory_make('filesink', 'sink')
+
+    
