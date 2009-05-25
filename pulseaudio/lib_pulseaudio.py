@@ -210,7 +210,7 @@ class PA_CLIENT_INFO(Structure):
 # SIGNAL
 PA_SIGNAL_CB_T = CFUNCTYPE(c_void_p,
                            POINTER(PA_MAINLOOP_API),
-                           POINTER(c_int), # FIXME wrong type
+                           POINTER(PA_SIGNAL_EVENT),
                            c_int,
                            c_void_p)
 
