@@ -25,14 +25,19 @@ import gst
 from sys import stdout
 
 class PulseCatcherPipeline:
-    def __init__(self, pulseDevice, outfile=stdout):
-        self.pipeline = gst.Pipeline('pcPipeline')
-        self.source = gst.element_factory_make('pulsesrc', 'source')
-        self.source.set_property('device', pulseDevice)
-        self.encoder = gst.element_factory_make('vorbisenc', 'encoder')
-        self.encoder.set_property('quality', 0.5)
-        self.muxer = gst.element_factory_make('oggmux', 'muxer')
-        self.sink = gst.element_factory_make('filesink', 'sink')
-        self.sink.set_property('location', outfile)
-
-    
+    def __init__(self, pulseDeviceMyVoice, pulseDeviceOtherVoice):
+        # Set up one branch of the Y
+        self.yleft = gst.Pipeline('pcPipelineLeft')
+        self.lsource = gst.element_factory_make('pulsesrc', 'lsource')
+        self.lsource.set_property('device', pulseDeviceMyVoice)
+        self.lencoder = gst.element_factory_make('vorbisenc', 'lencoder')
+        self.lencoder.set_property('quality', 0.5)
+        self.lmuxer = gst.element_factory_make('oggmux', 'lmuxer')
+        #self.add(self.lsource, self.lencoder, self.lmuxer)
+        # Set up other branch
+        self.yright = gst.Pipeline('pcPipelineRight')
+        self.rsource = gst.element_factory_make('pulsesrc', 'rsource')
+        self.rsource.set_property('device', pulseDeviceOtherVoice)
+        self.rencoder = gst.element_factory_make('vorbisenc', 'rencoder')
+        self.rencoder.set_property('quality', 0.5)
+        self.rmuxer = gst.element_factory_make('oggmux', 'rmuxer')
