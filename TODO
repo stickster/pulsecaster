@@ -1,5 +1,3 @@
 TODO:
-* FIXME: Event subscription isn't working!
-  * Try moving to dbus-python and pick up udev event instead of PA?
 * Add GStreamer pipeline builder
 * Provide CLI interface
