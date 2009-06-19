@@ -1,3 +1,10 @@
 TODO:
 * Add GStreamer pipeline builder
 * Provide CLI interface
+
+NOTES:
+Mixing two sources together using GStreamer "adder" element:
+gst-launch adder name=mix ! pulsesink { filesrc location=05.mp3 ! decodebin ! mix. } { filesrc location=07.mp3 ! decodebin ! mix. }
+
+What I'm doing in this GStreamer pipeline:
+gst-launch adder name=mix ! vorbisenc ! oggmux ! filesink location=blah { pulsesrc ! mix. } { pulsesrc ! mix. }
