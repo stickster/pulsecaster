@@ -27,6 +27,9 @@ import os
 import dbus
 import gobject
 import dbus.mainloop.glib
+import pygst
+pygst.require('0.10')
+import gst
 
 # FIXME
 fname = os.getcwd() + '/data/pulsecaster.glade'
@@ -54,7 +57,7 @@ class PulseCasterUI:
         self.close = self.xml.get_widget('close_button')
         self.close.connect('clicked', self.on_close)
         self.record = self.xml.get_widget('record_button')
-        self.record.connect('clicked', self.on_record)
+        self.record_id = self.record.connect('clicked', self.on_record)
         
         # About dialog basics
         self.about = self.xml.get_widget('about_dialog')
@@ -83,30 +86,31 @@ class PulseCasterUI:
         self.subject_vox = gtk.combo_box_new_text()
         self.combo_vbox.add(self.user_vox)
         self.combo_vbox.add(self.subject_vox)
-
-        # FIXME: Rather than find a signal here, use PulseAudio event
-        # subscription. The signal used here isn't the right one in
-        # any case, and without a proper event subscription, this will
-        # cause big problems if devices are removed while the app is
-        # running.
         self.user_vox.connect('button-press-event', self.repop_sources)
         self.subject_vox.connect('button-press-event', self.repop_sources)
 
         # Fill the combo boxes initially
         self.repop_sources()
-
         self.listener = PulseCasterListener(self)
-
+        
+        self.filesinkpath = os.path.join(os.getenv('HOME'), 'podcast.ogg')
+        self.file_entry = self.xml.get_widget('file_entry')
+        self.file_entry.set_text(self.filesinkpath)
+        
     def repop_sources(self, *args):
         self.sources = self.pa.pulse_source_list()
         l = self.user_vox.get_model()
         l.clear()
         l = self.subject_vox.get_model()
         l.clear()
+        self.uservoxes = []
+        self.subjectvoxes = []
         for source in self.sources:
             if source.monitor_of_sink_name == None:
+                self.uservoxes.append((source.name, source.description))
                 self.user_vox.append_text(source.description)
             else:
+                self.subjectvoxes.append((source.name, source.description))
                 self.subject_vox.append_text(source.description)
         self.user_vox.set_active(0)
         self.subject_vox.set_active(0)
@@ -115,13 +119,51 @@ class PulseCasterUI:
         self.combo_vbox.show_all()
 
     def on_record(self, *args):
+        # Get filename
+        # Check whether filename exists, if so, overwrite? y/n
+        filesinkpath = self.file_entry.get_text()
+        if filesinkpath is None:
+            return
+        # Set up GStreamer stuff
+        self.combiner = gst.Pipeline('PulseCasterCombinePipe')
+        self.lsource = gst.element_factory_make('pulsesrc', 'lsrc')
+        self.lsource.set_property('device', 
+                                  self.uservoxes[self.user_vox.get_active()][0])
+        self.rsource = gst.element_factory_make('pulsesrc', 'rsrc')
+        self.rsource.set_property('device',
+                                  self.subjectvoxes[self.subject_vox.get_active()][0])
+        
+        self.adder = gst.element_factory_make('adder', 'mix')
+        self.encoder = gst.element_factory_make('vorbisenc', 'enc')
+        self.muxer = gst.element_factory_make('oggmux', 'mux')
+        self.filesink = gst.element_factory_make('filesink', 'fsink')
+        self.filesink.set_property('location', filesinkpath)
+
+        self.combiner.add(self.lsource, 
+                          self.rsource, 
+                          self.adder, 
+                          self.encoder, 
+                          self.muxer, 
+                          self.filesink)
+        gst.element_link_many(self.lsource,
+                              self.adder, 
+                              self.encoder, 
+                              self.muxer,
+                              self.filesink)
+        gst.element_link_many(self.rsource, self.adder)
+
+        # FIXME: Dim elements other than the 'record' widget
         self.record.set_label(gtk.STOCK_MEDIA_STOP)
-        self.record.connect('clicked', self.on_stop)
+        self.record.disconnect(self.record_id)
+        self.stop_id = self.record.connect('clicked', self.on_stop)
         self.record.show()
+        self.combiner.set_state(gst.STATE_PLAYING)
 
     def on_stop(self, *args):
+        self.combiner.set_state(gst.STATE_NULL)
         self.record.set_label(gtk.STOCK_MEDIA_RECORD)
-        self.record.connect('clicked', self.on_record)
+        self.record.disconnect(self.stop_id)
+        self.record_id = self.record.connect('clicked', self.on_record)
         self.record.show()
 
     def on_close(self, *args):
