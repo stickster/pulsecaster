@@ -21,4 +21,3 @@
 
 from config import *
 from ui import *
-from gstreamer import *
