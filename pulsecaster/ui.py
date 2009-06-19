@@ -95,12 +95,7 @@ class PulseCasterUI:
         # Fill the combo boxes initially
         self.repop_sources()
 
-        #self.pa.pulse_context_set_subscribe_callback(self.dummy)
-        #self.pa.pulse_context_subscribe(0x3f)
         self.listener = PulseCasterListener(self)
-
-    def dummy(self, c, event, index, userdata):
-        self.repop_sources()
 
     def repop_sources(self, *args):
         self.sources = self.pa.pulse_source_list()
