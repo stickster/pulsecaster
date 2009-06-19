@@ -165,9 +165,10 @@
                       <placeholder/>
                     </child>
                     <child>
-                      <widget class="GtkFileChooserButton" id="filechooserbutton1">
+                      <widget class="GtkEntry" id="file_entry">
                         <property name="visible">True</property>
-                        <property name="title" translatable="yes">Select a File</property>
+                        <property name="can_focus">True</property>
+                        <property name="invisible_char">&#x25CF;</property>
                       </widget>
                       <packing>
                         <property name="position">2</property>
