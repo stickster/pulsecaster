@@ -16,3 +16,6 @@ gst-launch adder name=mix ! pulsesink { filesrc location=05.mp3 ! decodebin ! mi
 
 What I'm doing in this GStreamer pipeline:
 gst-launch adder name=mix ! vorbisenc ! oggmux ! filesink location=blah { pulsesrc ! mix. } { pulsesrc ! mix. }
+
+SAME AS:
+gst-launch pulsesrc ! adder name=mix pulsesrc ! mix. ! vorbisenc ! oggmux ! filesink location=blah
