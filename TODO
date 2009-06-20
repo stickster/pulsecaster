@@ -1,6 +1,14 @@
 TODO:
-* Add GStreamer pipeline builder
-* Provide CLI interface
+* Volume leveling on user's behalf
+	* Set recording volume for both sources to reasonable level (75%?)
+	* Normalize each to something like -0.1dB
+	* After mixing the streams, do some sort of compression/leveling
+* CLI interface
+* Choice of gst-audio-profiles for encoding
+* Advanced settings
+	* Volume settings
+	* Option for separate stream recording
+	* Option for 
 
 NOTES:
 Mixing two sources together using GStreamer "adder" element:
