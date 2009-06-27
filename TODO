@@ -1,14 +1,26 @@
 TODO:
+* Nag screen: "Observe the law, do not record people without their consent"
+      	* "Don't show me this again" checkbox
 * Volume leveling on user's behalf
 	* Set recording volume for both sources to reasonable level (75%?)
 	* Normalize each to something like -0.1dB
 	* After mixing the streams, do some sort of compression/leveling
+* Reset names of monitor devices to be more human-understandable
 * CLI interface
 * Choice of gst-audio-profiles for encoding
+* Show a timer as a modal progress dialog
+* Check disk space usage? Show that too?
+* Rip out PA ctypes stuff entirely and replace with udev (?) calls?
+* Handle file name collisions and/or overwrites
+* Pause toggle button
 * Advanced settings
 	* Volume settings
 	* Option for separate stream recording
-	* Option for 
+* Record from streams instead of devices (maybe more human understandable?)
+* "Test mode" before recording
+  	* Offer a dummy text to test levels (plosives, etc.)
+	* PA volume/gain controls (with peaks?)
+
 
 NOTES:
 Mixing two sources together using GStreamer "adder" element:
