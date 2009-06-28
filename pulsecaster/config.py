@@ -32,7 +32,7 @@ URL = u'http://pfrields.fedorapeople.org' # FIXME: Project needs a
                                           # home!
 CONTRIBUTORS = [u'Harry Karvonen <harry.karvonen@gmail.com>']
 
-LICENSE_TEXT = '''Licensed under the GNU General Public License Version 3
+LICENSE_TEXT = u'''Licensed under the GNU General Public License Version 3
 
 PulseCaster is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
