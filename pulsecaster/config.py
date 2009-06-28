@@ -21,7 +21,7 @@
 
 
 NAME = u'PulseCaster'
-VERSION = u'0.1'
+VERSION = u'0.1.1'
 AUTHOR = u'Paul W. Frields'
 AUTHOR_EMAIL = u'stickster@gmail.com'
 DESCRIPTION = u'PulseAudio based podcast recorder'
