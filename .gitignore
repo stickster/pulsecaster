@@ -9,3 +9,4 @@ utils/palist
 # Eclipse stuff
 .project
 .pydevproject
+.settings
