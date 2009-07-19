@@ -36,6 +36,125 @@ pulse = CDLL("libpulse.so.0");
 PA_CHANNELS_MAX = 32
 PA_VOLUME_NORM = 0x10000
 
+# sample types
+(
+  PA_SAMPLE_U8,
+  PA_SAMPLE_ALAW,
+  PA_SAMPLE_ULAW,
+  PA_SAMPLE_S16LE,
+  PA_SAMPLE_S16BE,
+  PA_SAMPLE_FLOAT32LE,
+  PA_SAMPLE_FLOAT32BE,
+  PA_SAMPLE_S32LE,
+  PA_SAMPLE_S32BE,
+  PA_SAMPLE_S24LE,
+  PA_SAMPLE_S24BE,
+  PA_SAMPLE_S24_32LE,
+  PA_SAMPLE_S24_32BE,
+  PA_SAMPLE_MAX,
+  PA_SAMPLE_INVALID
+) = map(c_int, xrange(15))
+
+# channel positions
+(
+  PA_CHANNEL_POSITION_INVALID,
+  PA_CHANNEL_POSITION_MONO,
+  PA_CHANNEL_POSITION_LEFT,
+  PA_CHANNEL_POSITION_RIGHT,
+  PA_CHANNEL_POSITION_CENTER,
+  PA_CHANNEL_POSITION_FRONT_LEFT,
+  PA_CHANNEL_POSITION_FRONT_RIGHT,
+  PA_CHANNEL_POSITION_FRONT_CENTER,
+  PA_CHANNEL_POSITION_REAR_CENTER,
+  PA_CHANNEL_POSITION_REAR_LEFT,
+  PA_CHANNEL_POSITION_REAR_RIGHT,
+  PA_CHANNEL_POSITION_LFE,
+  PA_CHANNEL_POSITION_SUBWOOFER,
+  PA_CHANNEL_POSITION_FRONT_LEFT_OF_CENTER,
+  PA_CHANNEL_POSITION_FRONT_RIGHT_OF_CENTER,
+  PA_CHANNEL_POSITION_SIDE_LEFT,
+  PA_CHANNEL_POSITION_SIDE_RIGHT,
+  PA_CHANNEL_POSITION_AUX0,
+  PA_CHANNEL_POSITION_AUX1,
+  PA_CHANNEL_POSITION_AUX2,
+  PA_CHANNEL_POSITION_AUX3,
+  PA_CHANNEL_POSITION_AUX4,
+  PA_CHANNEL_POSITION_AUX5,
+  PA_CHANNEL_POSITION_AUX6,
+  PA_CHANNEL_POSITION_AUX7,
+  PA_CHANNEL_POSITION_AUX8,
+  PA_CHANNEL_POSITION_AUX9,
+  PA_CHANNEL_POSITION_AUX10,
+  PA_CHANNEL_POSITION_AUX11,
+  PA_CHANNEL_POSITION_AUX12,
+  PA_CHANNEL_POSITION_AUX13,
+  PA_CHANNEL_POSITION_AUX14,
+  PA_CHANNEL_POSITION_AUX15,
+  PA_CHANNEL_POSITION_AUX16,
+  PA_CHANNEL_POSITION_AUX17,
+  PA_CHANNEL_POSITION_AUX18,
+  PA_CHANNEL_POSITION_AUX19,
+  PA_CHANNEL_POSITION_AUX20,
+  PA_CHANNEL_POSITION_AUX21,
+  PA_CHANNEL_POSITION_AUX22,
+  PA_CHANNEL_POSITION_AUX23,
+  PA_CHANNEL_POSITION_AUX24,
+  PA_CHANNEL_POSITION_AUX25,
+  PA_CHANNEL_POSITION_AUX26,
+  PA_CHANNEL_POSITION_AUX27,
+  PA_CHANNEL_POSITION_AUX28,
+  PA_CHANNEL_POSITION_AUX29,
+  PA_CHANNEL_POSITION_AUX30,
+  PA_CHANNEL_POSITION_AUX31,
+  PA_CHANNEL_POSITION_TOP_CENTER,
+  PA_CHANNEL_POSITION_TOP_FRONT_LEFT,
+  PA_CHANNEL_POSITION_TOP_FRONT_RIGHT,
+  PA_CHANNEL_POSITION_TOP_FRONT_CENTER,
+  PA_CHANNEL_POSITION_TOP_REAR_LEFT,
+  PA_CHANNEL_POSITION_TOP_REAR_RIGHT,
+  PA_CHANNEL_POSITION_TOP_REAR_CENTER,
+  PA_CHANNEL_POSITION_MAX
+) = map(c_int, xrange(57))
+
+# stream states
+(
+  PA_STREAM_UNCONNECTED,
+  PA_STREAM_CREATING,
+  PA_STREAM_READY,
+  PA_STREAM_FAILED,
+  PA_STREAM_TERMINATED
+) = map(c_int, xrange(5))
+
+# stream directions
+(
+  PA_STREAM_NODIRECTION,
+  PA_STREAM_PLAYBACK,
+  PA_STREAM_RECORD,
+  PA_STREAM_UPLOAD
+) = map(c_int, xrange(4))
+
+# stream flags
+(
+  PA_STREAM_START_CORKED,
+  PA_STREAM_INTERPOLATE_TIMING,
+  PA_STREAM_NOT_MONOTONIC,
+  PA_STREAM_AUTO_TIMING_UPDATE,
+  PA_STREAM_NO_REMAP_CHANNELS,
+  PA_STREAM_NO_REMIX_CHANNELS,
+  PA_STREAM_FIX_FORMAT,
+  PA_STREAM_FIX_RATE,
+  PA_STREAM_FIX_CHANNELS,
+  PA_STREAM_DONT_MOVE,
+  PA_STREAM_VARIABLE_RATE,
+  PA_STREAM_PEAK_DETECT,
+  PA_STREAM_START_MUTED,
+  PA_STREAM_ADJUST_LATENCY,
+  PA_STREAM_EARLY_REQUESTS,
+  PA_STREAM_DONT_INHIBIT_AUTO_SUSPEND,
+  PA_STREAM_START_UNMUTED,
+  PA_STREAM_FAIL_ON_SUSPEND
+) = map(c_int, xrange(18))
+
 ################################################################################
 #
 # Structs
@@ -60,6 +179,9 @@ class PA_CONTEXT(Structure):
 class PA_OPERATION(Structure):
   _fields_ = [("_opaque_struct", c_int)]
 
+class PA_STREAM(Structure):
+  _fields_ = [("_opaque_struct", c_int)]
+
 class PA_SAMPLE_SPEC(Structure):
   _fields_ = [
     ("format", c_int), # FIXME check this
@@ -77,6 +199,15 @@ class PA_CVOLUME(Structure):
   _fields_ = [
     ("channels", c_uint8),
     ("values", c_uint32 * PA_CHANNELS_MAX)
+  ]
+
+class PA_BUFFER_ATTR(Structure):
+  _fields_ = [
+    ("maxlength", c_uint32),
+    ("tlength", c_uint32),
+    ("prebuf", c_uint32),
+    ("minreq", c_uint32),
+    ("fragsize", c_uint32)
   ]
 
 PA_USEC_T = c_uint64
@@ -279,7 +410,6 @@ PA_CONTEXT_SUBSCRIBE_CB_T = CFUNCTYPE(c_void_p,
                                       c_int,
                                       c_uint32,
                                       c_void_p)
-
 
 ################################################################################
 #
@@ -578,5 +708,24 @@ pa_operation_unref = pulse.pa_operation_unref
 pa_operation_unref.restype = c_int
 pa_operation_unref.argtypes = [
         POINTER(PA_OPERATION)
+]
+
+#
+# pa_stream_*
+pa_stream_connect_record = pulse.pa_stream_connect_record
+pa_stream_connect_record.restype = c_int
+pa_stream_connect_record.argtypes = [
+  POINTER(PA_STREAM),
+  c_char_p,
+  POINTER(PA_BUFFER_ATTR),
+  c_int # original pa_stream_flags_t
+]
+
+pa_stream_peek = pulse.pa_stream_peek
+pa_stream_peek.restype = c_int
+pa_stream_peek.argtypes = [
+  POINTER(PA_STREAM),
+  POINTER(c_void_p), # original is void **data, no idea if this works
+  POINTER(c_size_t)
 ]
 
