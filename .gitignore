@@ -7,6 +7,6 @@ utils/palist
 \#*\#
 
 # Eclipse stuff
-.project
-.pydevproject
+#.project
+#.pydevproject
 .settings
