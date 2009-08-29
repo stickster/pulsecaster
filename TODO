@@ -1,4 +1,5 @@
 TODO:
+* Handle overwrite/rename of save file gracefully
 * Nag screen: "Observe the law, do not record people without their consent"
 	* "Don't show me this again" checkbox
 * Volume leveling on user's behalf
