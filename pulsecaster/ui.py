@@ -93,7 +93,7 @@ class PulseCasterUI:
         self.repop_sources()
         self.listener = PulseCasterListener(self)
         
-        self.file_entry = self.xml.get_widget('file_entry')
+        self.destfile_label = self.xml.get_widget('destfile_label')
         self.file_chooser = self.xml.get_widget('file_chooser')
         self.open_button = self.xml.get_widget('open_button')
         self.open_button.connect('button-press-event', self.showFileChooser)
@@ -103,7 +103,7 @@ class PulseCasterUI:
         self.file_chooser_save_button.connect('button-press-event', self.updateFileSinkPath)
         self.filesinkpath = os.path.join(os.getenv('HOME'), 'podcast.ogg')
         self.file_chooser.set_filename(self.filesinkpath)
-        self.file_entry.set_text(self.filesinkpath)
+        self.destfile_label.set_text(self.filesinkpath)
         
     def repop_sources(self, *args):
         self.sources = self.pa.pulse_source_list()
@@ -129,7 +129,7 @@ class PulseCasterUI:
     def on_record(self, *args):
         # Get filename
         # Check whether filename exists, if so, overwrite? y/n
-        filesinkpath = self.file_entry.get_text()
+        filesinkpath = self.destfile_labelget_text()
         if filesinkpath is None:
             return
         # Set up GStreamer stuff
@@ -197,7 +197,7 @@ class PulseCasterUI:
     def updateFileSinkPath(self, *args):
         self.hideFileChooser()
         self.filesinkpath = self.file_chooser.get_filename()
-        self.file_entry.set_text(self.filesinkpath)
+        self.destfile_label.set_text(self.filesinkpath)
     
 
 class PulseCasterListener:

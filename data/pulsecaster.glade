@@ -169,10 +169,11 @@
                       <widget class="GtkHBox" id="hbox2">
                         <property name="visible">True</property>
                         <child>
-                          <widget class="GtkEntry" id="file_entry">
+                          <widget class="GtkLabel" id="destfile_label">
                             <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="invisible_char">&#x25CF;</property>
+                            <property name="xalign">0</property>
+                            <property name="use_markup">True</property>
+                            <property name="ellipsize">middle</property>
                           </widget>
                           <packing>
                             <property name="position">0</property>
@@ -180,11 +181,10 @@
                         </child>
                         <child>
                           <widget class="GtkButton" id="open_button">
-                            <property name="label" translatable="yes">gtk-open</property>
+                            <property name="label" translatable="yes">Browse...</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
-                            <property name="use_stock">True</property>
                           </widget>
                           <packing>
                             <property name="expand">False</property>
@@ -281,8 +281,9 @@
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">normal</property>
     <property name="has_separator">False</property>
-    <property name="do_overwrite_confirmation">True</property>
+    <property name="local_only">False</property>
     <property name="action">save</property>
+    <property name="do_overwrite_confirmation">True</property>
     <child internal-child="vbox">
       <widget class="GtkVBox" id="dialog-vbox4">
         <property name="visible">True</property>
