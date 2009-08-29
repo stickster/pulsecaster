@@ -1,7 +1,7 @@
 TODO:
-* Handle overwrite/rename of save file gracefully
 * Nag screen: "Observe the law, do not record people without their consent"
 	* "Don't show me this again" checkbox
+* Handle overwrite/rename of save file gracefully
 * Volume leveling on user's behalf
 	* Set recording volume for both sources to reasonable level (75%?)
 	* Normalize each to something like -0.1dB
