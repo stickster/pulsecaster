@@ -105,6 +105,8 @@
                   <widget class="GtkVBox" id="vbox1">
                     <property name="visible">True</property>
                     <property name="orientation">vertical</property>
+                    <property name="spacing">5</property>
+                    <property name="homogeneous">True</property>
                     <child>
                       <widget class="GtkLabel" id="label3">
                         <property name="visible">True</property>
@@ -114,7 +116,7 @@
                         <property name="justify">right</property>
                       </widget>
                       <packing>
-                        <property name="fill">False</property>
+                        <property name="expand">False</property>
                         <property name="padding">5</property>
                         <property name="position">0</property>
                       </packing>
@@ -128,29 +130,13 @@
                         <property name="justify">right</property>
                       </widget>
                       <packing>
-                        <property name="fill">False</property>
+                        <property name="expand">False</property>
                         <property name="padding">5</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
-                    <child>
-                      <widget class="GtkLabel" id="label5">
-                        <property name="visible">True</property>
-                        <property name="xalign">1</property>
-                        <property name="xpad">10</property>
-                        <property name="label" translatable="yes">Destination file:</property>
-                        <property name="justify">right</property>
-                      </widget>
-                      <packing>
-                        <property name="fill">False</property>
-                        <property name="padding">5</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
                   </widget>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
                     <property name="position">0</property>
                   </packing>
                 </child>
@@ -165,38 +151,6 @@
                     <child>
                       <placeholder/>
                     </child>
-                    <child>
-                      <widget class="GtkHBox" id="hbox2">
-                        <property name="visible">True</property>
-                        <child>
-                          <widget class="GtkLabel" id="destfile_label">
-                            <property name="visible">True</property>
-                            <property name="xalign">0</property>
-                            <property name="use_markup">True</property>
-                            <property name="ellipsize">middle</property>
-                          </widget>
-                          <packing>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <widget class="GtkButton" id="open_button">
-                            <property name="label" translatable="yes">Browse...</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="receives_default">True</property>
-                          </widget>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">False</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                      </widget>
-                      <packing>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
                   </widget>
                   <packing>
                     <property name="position">1</property>
@@ -205,6 +159,53 @@
               </widget>
               <packing>
                 <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <widget class="GtkHBox" id="hbox2">
+                <property name="visible">True</property>
+                <child>
+                  <widget class="GtkLabel" id="label5">
+                    <property name="visible">True</property>
+                    <property name="xalign">1</property>
+                    <property name="xpad">10</property>
+                    <property name="label" translatable="yes">Destination file:</property>
+                    <property name="justify">right</property>
+                  </widget>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="padding">5</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkLabel" id="destfile_label">
+                    <property name="visible">True</property>
+                    <property name="xalign">0</property>
+                    <property name="use_markup">True</property>
+                    <property name="ellipsize">middle</property>
+                  </widget>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkButton" id="open_button">
+                    <property name="label" translatable="yes">Browse...</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                  </widget>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+              </widget>
+              <packing>
+                <property name="position">2</property>
               </packing>
             </child>
           </widget>
