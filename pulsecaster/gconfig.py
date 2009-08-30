@@ -26,12 +26,19 @@ class PulseCasterGconf:
     def __init__(self):
         self.dirbase = '/apps/' + NAME
         self.client = gconf.client_get_default()
-        self.warn = self.client.get_without_default(self.dirbase + '/warn')
-        if type(self.warn) is None:
-            self.warn = True
-            self.client.set_value(self.dirbase + '/warn', False)
-        self.vorbisq = self.client.get_without_default(self.dirbase + '/vorbisq')
-        if type(self.vorbisq) is None:
+        if self.client.dir_exists(self.dirbase) is False:
+            self.client.add_dir(self.dirbase, gconf.CLIENT_PRELOAD_NONE)
+            
+        self.skip_warn = self.client.get_bool(self.dirbase + '/skip_warning')
+        if self.skip_warn is None or type(self.skip_warn) is not bool:
+            self.skip_warn = False
+        
+        self.vorbisq = self.client.get(self.dirbase + '/vorbisq')
+        if type(self.vorbisq) is not int:
             self.vorbisq = 4
-            self.client.set_value(self.dirbase + '/vorbisq', self.vorbisq)
+            self.client.set_int(self.dirbase + '/vorbisq', self.vorbisq)
 
+    def change_warn(self, val):
+        if type(val) is not bool:
+            raise ValueError, "requires bool value"
+        self.client.set_bool(self.dirbase + '/skip_warning', val)

@@ -26,5 +26,4 @@ from pulsecaster.ui import *
 sys.path.append(os.getcwd())
 
 pc = PulseCasterUI()
-pc.main.show_all()
 gtk.main()

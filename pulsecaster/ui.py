@@ -20,6 +20,7 @@
 
 
 from config import *
+import gconfig
 from pulseaudio.PulseObj import PulseObj
 import gtk
 import gtk.glade
@@ -44,6 +45,13 @@ class PulseCasterUI:
     def __init__(self):
         self.xml = gtk.glade.XML(fname)
         self.logo = gtk.gdk.pixbuf_new_from_file(logofile)
+        self.gconfig = gconfig.PulseCasterGconf()
+        
+        self.warning = self.xml.get_widget('warning')
+        self.dismiss = self.xml.get_widget('dismiss_warning')
+        self.swckbox = self.xml.get_widget('skip_warn_checkbox')
+        self.swckbox.set_active(int(self.gconfig.skip_warn))
+        self.dismiss.connect('clicked', self.hideWarn)
         
         # Main dialog basics
         self.main = self.xml.get_widget('main_dialog')
@@ -126,6 +134,11 @@ class PulseCasterUI:
         self.combo_vbox.reorder_child(self.subject_vox, 1)
         self.combo_vbox.show_all()
 
+        if self.gconfig.skip_warn is False:
+            self.warning.show()
+        else:
+            self.hideWarn()
+
     def on_record(self, *args):
         # Get filename
         # Check whether filename exists, if so, overwrite? y/n
@@ -181,6 +194,11 @@ class PulseCasterUI:
             pass
         gtk.main_quit()
 
+    def hideWarn(self, *args):
+        self.gconfig.change_warn(self.swckbox.get_active())
+        self.warning.hide()
+        self.main.show()
+    
     def showAbout(self, *args):
         self.about.show()
 
@@ -217,5 +235,4 @@ class PulseCasterListener:
 
 if __name__ == '__main__':
     pulseCaster = PulseCasterUI()
-    pulseCaster.main.show_all()
     gtk.main()
