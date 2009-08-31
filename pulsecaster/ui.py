@@ -142,7 +142,7 @@ class PulseCasterUI:
     def on_record(self, *args):
         # Get filename
         # Check whether filename exists, if so, overwrite? y/n
-        filesinkpath = self.destfile_labelget_text()
+        filesinkpath = self.destfile_label.get_text()
         if filesinkpath is None:
             return
         # Set up GStreamer stuff
