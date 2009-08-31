@@ -11,7 +11,6 @@ TODO:
 * Show a timer as a modal progress dialog
 * Check disk space usage? Show that too?
 * Rip out PA ctypes stuff entirely and replace with udev (?) calls?
-* Handle file name collisions and/or overwrites
 * Pause toggle button
 * Advanced settings
 	* Volume settings
