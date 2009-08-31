@@ -6,6 +6,7 @@ TODO:
 	* After mixing the streams, do some sort of compression/leveling
 * Reset names of monitor devices to be more human-understandable
 * CLI interface
+* Convert to GtkBuilder
 * Choice of gst-audio-profiles for encoding
 * Show a timer as a modal progress dialog
 * Check disk space usage? Show that too?
