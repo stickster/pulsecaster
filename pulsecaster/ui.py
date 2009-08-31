@@ -23,7 +23,7 @@ from config import *
 import gconfig
 from pulseaudio.PulseObj import PulseObj
 import gtk
-import gtk.glade
+#import gtk.glade
 import os
 import dbus
 import gobject
@@ -43,32 +43,33 @@ def _debugPrint(text):
 
 class PulseCasterUI:
     def __init__(self):
-        self.xml = gtk.glade.XML(fname)
+        self.builder = gtk.Builder()
+        self.builder.add_from_file(fname)
         self.logo = gtk.gdk.pixbuf_new_from_file(logofile)
         self.gconfig = gconfig.PulseCasterGconf()
         
-        self.warning = self.xml.get_widget('warning')
-        self.dismiss = self.xml.get_widget('dismiss_warning')
-        self.swckbox = self.xml.get_widget('skip_warn_checkbox')
+        self.warning = self.builder.get_object('warning')
+        self.dismiss = self.builder.get_object('dismiss_warning')
+        self.swckbox = self.builder.get_object('skip_warn_checkbox')
         self.swckbox.set_active(int(self.gconfig.skip_warn))
         self.dismiss.connect('clicked', self.hideWarn)
         
         # Main dialog basics
-        self.main = self.xml.get_widget('main_dialog')
+        self.main = self.builder.get_object('main_dialog')
         self.main.set_title(NAME)
-        self.main_title = self.xml.get_widget('main_title')
+        self.main_title = self.builder.get_object('main_title')
         self.main_title.set_label('<big><big><big><b><i>' +
                                   NAME + '</i></b></big></big></big>')
         self.main.connect('delete_event', self.on_close)
-        self.about_button = self.xml.get_widget('about_button')
+        self.about_button = self.builder.get_object('about_button')
         self.about_button.connect('clicked', self.showAbout)
-        self.close = self.xml.get_widget('close_button')
+        self.close = self.builder.get_object('close_button')
         self.close.connect('clicked', self.on_close)
-        self.record = self.xml.get_widget('record_button')
+        self.record = self.builder.get_object('record_button')
         self.record_id = self.record.connect('clicked', self.on_record)
         
         # About dialog basics
-        self.about = self.xml.get_widget('about_dialog')
+        self.about = self.builder.get_object('about_dialog')
         self.about.connect('delete_event', self.hideAbout)
         self.about.connect('response', self.hideAbout)
         self.about.set_name(NAME)
@@ -89,7 +90,7 @@ class PulseCasterUI:
         self.pa = PulseObj(clientName=NAME)
 
         # Create and populate combo boxes
-        self.combo_vbox = self.xml.get_widget('combo_vbox')
+        self.combo_vbox = self.builder.get_object('combo_vbox')
         self.user_vox = gtk.combo_box_new_text()
         self.subject_vox = gtk.combo_box_new_text()
         self.combo_vbox.add(self.user_vox)
@@ -101,13 +102,13 @@ class PulseCasterUI:
         self.repop_sources()
         self.listener = PulseCasterListener(self)
         
-        self.destfile_label = self.xml.get_widget('destfile_label')
-        self.file_chooser = self.xml.get_widget('file_chooser')
-        self.open_button = self.xml.get_widget('open_button')
+        self.destfile_label = self.builder.get_object('destfile_label')
+        self.file_chooser = self.builder.get_object('file_chooser')
+        self.open_button = self.builder.get_object('open_button')
         self.open_button.connect('button-press-event', self.showFileChooser)
-        self.file_chooser_cancel_button = self.xml.get_widget('file_chooser_cancel_button')
+        self.file_chooser_cancel_button = self.builder.get_object('file_chooser_cancel_button')
         self.file_chooser_cancel_button.connect('clicked', self.hideFileChooser)
-        self.file_chooser_save_button = self.xml.get_widget('file_chooser_save_button')
+        self.file_chooser_save_button = self.builder.get_object('file_chooser_save_button')
         self.file_chooser_save_button.connect('clicked', self.updateFileSinkPath)
         self.filesinkpath = os.path.join(os.getenv('HOME'), 'podcast.ogg')
         self.file_chooser.set_filename(self.filesinkpath)
