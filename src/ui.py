@@ -24,7 +24,6 @@ import gconfig
 from pulseaudio.PulseObj import PulseObj
 from listener import *
 import gtk
-#import gtk.glade
 import os
 import gobject
 import pygst
