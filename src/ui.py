@@ -22,12 +22,11 @@
 from config import *
 import gconfig
 from pulseaudio.PulseObj import PulseObj
+from listener import *
 import gtk
 #import gtk.glade
 import os
-import dbus
 import gobject
-import dbus.mainloop.glib
 import pygst
 pygst.require('0.10')
 import gst
@@ -218,21 +217,6 @@ class PulseCasterUI:
         self.filesinkpath = self.file_chooser.get_filename()
         self.destfile_label.set_text(self.filesinkpath)
     
-
-class PulseCasterListener:
-    def __init__(self, ui):
-        dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
-        self.bus = dbus.SystemBus()
-        
-        self.bus.add_signal_receiver(ui.repop_sources,
-                                     signal_name='DeviceAdded', 
-                                     dbus_interface='org.freedesktop.Hal.Manager',
-                                     path='/org/freedesktop/Hal/Manager')
-        self.bus.add_signal_receiver(ui.repop_sources,
-                                     signal_name='DeviceRemoved',
-                                     dbus_interface='org.freedesktop.Hal.Manager',
-                                     path='/org/freedesktop/Hal/Manager')
-        
 
 if __name__ == '__main__':
     pulseCaster = PulseCasterUI()
