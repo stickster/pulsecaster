@@ -10,8 +10,8 @@ This project is only in its infancy right now. There is much that is
 broken or missing.  For now, 'cd' to the top of this project and then
 run the following command to try it out:
 
-$ cd /some/path/pulsecaster
-$ ./pulsecaster.py
+$ cd src
+$ python ui.py
 
 GSTREAMER
 =========
