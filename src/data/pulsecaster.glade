@@ -137,6 +137,7 @@
                     </child>
                   </object>
                   <packing>
+                    <property name="expand">False</property>
                     <property name="position">0</property>
                   </packing>
                 </child>
@@ -184,6 +185,7 @@
                     <property name="xalign">0</property>
                     <property name="use_markup">True</property>
                     <property name="ellipsize">middle</property>
+                    <property name="width_chars">30</property>
                   </object>
                   <packing>
                     <property name="position">1</property>
@@ -286,8 +288,8 @@
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">normal</property>
     <property name="has_separator">False</property>
-    <property name="do_overwrite_confirmation">True</property>
     <property name="local_only">False</property>
+    <property name="do_overwrite_confirmation">True</property>
     <property name="action">save</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox4">
@@ -351,13 +353,13 @@
     <property name="destroy_with_parent">True</property>
     <property name="urgency_hint">True</property>
     <child>
-      <object class="GtkVBox" id="vbox1">
+      <object class="GtkVBox" id="warning-vbox">
         <property name="visible">True</property>
         <property name="border_width">10</property>
         <property name="orientation">vertical</property>
         <property name="spacing">5</property>
         <child>
-          <object class="GtkHBox" id="hbox1">
+          <object class="GtkHBox" id="warning-hbox1">
             <property name="visible">True</property>
             <child>
               <object class="GtkImage" id="image1">
@@ -372,11 +374,11 @@
               </packing>
             </child>
             <child>
-              <object class="GtkVBox" id="vbox2">
+              <object class="GtkVBox" id="warning-vbox2">
                 <property name="visible">True</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkLabel" id="label2">
+                  <object class="GtkLabel" id="warning-label2">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="label" translatable="yes">&lt;big&gt;&lt;big&gt;&lt;b&gt;&lt;i&gt;Important notice&lt;/i&gt;&lt;/b&gt;&lt;/big&gt;&lt;/big&gt;</property>
@@ -390,7 +392,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label3">
+                  <object class="GtkLabel" id="warning-label3">
                     <property name="visible">True</property>
                     <property name="label" translatable="yes">This program can be used to record speech 
 from remote locations. You are responsible 
