@@ -24,6 +24,7 @@ from lib_pulseaudio import *
 from PulseSink      import PulseSinkInputInfo, PulseSinkInfo
 from PulseSource    import PulseSourceOutputInfo, PulseSourceInfo
 from PulseClient    import PulseClientCtypes
+#from PulseStream    import PulseStream
 
 ################################################################################
 #

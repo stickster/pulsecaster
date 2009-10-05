@@ -713,6 +713,15 @@ pa_operation_unref.argtypes = [
 
 #
 # pa_stream_*
+pa_stream_new = pulse.pa_stream_new
+pa_stream_new.restype = POINTER(PA_STREAM)
+pa_stream_new.argtypes = [
+  POINTER(PA_CONTEXT),
+  c_char_p,
+  POINTER(PA_SAMPLE_SPEC),
+  POINTER(PA_CHANNEL_MAP)
+]
+  
 pa_stream_connect_record = pulse.pa_stream_connect_record
 pa_stream_connect_record.restype = c_int
 pa_stream_connect_record.argtypes = [
@@ -730,3 +739,12 @@ pa_stream_peek.argtypes = [
   POINTER(c_size_t)
 ]
 
+pa_stream_disconnect = pulse.pa_stream_disconnect
+pa_stream_disconnect.restype = c_int
+pa_stream_disconnect.argtypes = [
+  POINTER(PA_STREAM)
+]
+
+# Local variables:
+# tab-width: 2
+# End:
