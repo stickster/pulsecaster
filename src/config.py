@@ -28,7 +28,7 @@ DESCRIPTION = u'PulseAudio based podcast recorder'
 LICENSE = u'GPLv3+'
 COPYRIGHT = u'Copyright © 2009 ' + AUTHOR
 KEYWORDS = u'pulseaudio podcast recorder mixer gstreamer pygtk'
-URL = u'http://pfrields.fedorapeople.org' # FIXME: Project needs a
+URL = u'http://pulsecaster.fedorahosted.org' # FIXME: Project needs a
                                           # home!
 CONTRIBUTORS = [u'Harry Karvonen <harry.karvonen@gmail.com>']
 
