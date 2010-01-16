@@ -44,6 +44,7 @@ class PulseCasterUI:
         self.builder = gtk.Builder()
         self.builder.add_from_file(fname)
         self.logo = gtk.gdk.pixbuf_new_from_file(logofile)
+        gtk.window_set_default_icon(self.logo)
         self.gconfig = gconfig.PulseCasterGconf()
         
         self.warning = self.builder.get_object('warning')
