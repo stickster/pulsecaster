@@ -88,11 +88,13 @@ class PulseCasterUI:
         self.pa = PulseObj(clientName=NAME)
 
         # Create and populate combo boxes
-        self.combo_vbox = self.builder.get_object('combo_vbox')
+        self.table = self.builder.get_object('table1')
         self.user_vox = gtk.combo_box_new_text()
         self.subject_vox = gtk.combo_box_new_text()
-        self.combo_vbox.add(self.user_vox)
-        self.combo_vbox.add(self.subject_vox)
+        self.table.attach(self.user_vox, 1, 2, 0, 1,
+                          xoptions=gtk.EXPAND|gtk.FILL)
+        self.table.attach(self.subject_vox, 1, 2, 1, 2,
+                          xoptions=gtk.EXPAND|gtk.FILL)
         self.user_vox.connect('button-press-event', self.repop_sources)
         self.subject_vox.connect('button-press-event', self.repop_sources)
 
@@ -129,9 +131,10 @@ class PulseCasterUI:
                 self.subject_vox.append_text(source.description)
         self.user_vox.set_active(0)
         self.subject_vox.set_active(0)
-        self.combo_vbox.reorder_child(self.user_vox, 0)
-        self.combo_vbox.reorder_child(self.subject_vox, 1)
-        self.combo_vbox.show_all()
+        #self.combo_vbox.reorder_child(self.user_vox, 0)
+        #self.combo_vbox.reorder_child(self.subject_vox, 1)
+        #self.combo_vbox.show_all()
+        self.table.show_all()
 
         if self.gconfig.skip_warn is False:
             self.warning.show()
