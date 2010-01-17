@@ -109,15 +109,12 @@ class PulseCasterUI:
         self.listener = PulseCasterListener(self)
         
         self.destfile_label = self.builder.get_object('destfile_label')
-        self.file_chooser = self.builder.get_object('file_chooser')
         self.open_button = self.builder.get_object('open_button')
         self.open_button.connect('button-press-event', self.showFileChooser)
-        self.file_chooser_cancel_button = self.builder.get_object('file_chooser_cancel_button')
-        self.file_chooser_cancel_button.connect('clicked', self.hideFileChooser)
-        self.file_chooser_save_button = self.builder.get_object('file_chooser_save_button')
-        self.file_chooser_save_button.connect('clicked', self.updateFileSinkPath)
-        self.filesinkpath = os.path.join(os.getenv('HOME'), 'podcast.ogg')
-        self.file_chooser.set_filename(self.filesinkpath)
+        self.filesinkdir = os.getenv('HOME')
+        self.filesinkfile = 'podcast.ogg'
+        self.filesinkpath = os.path.join(self.filesinkdir, self.filesinkfile)
+        #self.file_chooser.set_filename(self.filesinkpath)
         self.destfile_label.set_text(self.filesinkpath)
         
     def repop_sources(self, *args):
@@ -214,7 +211,14 @@ class PulseCasterUI:
         self.about.hide()
         
     def showFileChooser(self, *args):
+        self.file_chooser = self.builder.get_object('file_chooser')
+        self.file_chooser_cancel_button = self.builder.get_object('file_chooser_cancel_button')
+        self.file_chooser_cancel_button.connect('clicked', self.hideFileChooser)
+        self.file_chooser_save_button = self.builder.get_object('file_chooser_save_button')
+        self.file_chooser_save_button.connect('clicked', self.updateFileSinkPath)
+        #self.file_chooser.set_current_folder(self.filesinkdir)
         self.file_chooser.set_filename(self.filesinkpath)
+        self.file_chooser.set_current_name(self.filesinkfile)
         self.file_chooser.show()
     
     def hideFileChooser(self, *args):
@@ -223,8 +227,10 @@ class PulseCasterUI:
     def updateFileSinkPath(self, *args):
         self.hideFileChooser()
         self.filesinkpath = self.file_chooser.get_filename()
+        (self.filesinkfile, self.filesinkdir) = (os.path.basename(self.filesinkpath),
+                                                 os.path.dirname(self.filesinkpath))
         self.destfile_label.set_text(self.filesinkpath)
-    
+
 
 if __name__ == '__main__':
     pulseCaster = PulseCasterUI()
