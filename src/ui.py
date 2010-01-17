@@ -72,6 +72,7 @@ class PulseCasterUI:
         self.close.connect('clicked', self.on_close)
         self.record = self.builder.get_object('record_button')
         self.record_id = self.record.connect('clicked', self.on_record)
+        self.record.set_sensitive(False)
         
         # About dialog basics
         self.about = self.builder.get_object('about_dialog')
@@ -227,6 +228,7 @@ class PulseCasterUI:
         (self.filesinkfile, self.filesinkdir) = (os.path.basename(self.filesinkpath),
                                                  os.path.dirname(self.filesinkpath))
         self.destfile_label.set_text(self.filesinkpath)
+        self.record.set_sensitive(True)
 
 
 if __name__ == '__main__':
