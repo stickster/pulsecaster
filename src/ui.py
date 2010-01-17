@@ -57,6 +57,7 @@ class PulseCasterUI:
         self.swckbox = self.builder.get_object('skip_warn_checkbox')
         self.swckbox.set_active(int(self.gconfig.skip_warn))
         self.dismiss.connect('clicked', self.hideWarn)
+        self.warning.connect('destroy', self.hideWarn)
         
         # Main dialog basics
         self.main = self.builder.get_object('main_dialog')
