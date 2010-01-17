@@ -110,7 +110,7 @@ class PulseCasterUI:
         
         self.destfile_label = self.builder.get_object('destfile_label')
         self.open_button = self.builder.get_object('open_button')
-        self.open_button.connect('button-press-event', self.showFileChooser)
+        self.open_button.connect('clicked', self.showFileChooser)
         self.filesinkdir = os.getenv('HOME')
         self.filesinkfile = 'podcast.ogg'
         self.filesinkpath = os.path.join(self.filesinkdir, self.filesinkfile)
