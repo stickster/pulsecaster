@@ -32,7 +32,6 @@ import gst
 
 # FIXME
 fname = os.getcwd() + '/data/pulsecaster.glade'
-logofile = os.getcwd() + '/data/icons/scalable/pulsecaster.svg'
 _debug = True
 
 def _debugPrint(text):
@@ -43,7 +42,13 @@ class PulseCasterUI:
     def __init__(self):
         self.builder = gtk.Builder()
         self.builder.add_from_file(fname)
-        self.logo = gtk.gdk.pixbuf_new_from_file(logofile)
+        self.icontheme = gtk.icon_theme_get_default()
+        self.icontheme.append_search_path(os.path.join('/usr/share', NAME))
+        # Convenience for developers
+        self.icontheme.append_search_path(os.path.join(os.getcwd(),
+                                                       'data/icons/scalable'))
+        self.logo = self.icontheme.load_icon('pulsecaster', -1,
+                                             gtk.ICON_LOOKUP_FORCE_SVG)
         gtk.window_set_default_icon(self.logo)
         self.gconfig = gconfig.PulseCasterGconf()
         
@@ -82,7 +87,6 @@ class PulseCasterUI:
         for contrib in CONTRIBUTORS:
             self.authors.append(contrib)
         self.about.set_authors(self.authors)
-        self.about.set_logo(self.logo)
         self.about.set_program_name(NAME)
 
         # Create PulseAudio backing
