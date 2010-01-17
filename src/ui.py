@@ -111,11 +111,7 @@ class PulseCasterUI:
         self.destfile_label = self.builder.get_object('destfile_label')
         self.open_button = self.builder.get_object('open_button')
         self.open_button.connect('clicked', self.showFileChooser)
-        self.filesinkdir = os.getenv('HOME')
-        self.filesinkfile = 'podcast.ogg'
-        self.filesinkpath = os.path.join(self.filesinkdir, self.filesinkfile)
-        #self.file_chooser.set_filename(self.filesinkpath)
-        self.destfile_label.set_text(self.filesinkpath)
+        self.filesinkpath = ''
         
     def repop_sources(self, *args):
         self.sources = self.pa.pulse_source_list()
@@ -217,8 +213,9 @@ class PulseCasterUI:
         self.file_chooser_save_button = self.builder.get_object('file_chooser_save_button')
         self.file_chooser_save_button.connect('clicked', self.updateFileSinkPath)
         #self.file_chooser.set_current_folder(self.filesinkdir)
-        self.file_chooser.set_filename(self.filesinkpath)
-        self.file_chooser.set_current_name(self.filesinkfile)
+        if self.filesinkpath:
+            self.file_chooser.set_filename(self.filesinkpath)
+            self.file_chooser.set_current_name(self.filesinkfile)
         self.file_chooser.show()
     
     def hideFileChooser(self, *args):
