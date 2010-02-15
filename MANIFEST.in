@@ -1,1 +1,2 @@
+include AUTHORS TODO
 recursive-include pulsecaster/
