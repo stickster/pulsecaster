@@ -21,7 +21,7 @@
 from pulsecaster.config import *
 from setuptools import setup, find_packages
 setup(
-    name = NAME,
+    name = "pulsecaster",
     version = VERSION,
     author = AUTHOR,
     author_email = AUTHOR_EMAIL,
@@ -33,7 +33,7 @@ setup(
     install_requires = ['gtk>=2.14',
                         'dbus>=0.83'],
     # Also requires pulseaudio-libs >= 0.9.15
-    scripts = ['pulsecaster.py'],
+    scripts = ['pulsecaster'],
     include_package_data = True,
     package_data = {
         'pulsecaster': ['data/pulsecaster.glade'],
