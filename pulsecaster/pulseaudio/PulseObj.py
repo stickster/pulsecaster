@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # vi: et sw=2
 #
 # PulseObj.py
