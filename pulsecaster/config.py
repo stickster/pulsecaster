@@ -30,7 +30,8 @@ COPYRIGHT = u'Copyright © 2009 ' + AUTHOR
 KEYWORDS = u'pulseaudio podcast recorder mixer gstreamer pygtk'
 URL = u'http://pulsecaster.fedorahosted.org' # FIXME: Project needs a
                                           # home!
-CONTRIBUTORS = [u'Harry Karvonen <harry.karvonen@gmail.com>']
+CONTRIBUTORS = [u'Jürgen Geuter <tante@the-gay-bar.com>',
+                u'Harry Karvonen <harry.karvonen@gmail.com>']
 
 LICENSE_TEXT = u'''Licensed under the GNU General Public License Version 3
 
