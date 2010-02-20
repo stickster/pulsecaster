@@ -20,4 +20,3 @@
 
 
 from config import *
-from ui import *
