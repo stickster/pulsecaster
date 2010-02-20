@@ -30,14 +30,13 @@ setup(
     keywords = KEYWORDS,
     url = URL,
 
-    install_requires = ['gtk>=2.14',
-                        'dbus>=0.83'],
-    # Also requires pulseaudio-libs >= 0.9.15
-    scripts = ['pulsecaster'],
+    scripts = ['pulsecaster/pulsecaster'],
     include_package_data = True,
-    package_data = {
-        'pulsecaster': ['data/pulsecaster.glade'],
-        },
+    data_files = [
+        ('share/pulsecaster/',["pulsecaster/data/pulsecaster.glade"]),
+        ('share/pulsecaster/icons/scalable/',['pulsecaster/data/icons/scalable/pulsecaster.svg','pulsecaster/data/icons/scalable/pulsecaster-logo.svg']),
+        ],
+    
     #message_extractors = {
     #    'pulsecaster': [('**.py', 'python', None),
     #                    ('**.glade', '', None),

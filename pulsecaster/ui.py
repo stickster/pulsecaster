@@ -25,13 +25,14 @@ from pulseaudio.PulseObj import PulseObj
 from listener import *
 import gtk
 import os
+import sys
+import glob
 import gobject
 import pygst
 pygst.require('0.10')
 import gst
 
-# FIXME
-fname = os.getcwd() + '/data/pulsecaster.glade'
+#fname = os.getcwd() + '/data/pulsecaster.glade'
 _debug = True
 
 def _debugPrint(text):
@@ -41,9 +42,19 @@ def _debugPrint(text):
 class PulseCasterUI:
     def __init__(self):
         self.builder = gtk.Builder()
-        self.builder.add_from_file(fname)
+        try:
+            self.builder.add_from_file(os.path.join(os.getcwd(),'data','pulsecaster.glade')
+)
+            _debugPrint("loading glade file from current subdir")
+        except:
+            try:
+                self.builder.add_from_file(os.path.join(sys.prefix,'share','pulsecaster','pulsecaster.glade'))
+            except Exception,e:
+                print(e)
+                raise SystemExit("Cannot load resources")
+
         self.icontheme = gtk.icon_theme_get_default()
-        self.icontheme.append_search_path(os.path.join('/usr/share', NAME))
+        
         # Convenience for developers
         self.icontheme.append_search_path(os.path.join(os.getcwd(),
                                                        'data/icons/scalable'))

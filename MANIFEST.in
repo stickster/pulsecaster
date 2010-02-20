@@ -1,2 +1,3 @@
 include AUTHORS TODO
-recursive-include pulsecaster/
+recursive-include pulsecaster *.png *.svg *.glade
+
