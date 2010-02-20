@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=PulseCaster
+GenericName=Podcast Recorder
+Comment=Use PulseAudio to record a podcast from a microphone or VoIP
+Exec=pulsecaster
+Terminal=false
+Type=Application
+StartupNotify=false
+Icon=pulsecaster
+Categories=GNOME;AudioVideo;Audio;
