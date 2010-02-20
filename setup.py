@@ -31,10 +31,14 @@ setup(
     url = URL,
 
     scripts = ['pulsecaster/pulsecaster'],
-    include_package_data = True,
     data_files = [
-        ('share/pulsecaster/',["pulsecaster/data/pulsecaster.glade"]),
-        ('share/pulsecaster/icons/scalable/',['pulsecaster/data/icons/scalable/pulsecaster.svg','pulsecaster/data/icons/scalable/pulsecaster-logo.svg']),
+        ('/usr/share/pulsecaster/', ["pulsecaster/data/pulsecaster.glade"]),
+        ('/usr/share/pulsecaster/icons/scalable/',['pulsecaster/data/icons/scalable/pulsecaster.svg','pulsecaster/data/icons/scalable/pulsecaster-logo.svg']),
+        ('/usr/share/pulsecaster/icons/16x16/', ['pulsecaster/data/icons/16x16/pulsecaster-16.png']),
+        ('/usr/share/pulsecaster/icons/24x24/', ['pulsecaster/data/icons/24x24/pulsecaster-24.png']),
+        ('/usr/share/pulsecaster/icons/32x32/', ['pulsecaster/data/icons/32x32/pulsecaster-32.png']),
+        ('/usr/share/pulsecaster/icons/48x48/', ['pulsecaster/data/icons/48x48/pulsecaster-48.png']),
+        ('/usr/share/pulsecaster/icons/64x64/', ['pulsecaster/data/icons/64x64/pulsecaster-64.png']),
         ],
     
     #message_extractors = {

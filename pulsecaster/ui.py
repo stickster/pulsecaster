@@ -32,7 +32,6 @@ import pygst
 pygst.require('0.10')
 import gst
 
-#fname = os.getcwd() + '/data/pulsecaster.glade'
 _debug = True
 
 def _debugPrint(text):
@@ -58,6 +57,7 @@ class PulseCasterUI:
         # Convenience for developers
         self.icontheme.append_search_path(os.path.join(os.getcwd(),
                                                        'data/icons/scalable'))
+        self.icontheme.append_search_path(os.path.join(sys.prefix,'share','pulsecaster','icons','scalable'))
         self.logo = self.icontheme.load_icon('pulsecaster', -1,
                                              gtk.ICON_LOOKUP_FORCE_SVG)
         gtk.window_set_default_icon(self.logo)
