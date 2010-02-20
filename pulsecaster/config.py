@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: iso-8859-15 -*-
+# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2009 Paul W. Frields
 #
@@ -26,7 +26,7 @@ AUTHOR = u'Paul W. Frields'
 AUTHOR_EMAIL = u'stickster@gmail.com'
 DESCRIPTION = u'PulseAudio based podcast recorder'
 LICENSE = u'GPLv3+'
-COPYRIGHT = u'Copyright © 2009 ' + AUTHOR
+COPYRIGHT = u'Copyright Â© 2009 ' + AUTHOR
 KEYWORDS = u'pulseaudio podcast recorder mixer gstreamer pygtk'
 URL = u'http://pulsecaster.fedorahosted.org' # FIXME: Project needs a
                                           # home!
