@@ -100,6 +100,7 @@ class PulseCasterUI:
             self.authors.append(contrib)
         self.about.set_authors(self.authors)
         self.about.set_program_name(NAME)
+        self.about.set_logo(self.icontheme.load_icon('pulsecaster', 96, gtk.ICON_LOOKUP_FORCE_SVG))
 
         # Create PulseAudio backing
         self.pa = PulseObj(clientName=NAME)
