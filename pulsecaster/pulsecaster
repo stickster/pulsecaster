@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: iso-8859-15 -*-
+# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2009 Paul W. Frields
 #
@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-# Author: Jürgen Geuter <tante@the-gay-bar.com>
+# Author: JÃ¼rgen Geuter <tante@the-gay-bar.com>
 
 from pulsecaster import ui
 import gtk
