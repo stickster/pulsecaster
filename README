@@ -1,17 +1,38 @@
 A PulseAudio based podcasting application
 
 Thanks to Harry Karvonen for his Python ctypes-based bindings for
-PulseAudio.
+PulseAudio.  Thanks also to Jürgen Geuter for helping me understand
+distutils and contributing some fixes.
+
 
 INSTRUCTIONS
 ============
 
-This project is only in its infancy right now. There is much that is
-broken or missing.  For now, 'cd' to the top of this project and then
-run the following command to try it out:
+If you are looking at the source, 'cd' to the top of this project and
+then run the following command to try it out:
 
-$ cd src
+$ cd pulsecaster
 $ python ui.py
+
+
+INSTALLING
+==========
+
+The easiest way to use this application is to simply install it using
+your platform's preferred tool set.  To install it using Fedora, run
+the folowing command:
+
+  pkcon install pulsecaster
+
+To install it on another flavor of Linux, check the documentation for
+your particular distribution.
+
+To install directly from this source code, use the handy "distutils"
+script that's provided:
+
+$ python setup.py build
+$ python setup.py install
+
 
 GSTREAMER
 =========
@@ -21,3 +42,6 @@ gst-launch pulsesrc device-name='<NAME>' \
 	   ! vorbisenc quality=0.5 \
 	   ! oggmux \
 	   ! filesink location=foo.ogg
+
+
+-*- coding: utf-8 -*-
