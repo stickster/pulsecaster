@@ -39,6 +39,7 @@ setup(
         ('/usr/share/pulsecaster/icons/32x32/', ['pulsecaster/data/icons/32x32/pulsecaster-32.png']),
         ('/usr/share/pulsecaster/icons/48x48/', ['pulsecaster/data/icons/48x48/pulsecaster-48.png']),
         ('/usr/share/pulsecaster/icons/64x64/', ['pulsecaster/data/icons/64x64/pulsecaster-64.png']),
+        ('/usr/share/applications/', ['pulsecaster.desktop']),
         ],
     
     #message_extractors = {
