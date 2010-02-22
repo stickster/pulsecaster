@@ -1,4 +1,7 @@
 TODO:
+* Get BabelGladeExtractor into Fedora to support message extractors
+  http://pfrields.fedorapeople.org/packages/SPECS/python-babel-gladeextractor.spec
+  http://pfrields.fedorapeople.org/packages/SRPMS/python-babel-gladeextractor-0.2-1.src.rpm
 * Need handling for PA streams and a usable GtkProgressBar-type
   implementation for checking audio levels
 * Handle overwrite/rename of save file gracefully

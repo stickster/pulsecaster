@@ -42,10 +42,10 @@ setup(
         ('/usr/share/applications/', ['pulsecaster.desktop']),
         ],
     
-    #message_extractors = {
-    #    'pulsecaster': [('**.py', 'python', None),
-    #                    ('**.glade', '', None),
-    #                    ],
-    #    },
+    message_extractors = {
+        'pulsecaster': [('**.py', 'python', None),
+                        ('**.glade', 'glade', None)
+                        ],
+        },
     packages = find_packages(),
 )
