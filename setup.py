@@ -18,8 +18,8 @@
 #
 # Author: Paul W. Frields <stickster@gmail.com>
 
-from pulsecaster.config import *
 from setuptools import setup, find_packages
+from pulsecaster.config import *
 setup(
     name = "pulsecaster",
     version = VERSION,
