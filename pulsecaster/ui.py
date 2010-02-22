@@ -30,6 +30,8 @@ import pygst
 pygst.require('0.10')
 import gst
 
+from gettext import gettext as _
+
 _debug = True
 
 def _debugPrint(text):
@@ -42,13 +44,13 @@ class PulseCasterUI:
         try:
             self.builder.add_from_file(os.path.join(os.getcwd(),'data','pulsecaster.glade')
 )
-            _debugPrint("loading glade file from current subdir")
+            _debugPrint(_("loading glade file from current subdir"))
         except:
             try:
                 self.builder.add_from_file(os.path.join(sys.prefix,'share','pulsecaster','pulsecaster.glade'))
             except Exception,e:
                 print(e)
-                raise SystemExit("Cannot load resources")
+                raise SystemExit(_("Cannot load resources"))
 
         self.icontheme = gtk.icon_theme_get_default()
         

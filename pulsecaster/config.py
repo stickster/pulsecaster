@@ -18,14 +18,15 @@
 #
 # Author: Paul W. Frields <stickster@gmail.com>
 
+from gettext import gettext as _
 
 NAME = u'PulseCaster'
 VERSION = u'0.1.5'
 AUTHOR = u'Paul W. Frields'
 AUTHOR_EMAIL = u'stickster@gmail.com'
-DESCRIPTION = u'PulseAudio based podcast recorder'
+DESCRIPTION = _(u'PulseAudio based podcast recorder')
 LICENSE = u'GPLv3+'
-COPYRIGHT = u'Copyright © 2009 ' + AUTHOR
+COPYRIGHT = _(u'Copyright © 2009 ' + AUTHOR)
 KEYWORDS = u'pulseaudio podcast recorder mixer gstreamer pygtk'
 URL = u'http://pulsecaster.fedorahosted.org' # FIXME: Project needs a
                                           # home!
