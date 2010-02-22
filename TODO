@@ -1,5 +1,4 @@
 TODO:
-* Add i18n support everywhere
 * Need handling for PA streams and a usable GtkProgressBar-type
   implementation for checking audio levels
 * Handle overwrite/rename of save file gracefully
