@@ -1,6 +1,8 @@
 *.pyc
 .svn
 utils/palist
+dist/
+pulsecaster.egg-info/
 
 # Yes, I like Emacs.
 .\#*
