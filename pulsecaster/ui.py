@@ -153,6 +153,11 @@ class PulseCasterUI:
             self.hideWarn()
 
     def on_record(self, *args):
+        # Adjust UI
+        self.user_vox.set_sensitive(False)
+        self.subject_vox.set_sensitive(False)
+        self.close.set_sensitive(False)
+        self.open_button.set_sensitive(False)
         # Get filename
         # Check whether filename exists, if so, overwrite? y/n
         filesinkpath = self.destfile_label.get_text()
@@ -198,6 +203,10 @@ class PulseCasterUI:
         self.record.set_label(gtk.STOCK_MEDIA_RECORD)
         self.record.disconnect(self.stop_id)
         self.record_id = self.record.connect('clicked', self.on_record)
+        self.user_vox.set_sensitive(True)
+        self.subject_vox.set_sensitive(True)
+        self.close.set_sensitive(True)
+        self.open_button.set_sensitive(True)
         self.record.show()
 
     def on_close(self, *args):
