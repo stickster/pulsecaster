@@ -373,8 +373,7 @@
                   <object class="GtkLabel" id="warning-label3">
                     <property name="visible">True</property>
                     <property name="label" translatable="yes">This program can be used to record speech from remote locations. You are responsible for adhering to all applicable laws and regulations when using this program. In general you should not record other parties without their consent.</property>
-                    <property name="use_markup">True</property>
-                    <property name="max_width_chars">50</property>
+                    <property name="wrap">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
