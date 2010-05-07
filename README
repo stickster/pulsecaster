@@ -15,6 +15,19 @@ $ cd pulsecaster
 $ python ui.py
 
 
+ADVANCED TIPS
+=============
+The code currently contains a very hacky function to allow you to
+record to FLAC (the Free Lossless Audio Codec) instead of Ogg Vorbis,
+which is the default.  To turn that capability on, run this command:
+
+$ gconftool-2 --set --type=string /apps/PulseCaster/codec flac
+
+To switch back to Vorbis:
+
+$ gconftool-2 --set --type=string /apps/PulseCaster/codec vorbis
+
+
 INSTALLING
 ==========
 
