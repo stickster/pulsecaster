@@ -173,22 +173,27 @@ class PulseCasterUI:
                                   self.subjectvoxes[self.subject_vox.get_active()][0])
         
         self.adder = gst.element_factory_make('adder', 'mix')
-        self.encoder = gst.element_factory_make('vorbisenc', 'enc')
-        self.muxer = gst.element_factory_make('oggmux', 'mux')
+        self.encoder = gst.element_factory_make(self.gconfig.codec + 'enc', 'enc')
+        if self.gconfig.codec == 'vorbis':
+            self.muxer = gst.element_factory_make('oggmux', 'mux')
         self.filesink = gst.element_factory_make('filesink', 'fsink')
         self.filesink.set_property('location', filesinkpath)
 
         self.combiner.add(self.lsource, 
                           self.rsource, 
                           self.adder, 
-                          self.encoder, 
-                          self.muxer, 
+                          self.encoder,
                           self.filesink)
+        if self.gconfig.codec == 'vorbis':
+            self.combiner.add(self.muxer)
         gst.element_link_many(self.lsource,
-                              self.adder, 
-                              self.encoder, 
-                              self.muxer,
-                              self.filesink)
+                              self.adder,
+                              self.encoder)
+        if self.gconfig.codec == 'vorbis':
+            self.encoder.link(self.muxer)
+            self.muxer.link(self.filesink)
+        else: # flac
+            self.encoder.link(self.filesink)
         gst.element_link_many(self.rsource, self.adder)
 
         # FIXME: Dim elements other than the 'record' widget
