@@ -21,7 +21,7 @@
 from gettext import gettext as _
 
 NAME = u'PulseCaster'
-VERSION = u'0.1.6'
+VERSION = u'0.1.7'
 AUTHOR = u'Paul W. Frields'
 AUTHOR_EMAIL = u'stickster@gmail.com'
 DESCRIPTION = _(u'PulseAudio based podcast recorder')
