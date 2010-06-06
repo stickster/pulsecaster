@@ -30,7 +30,8 @@ import pygst
 pygst.require('0.10')
 import gst
 
-from gettext import gettext as _
+import gettext
+_ = lambda x: gettext.ldgettext(NAME, x)
 
 _debug = True
 
