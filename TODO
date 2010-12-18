@@ -13,6 +13,7 @@ TODO:
 * CLI interface
 * Choice of gst-audio-profiles for encoding
 * Show a timer as a modal progress dialog
+* On record, swallow in tray and use timer for tooltip
 * Check disk space usage? Show that too?
 * Rip out PA ctypes stuff entirely and replace with udev (?) calls?
 * Pause toggle button
