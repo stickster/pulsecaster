@@ -143,9 +143,6 @@ class PulseCasterUI:
                 self.subject_vox.append_text(source.description)
         self.user_vox.set_active(0)
         self.subject_vox.set_active(0)
-        #self.combo_vbox.reorder_child(self.user_vox, 0)
-        #self.combo_vbox.reorder_child(self.subject_vox, 1)
-        #self.combo_vbox.show_all()
         self.table.show_all()
 
         if self.gconfig.skip_warn is False:
