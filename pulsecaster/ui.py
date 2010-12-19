@@ -255,6 +255,8 @@ class PulseCasterUI:
 
     def updateFileSinkPath(self, *args):
         self.filesinkpath = self.file_chooser.get_filename()
+        if not self.filesinkpath:
+            return
         self.hideFileChooser()
         if os.path.lexists(self.filesinkpath):
             if not self._confirm_overwrite():
