@@ -24,6 +24,7 @@ from listener import *
 import gtk
 import os
 import sys
+import tempfile
 import glob
 import gobject
 import pygst
@@ -83,7 +84,7 @@ class PulseCasterUI:
         self.close.connect('clicked', self.on_close)
         self.record = self.builder.get_object('record_button')
         self.record_id = self.record.connect('clicked', self.on_record)
-        self.record.set_sensitive(False)
+        self.record.set_sensitive(True)
         
         # About dialog basics
         self.about = self.builder.get_object('about_dialog')
@@ -102,6 +103,14 @@ class PulseCasterUI:
         self.about.set_authors(self.authors)
         self.about.set_program_name(NAME)
         self.about.set_logo(self.icontheme.load_icon('pulsecaster', 96, gtk.ICON_LOOKUP_FORCE_SVG))
+
+        self.file_chooser = self.builder.get_object('file_chooser')
+        self.file_chooser_cancel_button = self.builder.get_object('file_chooser_cancel_button')
+        self.file_chooser_cancel_button.connect('clicked', self.hideFileChooser)
+        self.file_chooser_save_button = self.builder.get_object('file_chooser_save_button')
+        self.file_chooser_save_button.connect('clicked', self.updateFileSinkPath)
+        self.file_chooser.set_do_overwrite_confirmation(True)
+        self.file_chooser.connect('confirm-overwrite', self.confirm_overwrite)
 
         # Create PulseAudio backing
         self.pa = PulseObj(clientName=NAME)
@@ -123,7 +132,7 @@ class PulseCasterUI:
         
         self.destfile_label = self.builder.get_object('destfile_label')
         self.open_button = self.builder.get_object('open_button')
-        self.open_button.connect('clicked', self.showFileChooser)
+        #self.open_button.connect('clicked', self.showFileChooser)
         self.filesinkpath = ''
         
     def repop_sources(self, *args):
@@ -151,17 +160,16 @@ class PulseCasterUI:
             self.hideWarn()
 
     def on_record(self, *args):
+        # Create temporary file
+        (self.tempfd, self.temppath) = tempfile.mkstemp(prefix='%s-tmp.' % (NAME))
+        self.tempfile = os.fdopen(self.tempfd)
+        _debugPrint('%s (%s)' % (self.temppath, self.tempfd))
         # Adjust UI
         self.user_vox.set_sensitive(False)
         self.subject_vox.set_sensitive(False)
         self.close.set_sensitive(False)
         self.open_button.set_sensitive(False)
-        # Get filename
-        # Check whether filename exists, if so, overwrite? y/n
-        filesinkpath = self.destfile_label.get_text()
-        if filesinkpath is None:
-            return
-        # Set up GStreamer stuff
+
         self.combiner = gst.Pipeline('PulseCasterCombinePipe')
         self.lsource = gst.element_factory_make('pulsesrc', 'lsrc')
         self.lsource.set_property('device', 
@@ -175,7 +183,7 @@ class PulseCasterUI:
         if self.gconfig.codec == 'vorbis':
             self.muxer = gst.element_factory_make('oggmux', 'mux')
         self.filesink = gst.element_factory_make('filesink', 'fsink')
-        self.filesink.set_property('location', filesinkpath)
+        self.filesink.set_property('location', self.temppath)
 
         self.combiner.add(self.lsource, 
                           self.rsource, 
@@ -203,6 +211,7 @@ class PulseCasterUI:
 
     def on_stop(self, *args):
         self.combiner.set_state(gst.STATE_NULL)
+        self.showFileChooser()
         self.record.set_label(gtk.STOCK_MEDIA_RECORD)
         self.record.disconnect(self.stop_id)
         self.record_id = self.record.connect('clicked', self.on_record)
@@ -231,28 +240,55 @@ class PulseCasterUI:
         self.about.hide()
         
     def showFileChooser(self, *args):
-        self.file_chooser = self.builder.get_object('file_chooser')
-        self.file_chooser_cancel_button = self.builder.get_object('file_chooser_cancel_button')
-        self.file_chooser_cancel_button.connect('clicked', self.hideFileChooser)
-        self.file_chooser_save_button = self.builder.get_object('file_chooser_save_button')
-        self.file_chooser_save_button.connect('clicked', self.updateFileSinkPath)
         #self.file_chooser.set_current_folder(self.filesinkdir)
-        if self.filesinkpath:
-            self.file_chooser.set_filename(self.filesinkpath)
-            self.file_chooser.set_current_name(self.filesinkfile)
+        #if self.filesinkpath:
+        #    self.file_chooser.set_filename(self.filesinkpath)
+        #    self.file_chooser.set_current_name(self.filesinkfile)
         self.file_chooser.show()
-    
+
     def hideFileChooser(self, *args):
-        self.file_chooser.hide()
+        if self.filesinkpath:
+            self.file_chooser.hide()
 
     def updateFileSinkPath(self, *args):
-        self.hideFileChooser()
         self.filesinkpath = self.file_chooser.get_filename()
-        (self.filesinkfile, self.filesinkdir) = (os.path.basename(self.filesinkpath),
-                                                 os.path.dirname(self.filesinkpath))
-        self.destfile_label.set_text(self.filesinkpath)
+        self.hideFileChooser()
+        if os.path.lexists(self.filesinkpath):
+            if not self.confirm_overwrite():
+                self.showFileChooser()
+                return
+        # Copy the temporary file to its new home
+        self.permfile = open(self.filesinkpath, 'w')
+        self.copy_temp_to_perm(self.tempfile, self.permfile)
+        self.tempfile.close()
+        self.permfile.close()
+        os.remove(self.temppath)
         self.record.set_sensitive(True)
 
+    def confirm_overwrite(self, *args):
+        # instantiate stock Yes/No
+        # Yes = copy file
+        # No = showFileChooser again
+        confirm = gtk.MessageDialog(type=gtk.MESSAGE_QUESTION,
+                                    buttons=gtk.BUTTONS_YES_NO,
+                                    message_format=_('File exists. OK to overwrite?'))
+        response = confirm.run()
+        if response == gtk.RESPONSE_YES:
+            retval = True
+        else:
+            retval = False
+        confirm.destroy()
+        return retval
+    
+    def copy_temp_to_perm(self, src, dest):
+        src.seek(0)
+        while True:
+            buf = src.read(1024*1024)
+            if buf:
+                dest.write(buf)
+            else:
+                break
+        
 
 if __name__ == '__main__':
     pulseCaster = PulseCasterUI()
