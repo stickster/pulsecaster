@@ -260,8 +260,8 @@ class PulseCasterUI:
                 return
         # Copy the temporary file to its new home
         self.permfile = open(self.filesinkpath, 'w')
-        self.copy_temp_to_perm(self.tempfile, self.permfile)
         self.tempfile.close()
+        self._copy_temp_to_perm(self.tempfile, self.permfile)
         self.permfile.close()
         os.remove(self.temppath)
         self.record.set_sensitive(True)
@@ -278,7 +278,7 @@ class PulseCasterUI:
         confirm.destroy()
         return retval
     
-    def copy_temp_to_perm(self, src, dest):
+    def _copy_temp_to_perm(self, src, dest):
         src.seek(0)
         while True:
             buf = src.read(1024*1024)
