@@ -4,7 +4,6 @@ TODO:
   http://pfrields.fedorapeople.org/packages/SRPMS/python-babel-gladeextractor-0.2-1.src.rpm
 * Need handling for PA streams and a usable GtkProgressBar-type
   implementation for checking audio levels
-* Handle overwrite/rename of save file gracefully
 * Volume leveling on user's behalf
 	* Set recording volume for both sources to reasonable level (75%?)
 	* Normalize each to something like -0.1dB
