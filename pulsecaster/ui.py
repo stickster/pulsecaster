@@ -260,10 +260,9 @@ class PulseCasterUI:
                 return
         # Copy the temporary file to its new home
         self.permfile = open(self.filesinkpath, 'w')
-        self.tempfile.close()
         self._copy_temp_to_perm(self.tempfile, self.permfile)
         self.permfile.close()
-        os.remove(self.temppath)
+        self._remove_tempfile(self.tempfile, self.temppath)
         self.record.set_sensitive(True)
 
     def _confirm_overwrite(self, *args):
@@ -287,6 +286,9 @@ class PulseCasterUI:
             else:
                 break
 
+    def _remove_tempfile(self, tempfile, temppath):
+        tempfile.close()
+        os.remove(temppath)
 if __name__ == '__main__':
     pulseCaster = PulseCasterUI()
     gtk.main()
