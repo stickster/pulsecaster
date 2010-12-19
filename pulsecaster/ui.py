@@ -15,6 +15,7 @@
 #
 #
 # Author: Paul W. Frields <stickster@gmail.com>
+#         Jürgen Geuter <tante@the-gay-bar.com>
 
 
 from config import *
