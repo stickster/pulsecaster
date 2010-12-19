@@ -247,7 +247,9 @@ class PulseCasterUI:
                                                          'permanently.'))
             response = confirm.run()
             confirm.destroy()
-            if response == gtk.RESPONSE_NO:
+            if response == gtk.RESPONSE_YES:
+                self._remove_tempfile(self.tempfile, self.temppath)
+            else:
                 return
         self.file_chooser.hide()
 
