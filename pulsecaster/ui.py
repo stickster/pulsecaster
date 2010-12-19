@@ -238,8 +238,18 @@ class PulseCasterUI:
         self.file_chooser.show()
 
     def hideFileChooser(self, *args):
-        if self.filesinkpath:
-            self.file_chooser.hide()
+        if not self.filesinkpath:
+            confirm = gtk.MessageDialog(type=gtk.MESSAGE_WARNING,
+                                        buttons=gtk.BUTTONS_YES_NO,
+                                        message_format=_('Are you sure you want to cancel ' + 
+                                                         'saving your work? If you choose "Yes" ' +
+                                                         'your audio recording will be erased ' +
+                                                         'permanently.'))
+            response = confirm.run()
+            confirm.destroy()
+            if response == gtk.RESPONSE_NO:
+                return
+        self.file_chooser.hide()
 
     def updateFileSinkPath(self, *args):
         self.filesinkpath = self.file_chooser.get_filename()
