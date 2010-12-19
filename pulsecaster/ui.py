@@ -286,7 +286,6 @@ class PulseCasterUI:
                 dest.write(buf)
             else:
                 break
-        
 
 if __name__ == '__main__':
     pulseCaster = PulseCasterUI()
