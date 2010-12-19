@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Copyright (C) 2009 Paul W. Frields
+# Copyright (C) 2009, 2010 Paul W. Frields and others.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
