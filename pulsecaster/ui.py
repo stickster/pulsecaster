@@ -132,7 +132,6 @@ class PulseCasterUI:
         
         self.destfile_label = self.builder.get_object('destfile_label')
         self.open_button = self.builder.get_object('open_button')
-        #self.open_button.connect('clicked', self.showFileChooser)
         self.filesinkpath = ''
         
     def repop_sources(self, *args):
@@ -240,10 +239,6 @@ class PulseCasterUI:
         self.about.hide()
         
     def showFileChooser(self, *args):
-        #self.file_chooser.set_current_folder(self.filesinkdir)
-        #if self.filesinkpath:
-        #    self.file_chooser.set_filename(self.filesinkpath)
-        #    self.file_chooser.set_current_name(self.filesinkfile)
         self.file_chooser.show()
 
     def hideFileChooser(self, *args):
@@ -266,9 +261,6 @@ class PulseCasterUI:
         self.record.set_sensitive(True)
 
     def confirm_overwrite(self, *args):
-        # instantiate stock Yes/No
-        # Yes = copy file
-        # No = showFileChooser again
         confirm = gtk.MessageDialog(type=gtk.MESSAGE_QUESTION,
                                     buttons=gtk.BUTTONS_YES_NO,
                                     message_format=_('File exists. OK to overwrite?'))
