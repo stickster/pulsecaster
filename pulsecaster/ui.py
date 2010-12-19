@@ -130,8 +130,6 @@ class PulseCasterUI:
         self.repop_sources()
         self.listener = PulseCasterListener(self)
         
-        self.destfile_label = self.builder.get_object('destfile_label')
-        self.open_button = self.builder.get_object('open_button')
         self.filesinkpath = ''
         
     def repop_sources(self, *args):
@@ -167,7 +165,6 @@ class PulseCasterUI:
         self.user_vox.set_sensitive(False)
         self.subject_vox.set_sensitive(False)
         self.close.set_sensitive(False)
-        self.open_button.set_sensitive(False)
 
         self.combiner = gst.Pipeline('PulseCasterCombinePipe')
         self.lsource = gst.element_factory_make('pulsesrc', 'lsrc')
@@ -217,7 +214,6 @@ class PulseCasterUI:
         self.user_vox.set_sensitive(True)
         self.subject_vox.set_sensitive(True)
         self.close.set_sensitive(True)
-        self.open_button.set_sensitive(True)
         self.record.show()
 
     def on_close(self, *args):
