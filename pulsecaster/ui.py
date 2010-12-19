@@ -110,7 +110,7 @@ class PulseCasterUI:
         self.file_chooser_save_button = self.builder.get_object('file_chooser_save_button')
         self.file_chooser_save_button.connect('clicked', self.updateFileSinkPath)
         self.file_chooser.set_do_overwrite_confirmation(True)
-        self.file_chooser.connect('confirm-overwrite', self.confirm_overwrite)
+        self.file_chooser.connect('confirm-overwrite', self._confirm_overwrite)
 
         # Create PulseAudio backing
         self.pa = PulseObj(clientName=NAME)
@@ -255,7 +255,7 @@ class PulseCasterUI:
         self.filesinkpath = self.file_chooser.get_filename()
         self.hideFileChooser()
         if os.path.lexists(self.filesinkpath):
-            if not self.confirm_overwrite():
+            if not self._confirm_overwrite():
                 self.showFileChooser()
                 return
         # Copy the temporary file to its new home
@@ -266,7 +266,7 @@ class PulseCasterUI:
         os.remove(self.temppath)
         self.record.set_sensitive(True)
 
-    def confirm_overwrite(self, *args):
+    def _confirm_overwrite(self, *args):
         confirm = gtk.MessageDialog(type=gtk.MESSAGE_QUESTION,
                                     buttons=gtk.BUTTONS_YES_NO,
                                     message_format=_('File exists. OK to overwrite?'))
