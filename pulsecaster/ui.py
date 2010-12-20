@@ -23,6 +23,7 @@ from config import *
 import gconfig
 from pulseaudio.PulseObj import PulseObj
 from listener import *
+from eggtrayicon import *
 import gtk
 import os
 import sys
@@ -132,6 +133,8 @@ class PulseCasterUI:
         
         self.filesinkpath = ''
         
+        self.trayicon = PulseCasterTrayIcon()
+
     def repop_sources(self, *args):
         self.sources = self.pa.pulse_source_list()
         l = self.user_vox.get_model()
