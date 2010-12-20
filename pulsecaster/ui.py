@@ -71,6 +71,7 @@ class PulseCasterUI:
         self.swckbox.set_active(int(self.gconfig.skip_warn))
         self.dismiss.connect('clicked', self.hideWarn)
         self.warning.connect('destroy', self.on_close)
+        self.warning.set_title(NAME)
         
         # Main dialog basics
         self.main = self.builder.get_object('main_dialog')
