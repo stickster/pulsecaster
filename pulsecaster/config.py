@@ -23,7 +23,7 @@ NAME = u'PulseCaster'
 import gettext
 _ = lambda x: gettext.ldgettext(NAME, x)
 
-VERSION = u'0.1.7'
+VERSION = '0.1.7'
 AUTHOR = u'Paul W. Frields'
 AUTHOR_EMAIL = u'stickster@gmail.com'
 DESCRIPTION = _(u'PulseAudio based podcast recorder')
