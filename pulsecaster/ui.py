@@ -86,7 +86,9 @@ class PulseCasterUI:
         self.record = self.builder.get_object('record_button')
         self.record_id = self.record.connect('clicked', self.on_record)
         self.record.set_sensitive(True)
-        
+        self.main_logo = self.builder.get_object('logo')
+        self.main_logo.set_from_icon_name('pulsecaster', gtk.ICON_SIZE_DIALOG)
+        self.main.set_icon_list(self.logo)
         # About dialog basics
         self.about = self.builder.get_object('about_dialog')
         self.about.connect('delete_event', self.hideAbout)
