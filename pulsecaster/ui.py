@@ -136,7 +136,9 @@ class PulseCasterUI:
         
         self.filesinkpath = ''
         
-        self.trayicon = PulseCasterTrayIcon()
+        self.trayicon = gtk.StatusIcon()
+        self.trayicon.set_visible(False)
+        self.trayicon.set_from_icon_name('pulsecaster')
 
     def repop_sources(self, *args):
         self.sources = self.pa.pulse_source_list()
