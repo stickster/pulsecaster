@@ -117,14 +117,6 @@ class PulseCasterUI:
         self.about.set_program_name(NAME)
         self.about.set_logo(self.icontheme.load_icon('pulsecaster', 96, gtk.ICON_LOOKUP_FORCE_SVG))
 
-        self.file_chooser = self.builder.get_object('file_chooser')
-        self.file_chooser_cancel_button = self.builder.get_object('file_chooser_cancel_button')
-        self.file_chooser_cancel_button.connect('clicked', self.hideFileChooser)
-        self.file_chooser_save_button = self.builder.get_object('file_chooser_save_button')
-        self.file_chooser_save_button.connect('clicked', self.updateFileSinkPath)
-        self.file_chooser.set_do_overwrite_confirmation(True)
-        self.file_chooser.connect('confirm-overwrite', self._confirm_overwrite)
-
         # Create PulseAudio backing
         self.pa = PulseObj(clientName=NAME)
 
@@ -258,7 +250,18 @@ class PulseCasterUI:
         self.about.hide()
         
     def showFileChooser(self, *args):
-        self.file_chooser.show()
+        self.file_chooser = gtk.FileChooserDialog(title=_('Save your recording'),
+                                                  action=gtk.FILE_CHOOSER_ACTION_SAVE,
+                                                  buttons=('Cancel', gtk.RESPONSE_CANCEL,
+                                                           'OK', gtk.RESPONSE_OK))
+        self.file_chooser.set_local_only(True)
+        response = self.file_chooser.run()
+        if response == gtk.RESPONSE_OK:
+            self.updateFileSinkPath()
+        elif response == gtk.RESPONSE_CANCEL:
+            self.hideFileChooser()
+        elif response == gtk.RESPONSE_DELETE_EVENT:
+            self.hideFileChooser()
 
     def hideFileChooser(self, *args):
         if not self.filesinkpath:
@@ -274,7 +277,7 @@ class PulseCasterUI:
                 self._remove_tempfile(self.tempfile, self.temppath)
             else:
                 return
-        self.file_chooser.hide()
+        self.file_chooser.destroy()
 
     def updateFileSinkPath(self, *args):
         self.filesinkpath = self.file_chooser.get_filename()
