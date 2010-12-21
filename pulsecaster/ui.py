@@ -28,7 +28,6 @@ import gtk
 import os
 import sys
 import tempfile
-import glob
 import gobject
 import pygst
 pygst.require('0.10')
