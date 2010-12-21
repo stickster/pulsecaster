@@ -290,8 +290,7 @@ class PulseCasterUI:
                 return
         # Copy the temporary file to its new home
         self._copy_temp_to_perm()
-        self.tempfile.close()
-        os.remove(self.temppath)
+        self._remove_tempfile(self.tempfile, self.temppath)
         self.record.set_sensitive(True)
     
     def _update_time(self, *args):
@@ -328,6 +327,10 @@ class PulseCasterUI:
             else:
                 break
         self.permfile.close()
+
+    def _remove_tempfile(self, tempfile, temppath):
+        tempfile.close()
+        os.remove(temppath)
 
 
 if __name__ == '__main__':
