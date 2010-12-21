@@ -44,7 +44,7 @@ except:
 
 def _debugPrint(text):
     if _debug:
-        print (text)
+        print ('%s: %s' % (NAME, text))
 
 class PulseCasterUI:
     def __init__(self):
