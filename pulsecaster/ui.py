@@ -32,6 +32,7 @@ import gobject
 import pygst
 pygst.require('0.10')
 import gst
+from datetime import datetime
 
 import gettext
 _ = lambda x: gettext.ldgettext(NAME, x)
@@ -211,6 +212,12 @@ class PulseCasterUI:
         self.stop_id = self.record.connect('clicked', self.on_stop)
         self.record.show()
         self.combiner.set_state(gst.STATE_PLAYING)
+        # Start timer
+        self.starttime = datetime.now()
+        self._update_time()
+        self.timeout = 1000
+        gobject.timeout_add(self.timeout, self._update_time)
+        self.trayicon.set_visible(True)
 
     def on_stop(self, *args):
         self.combiner.set_state(gst.STATE_NULL)
@@ -275,6 +282,18 @@ class PulseCasterUI:
         self.permfile.close()
         self._remove_tempfile(self.tempfile, self.temppath)
         self.record.set_sensitive(True)
+    
+    def _update_time(self, *args):
+        if self.combiner.get_state()[1] == gst.STATE_NULL:
+            self.trayicon.set_tooltip(None)
+            self.trayicon.set_visible(False)
+            return False
+        delta = datetime.now() - self.starttime
+        deltamin = delta.seconds // 60
+        deltasec = delta.seconds - (deltamin * 60)
+        self.trayicon.set_tooltip('Recording: %d:%02d' %
+                                  (deltamin, deltasec))
+        return True
 
     def _confirm_overwrite(self, *args):
         confirm = gtk.MessageDialog(type=gtk.MESSAGE_QUESTION,
