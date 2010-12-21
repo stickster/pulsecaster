@@ -37,7 +37,10 @@ from datetime import datetime
 import gettext
 _ = lambda x: gettext.ldgettext(NAME, x)
 
-_debug = True
+try:
+    _debug = os.environ['PULSECASTER_DEBUG']
+except:
+    _debug = False
 
 def _debugPrint(text):
     if _debug:
