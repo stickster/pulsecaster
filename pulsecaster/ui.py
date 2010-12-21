@@ -289,10 +289,9 @@ class PulseCasterUI:
                 self.showFileChooser()
                 return
         # Copy the temporary file to its new home
-        self.permfile = open(self.filesinkpath, 'w')
-        self._copy_temp_to_perm(self.tempfile, self.permfile)
-        self.permfile.close()
-        self._remove_tempfile(self.tempfile, self.temppath)
+        self._copy_temp_to_perm()
+        self.tempfile.close()
+        os.remove(self.temppath)
         self.record.set_sensitive(True)
     
     def _update_time(self, *args):
@@ -319,18 +318,17 @@ class PulseCasterUI:
         confirm.destroy()
         return retval
     
-    def _copy_temp_to_perm(self, src, dest):
-        src.seek(0)
+    def _copy_temp_to_perm(self):
+        self.permfile = open(self.filesinkpath, 'w')
+        self.tempfile.seek(0)
         while True:
-            buf = src.read(1024*1024)
+            buf = self.tempfile.read(1024*1024)
             if buf:
-                dest.write(buf)
+                self.permfile.write(buf)
             else:
                 break
+        self.permfile.close()
 
-    def _remove_tempfile(self, tempfile, temppath):
-        tempfile.close()
-        os.remove(temppath)
 
 if __name__ == '__main__':
     pulseCaster = PulseCasterUI()
