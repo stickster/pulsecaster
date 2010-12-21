@@ -56,13 +56,19 @@ class PulseCasterUI:
         except:
             try:
                 self.builder.add_from_file(os.path.join(sys.prefix,'share','pulsecaster','pulsecaster.glade'))
-            except Exception,e:
-                print(e)
-                raise SystemExit(_("Cannot load resources"))
+            except:
+                try:
+                    self.builder.add_from_file(os.path.join(os.path.dirname(sys.argv[0]),
+                                               'data', 'pulsecaster.glade'))
+                except Exception,e:
+                    print(e)
+                    raise SystemExit(_("Cannot load resources"))
 
         self.icontheme = gtk.icon_theme_get_default()
         # Convenience for developers
         self.icontheme.append_search_path(os.path.join(os.getcwd(),'data','icons','scalable'))
+        self.icontheme.append_search_path(os.path.join(os.path.dirname(sys.argv[0]),
+                                          'data', 'icons', 'scalable'))
         self.logo = self.icontheme.load_icon('pulsecaster', -1,
                                              gtk.ICON_LOOKUP_FORCE_SVG)
         gtk.window_set_default_icon(self.logo)
