@@ -171,7 +171,7 @@ class PulseCasterUI:
         # Create temporary file
         (self.tempfd, self.temppath) = tempfile.mkstemp(prefix='%s-tmp.' % (NAME))
         self.tempfile = os.fdopen(self.tempfd)
-        _debugPrint('tempfile: %s (fd %s)' % (self.temppath, self.tempfd))
+        _debugPrint('%s (%s)' % (self.temppath, self.tempfd))
         # Adjust UI
         self.user_vox.set_sensitive(False)
         self.subject_vox.set_sensitive(False)
@@ -322,7 +322,6 @@ class PulseCasterUI:
     def _remove_tempfile(self, tempfile, temppath):
         tempfile.close()
         os.remove(temppath)
-
 if __name__ == '__main__':
     pulseCaster = PulseCasterUI()
     gtk.main()
