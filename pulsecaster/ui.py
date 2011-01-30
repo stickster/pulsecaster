@@ -23,7 +23,6 @@ from config import *
 import gconfig
 from pulseaudio.PulseObj import PulseObj
 from listener import *
-from eggtrayicon import *
 import gtk
 import os
 import sys
