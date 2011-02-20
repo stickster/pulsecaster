@@ -49,16 +49,16 @@ class PulseCasterUI:
     def __init__(self):
         self.builder = gtk.Builder()
         try:
-            self.builder.add_from_file(os.path.join(os.getcwd(),'data','pulsecaster.glade')
+            self.builder.add_from_file(os.path.join(os.getcwd(),'data','pulsecaster.ui')
 )
-            _debugPrint(_("loading glade file from current subdir"))
+            _debugPrint(_("loading UI file from current subdir"))
         except:
             try:
-                self.builder.add_from_file(os.path.join(sys.prefix,'share','pulsecaster','pulsecaster.glade'))
+                self.builder.add_from_file(os.path.join(sys.prefix,'share','pulsecaster','pulsecaster.ui'))
             except:
                 try:
                     self.builder.add_from_file(os.path.join(os.path.dirname(sys.argv[0]),
-                                               'data', 'pulsecaster.glade'))
+                                               'data', 'pulsecaster.ui'))
                 except Exception,e:
                     print(e)
                     raise SystemExit(_("Cannot load resources"))
