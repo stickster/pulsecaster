@@ -294,13 +294,13 @@ class PulseCasterUI:
     
     def _update_time(self, *args):
         if self.combiner.get_state()[1] == gst.STATE_NULL:
-            self.trayicon.set_tooltip(None)
+            self.trayicon.set_tooltip_text('')
             self.trayicon.set_visible(False)
             return False
         delta = datetime.now() - self.starttime
         deltamin = delta.seconds // 60
         deltasec = delta.seconds - (deltamin * 60)
-        self.trayicon.set_tooltip('Recording: %d:%02d' %
+        self.trayicon.set_tooltip_text('Recording: %d:%02d' %
                                   (deltamin, deltasec))
         return True
 
