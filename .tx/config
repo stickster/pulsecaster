@@ -1,0 +1,8 @@
+[main]
+host = https://www.transifex.net
+
+[pulsecaster.pulsecasterpot]
+file_filter = po/<lang>.po
+source_file = po/pulsecaster.pot
+source_lang = en
+
