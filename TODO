@@ -1,7 +1,4 @@
 TODO:
-* Get BabelGladeExtractor into Fedora to support message extractors
-  http://pfrields.fedorapeople.org/packages/SPECS/python-babel-gladeextractor.spec
-  http://pfrields.fedorapeople.org/packages/SRPMS/python-babel-gladeextractor-0.2-1.src.rpm
 * Need handling for PA streams and a usable GtkProgressBar-type
   implementation for checking audio levels
 * Volume leveling on user's behalf
@@ -11,8 +8,6 @@ TODO:
 * Reset names of monitor devices to be more human-understandable
 * CLI interface
 * Choice of gst-audio-profiles for encoding
-* Show a timer as a modal progress dialog
-* On record, swallow in tray and use timer for tooltip
 * Check disk space usage? Show that too?
 * Rip out PA ctypes stuff entirely and replace with udev (?) calls?
 * Pause toggle button
