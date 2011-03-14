@@ -121,8 +121,15 @@ class PulseCasterUI:
 
         # Create and populate combo boxes
         self.table = self.builder.get_object('table1')
-        self.user_vox = gtk.combo_box_new_text()
-        self.subject_vox = gtk.combo_box_new_text()
+        # The list stores will contain device description, a value based
+        # on the sound level at the device, and whether the vu meter should
+        # be updated.  (Not sure whether I'll use the last one or not.)
+        self.user_vox_store = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_INT,
+                                            gobject.TYPE_BOOLEAN)
+        self.subject_vox_store = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_INT,
+                                               gobject.TYPE_BOOLEAN)
+        self.user_vox = gtk.ComboBox(self.user_vox_store)
+        self.subject_vox = gtk.ComboBox(self.subject_vox_store)
         self.table.attach(self.user_vox, 1, 2, 0, 1,
                           xoptions=gtk.EXPAND|gtk.FILL)
         self.table.attach(self.subject_vox, 1, 2, 1, 2,
@@ -132,6 +139,8 @@ class PulseCasterUI:
 
         # Fill the combo boxes initially
         self.repop_sources()
+        self.user_vox.connect('changed', self.activate_vu)
+        self.subject_vox.connect('changed', self.activate_vu)
         self.listener = PulseCasterListener(self)
         
         self.filesinkpath = ''
@@ -142,27 +151,68 @@ class PulseCasterUI:
 
     def repop_sources(self, *args):
         self.sources = self.pa.pulse_source_list()
-        l = self.user_vox.get_model()
-        l.clear()
-        l = self.subject_vox.get_model()
-        l.clear()
+        self.user_vox_store.clear()
+        self.subject_vox_store.clear()
         self.uservoxes = []
         self.subjectvoxes = []
         for source in self.sources:
             if source.monitor_of_sink_name == None:
                 self.uservoxes.append((source.name, source.description))
-                self.user_vox.append_text(source.description)
+                self.user_vox_store.append([source.description, 0, False])
             else:
                 self.subjectvoxes.append((source.name, source.description))
-                self.subject_vox.append_text(source.description)
+                self.subject_vox_store.append([source.description, 0, False])
+        # Set up cell layouts
+        self.user_vox_crt = gtk.CellRendererText()
+        self.subject_vox_crt = gtk.CellRendererText()
+        self.user_vox_crp = gtk.CellRendererProgress()
+        self.user_vox_crp.set_fixed_size(width=100, height=-1)
+        self.user_vox_crp.set_property('text', '')
+        self.subject_vox_crp = gtk.CellRendererProgress()
+        self.subject_vox_crp.set_fixed_size(width=100, height=-1)
+        self.subject_vox_crp.set_property('text', '')
+        self.user_vox.pack_start(self.user_vox_crt, True)
+        self.user_vox.add_attribute(self.user_vox_crt, 'text', 0)
+        self.subject_vox.pack_start(self.subject_vox_crt, True)
+        self.subject_vox.add_attribute(self.subject_vox_crt, 'text', 0)
+        self.user_vox.pack_start(self.user_vox_crp, False)
+        self.user_vox.add_attribute(self.user_vox_crp, 'value', 1)
+        self.subject_vox.pack_start(self.subject_vox_crp, False)
+        self.subject_vox.add_attribute(self.subject_vox_crp, 'value', 1)
+        # Default choice
+        # FIXME: Use the GNOME default sound setting?
         self.user_vox.set_active(0)
         self.subject_vox.set_active(0)
+        # Whenever a row in the combo box is selected
+        # its boolean should become True.
+        # Set a gobject.timeout_add() that updates the value of the progress
+        # bar according to boolean.
         self.table.show_all()
 
         if self.gconfig.skip_warn is False:
             self.warning.show()
         else:
             self.hideWarn()
+
+    def activate_vu(self, cb):
+        model = cb.get_model()
+        entries = len(model)
+        for entry in model:
+            iter = entry.iter
+            index = entry.path[0]
+            # Set the boolean based on whether this entry is active
+            model.set_value(iter, 2, index == cb.get_active())
+            self.set_db(model, iter)
+
+    def set_db(self, model, iter):
+        vu_active = model.get_value(iter, 2)
+        if vu_active == False:
+            model.set_value(iter, 1, 0)
+        else:
+            # FIXME - this will build a new pipeline to get levels, and
+            # set up a gobject.timeout_add() to keep riding it.
+            model.set_value(iter, 1, 100)
+        return vu_active
 
     def on_record(self, *args):
         # Create temporary file
