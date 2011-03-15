@@ -145,8 +145,8 @@ class PulseCasterUI:
 
         # Fill the combo boxes initially
         self.repop_sources()
-        self.user_vox.connect('changed', self.activate_vu)
-        self.subject_vox.connect('changed', self.activate_vu)
+        self.user_vox.connect('changed', self.set_vus)
+        self.subject_vox.connect('changed', self.set_vus)
         self.listener = PulseCasterListener(self)
         
         self.filesinkpath = ''
