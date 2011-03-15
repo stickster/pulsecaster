@@ -3,6 +3,7 @@ TODO:
 	* Set recording volume for both sources to reasonable level (75%?)
 	* Normalize each to something like -0.1dB
 	* After mixing the streams, do some sort of compression/leveling
+* Should use a PulseCasterInput object since so much of user/subject repeats
 * Reset names of monitor devices to be more human-understandable
 * CLI interface
 * Choice of gst-audio-profiles for encoding
