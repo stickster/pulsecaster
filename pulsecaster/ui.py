@@ -147,6 +147,8 @@ class PulseCasterUI:
         self.repop_sources()
         self.user_vox.connect('changed', self.set_vus)
         self.subject_vox.connect('changed', self.set_vus)
+        self.user_vox.connect('move-active', self.set_vus)
+        self.subject_vox.connect('move-active', self.set_vus)
         self.listener = PulseCasterListener(self)
         
         self.filesinkpath = ''
