@@ -231,7 +231,7 @@ class PulseCasterUI:
             # Grab the pipeline if one exists
             pipeline = model.get_value(iter, 4)
             if pipeline is not None:
-                remove_pipeline(pipeline, model.conn)
+                self.remove_pipeline(pipeline, model.conn)
         else:
             # FIXME - this will build a new pipeline to get levels, and
             # set up a gobject.timeout_add() to keep riding it.
