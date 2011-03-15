@@ -124,10 +124,16 @@ class PulseCasterUI:
         # The list stores will contain device description, a value based
         # on the sound level at the device, and whether the vu meter should
         # be updated.  (Not sure whether I'll use the last one or not.)
-        self.user_vox_store = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_INT,
-                                            gobject.TYPE_BOOLEAN)
-        self.subject_vox_store = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_INT,
-                                               gobject.TYPE_BOOLEAN)
+        self.user_vox_store = gtk.ListStore(gobject.TYPE_STRING,
+                                            gobject.TYPE_STRING,
+                                            gobject.TYPE_INT,
+                                            gobject.TYPE_BOOLEAN,
+                                            gobject.TYPE_OBJECT)
+        self.subject_vox_store = gtk.ListStore(gobject.TYPE_STRING,
+                                               gobject.TYPE_STRING,
+                                               gobject.TYPE_INT,
+                                               gobject.TYPE_BOOLEAN,
+                                               gobject.TYPE_OBJECT)
         self.user_vox = gtk.ComboBox(self.user_vox_store)
         self.subject_vox = gtk.ComboBox(self.subject_vox_store)
         self.table.attach(self.user_vox, 1, 2, 0, 1,
@@ -157,11 +163,17 @@ class PulseCasterUI:
         self.subjectvoxes = []
         for source in self.sources:
             if source.monitor_of_sink_name == None:
-                self.uservoxes.append((source.name, source.description))
-                self.user_vox_store.append([source.description, 0, False])
+                self.user_vox_store.append([source.name,
+                                            source.description,
+                                            0,
+                                            False,
+                                            None])
             else:
-                self.subjectvoxes.append((source.name, source.description))
-                self.subject_vox_store.append([source.description, 0, False])
+                self.subject_vox_store.append([source.name,
+                                               source.description,
+                                               0,
+                                               False,
+                                               None])
         # Set up cell layouts
         self.user_vox_crt = gtk.CellRendererText()
         self.subject_vox_crt = gtk.CellRendererText()
@@ -172,13 +184,13 @@ class PulseCasterUI:
         self.subject_vox_crp.set_fixed_size(width=100, height=-1)
         self.subject_vox_crp.set_property('text', '')
         self.user_vox.pack_start(self.user_vox_crt, True)
-        self.user_vox.add_attribute(self.user_vox_crt, 'text', 0)
+        self.user_vox.add_attribute(self.user_vox_crt, 'text', 1)
         self.subject_vox.pack_start(self.subject_vox_crt, True)
-        self.subject_vox.add_attribute(self.subject_vox_crt, 'text', 0)
+        self.subject_vox.add_attribute(self.subject_vox_crt, 'text', 1)
         self.user_vox.pack_start(self.user_vox_crp, False)
-        self.user_vox.add_attribute(self.user_vox_crp, 'value', 1)
+        self.user_vox.add_attribute(self.user_vox_crp, 'value', 2)
         self.subject_vox.pack_start(self.subject_vox_crp, False)
-        self.subject_vox.add_attribute(self.subject_vox_crp, 'value', 1)
+        self.subject_vox.add_attribute(self.subject_vox_crp, 'value', 2)
         # Default choice
         # FIXME: Use the GNOME default sound setting?
         self.user_vox.set_active(0)
@@ -194,25 +206,59 @@ class PulseCasterUI:
         else:
             self.hideWarn()
 
-    def activate_vu(self, cb):
+    def set_vus(self, cb, *args):
         model = cb.get_model()
         entries = len(model)
         for entry in model:
             iter = entry.iter
             index = entry.path[0]
             # Set the boolean based on whether this entry is active
-            model.set_value(iter, 2, index == cb.get_active())
-            self.set_db(model, iter)
+            self.set_db(model, iter, index == cb.get_active())
 
-    def set_db(self, model, iter):
-        vu_active = model.get_value(iter, 2)
-        if vu_active == False:
-            model.set_value(iter, 1, 0)
+    def remove_pipeline(self, pipeline, conn):
+        self.main.set_sensitive(False)
+        pipeline.get_bus().disconnect(conn)
+        pipeline.get_bus().remove_signal_watch()
+        pipeline.set_state(gst.STATE_NULL)
+        self.main.set_sensitive(True)
+
+    def set_db(self, model, iter, active):
+        model.set_value(iter, 3, active)
+        if not active:
+            model.set_value(iter, 2, 0)
+            # Grab the pipeline if one exists
+            pipeline = model.get_value(iter, 4)
+            if pipeline is not None:
+                remove_pipeline(pipeline, model.conn)
         else:
             # FIXME - this will build a new pipeline to get levels, and
             # set up a gobject.timeout_add() to keep riding it.
-            model.set_value(iter, 1, 100)
-        return vu_active
+            model.set_value(iter, 2, 100) # REMOVE ME
+            device = model.get_value(iter, 0)
+            pl = 'pulsesrc device=%s ! level message=true interval=50000000 ! fakesink' % (device)
+            model.pipeline = gst.parse_launch(pl)
+            model.pipeline.get_bus().add_signal_watch()
+            model.conn = model.pipeline.get_bus().connect('message::element',
+                                                          self.on_msg,
+                                                          model,
+                                                          iter)
+            model.pipeline.set_state(gst.STATE_PLAYING)
+
+        # This is so the gobject.timeout_add() keeps riding
+        return active
+
+    def on_msg(self, bus, message, model, iter):
+        if message.structure.get_name() == 'level':
+            peak = message.structure['peak']
+            # This is dangerous because it assumes a stereo source
+            channels = len(peak)
+            v = 0.0
+            for p in peak:
+                v = v + p
+            v = v/channels
+            model.set_value(iter, 2, 100-abs(int(v)))
+            self.main.queue_draw()
+        return True
 
     def on_record(self, *args):
         # Create temporary file
