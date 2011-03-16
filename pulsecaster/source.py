@@ -104,7 +104,7 @@ class PulseCasterSource:
         return True
     
     def iec_scale(self, db):
-        '''For a given dB value, return the iEC-268-18 standard percentage''' 
+        '''For a given dB value, return the iEC-268-18 standard value''' 
         pct = 0.0
         if db < -70.0:
             pct = 0.0
