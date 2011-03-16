@@ -23,6 +23,7 @@ from config import *
 import gconfig
 from pulseaudio.PulseObj import PulseObj
 from listener import *
+from source import *
 import gtk
 import os
 import sys
@@ -121,153 +122,48 @@ class PulseCasterUI:
 
         # Create and populate combo boxes
         self.table = self.builder.get_object('table1')
-        # The list stores will contain device description, a value based
-        # on the sound level at the device, and whether the vu meter should
-        # be updated.  (Not sure whether I'll use the last one or not.)
-        self.user_vox_store = gtk.ListStore(gobject.TYPE_STRING,
-                                            gobject.TYPE_STRING,
-                                            gobject.TYPE_INT,
-                                            gobject.TYPE_BOOLEAN,
-                                            gobject.TYPE_OBJECT)
-        self.subject_vox_store = gtk.ListStore(gobject.TYPE_STRING,
-                                               gobject.TYPE_STRING,
-                                               gobject.TYPE_INT,
-                                               gobject.TYPE_BOOLEAN,
-                                               gobject.TYPE_OBJECT)
-        self.user_vox = gtk.ComboBox(self.user_vox_store)
-        self.subject_vox = gtk.ComboBox(self.subject_vox_store)
+        self.user_vox = PulseCasterSource()
+        self.subject_vox = PulseCasterSource()
+
         self.table.set_col_spacing(2, 120)
-        self.uservu = gtk.ProgressBar()
-        self.subjectvu = gtk.ProgressBar()
-        self.table.attach(self.user_vox, 1, 2, 0, 1,
+        self.table.attach(self.user_vox.cbox, 1, 2, 0, 1,
                           xoptions=gtk.EXPAND|gtk.FILL)
-        self.table.attach(self.subject_vox, 1, 2, 1, 2,
+        self.table.attach(self.subject_vox.cbox, 1, 2, 1, 2,
                           xoptions=gtk.EXPAND|gtk.FILL)
-        self.table.attach(self.uservu, 2, 3, 0, 1,
+        self.table.attach(self.user_vox.pbar, 2, 3, 0, 1,
                           xoptions=gtk.FILL)
-        self.table.attach(self.subjectvu, 2, 3, 1, 2,
+        self.table.attach(self.subject_vox.pbar, 2, 3, 1, 2,
                           xoptions=gtk.FILL)
-        self.user_vox.connect('button-press-event', self.repop_sources)
-        self.subject_vox.connect('button-press-event', self.repop_sources)
+        self.user_vox.cbox.connect('button-press-event',
+                                   self.user_vox.repopulate,
+                                   self.pa)
+        self.subject_vox.cbox.connect('button-press-event',
+                                      self.subject_vox.repopulate,
+                                      self.pa)
 
         # Fill the combo boxes initially
         self.repop_sources()
-        self.user_vox.connect('changed', self.set_vus)
-        self.subject_vox.connect('changed', self.set_vus)
-        self.user_vox.connect('move-active', self.set_vus)
-        self.subject_vox.connect('move-active', self.set_vus)
+        self.user_vox.cbox.set_active(0)
+        self.subject_vox.cbox.set_active(0)
+        self.table.show_all()
+
         self.listener = PulseCasterListener(self)
-        
         self.filesinkpath = ''
-        
         self.trayicon = gtk.StatusIcon()
         self.trayicon.set_visible(False)
         self.trayicon.set_from_icon_name('pulsecaster')
-
-    def repop_sources(self, *args):
-        self.sources = self.pa.pulse_source_list()
-        self.user_vox_store.clear()
-        self.subject_vox_store.clear()
-        self.uservoxes = []
-        self.subjectvoxes = []
-        for source in self.sources:
-            if source.monitor_of_sink_name == None:
-                self.user_vox_store.append([source.name,
-                                            source.description,
-                                            0,
-                                            False,
-                                            None])
-            else:
-                self.subject_vox_store.append([source.name,
-                                               source.description,
-                                               0,
-                                               False,
-                                               None])
-        # Set up cell layouts
-#        self.user_vox_crt = gtk.CellRendererText()
-#        self.subject_vox_crt = gtk.CellRendererText()
-#        self.user_vox_crp = gtk.CellRendererProgress()
-#        self.user_vox_crp.set_fixed_size(width=100, height=-1)
-#        self.user_vox_crp.set_property('text', '')
-#        self.subject_vox_crp = gtk.CellRendererProgress()
-#        self.subject_vox_crp.set_fixed_size(width=100, height=-1)
-#        self.subject_vox_crp.set_property('text', '')
-#        self.user_vox.pack_start(self.user_vox_crt, True)
-#        self.user_vox.add_attribute(self.user_vox_crt, 'text', 1)
-#        self.subject_vox.pack_start(self.subject_vox_crt, True)
-#        self.subject_vox.add_attribute(self.subject_vox_crt, 'text', 1)
-#        self.user_vox.pack_start(self.user_vox_crp, False)
-#        self.user_vox.add_attribute(self.user_vox_crp, 'value', 2)
-#        self.subject_vox.pack_start(self.subject_vox_crp, False)
-#        self.subject_vox.add_attribute(self.subject_vox_crp, 'value', 2)
-#        # Default choice
-        # FIXME: Use the GNOME default sound setting?
-        self.user_vox.set_active(0)
-        self.subject_vox.set_active(0)
-        # Whenever a row in the combo box is selected
-        # its boolean should become True.
-        # Set a gobject.timeout_add() that updates the value of the progress
-        # bar according to boolean.
-        self.table.show_all()
 
         if self.gconfig.skip_warn is False:
             self.warning.show()
         else:
             self.hideWarn()
 
-    def set_vus(self, cb, *args):
-        model = cb.get_model()
-        entries = len(model)
-        for entry in model:
-            iter = entry.iter
-            index = entry.path[0]
-            # Set the boolean based on whether this entry is active
-            self.set_db(model, iter, index == cb.get_active())
-
-    def remove_pipeline(self, pipeline, conn):
+    def repop_sources(self, *args):
         self.main.set_sensitive(False)
-        pipeline.get_bus().disconnect(conn)
-        pipeline.get_bus().remove_signal_watch()
-        pipeline.set_state(gst.STATE_NULL)
+        self.user_vox.repopulate(self.pa, use_source=True, use_monitor=False)
+        self.subject_vox.repopulate(self.pa, use_source=False, use_monitor=True)
+        self.table.show_all()
         self.main.set_sensitive(True)
-
-    def set_db(self, model, iter, active):
-        model.set_value(iter, 3, active)
-        if not active:
-            model.set_value(iter, 2, 0)
-            # Grab the pipeline if one exists
-            pipeline = model.get_value(iter, 4)
-            if pipeline is not None:
-                self.remove_pipeline(pipeline, model.conn)
-        else:
-            # FIXME - this will build a new pipeline to get levels, and
-            # set up a gobject.timeout_add() to keep riding it.
-            model.set_value(iter, 2, 100) # REMOVE ME
-            device = model.get_value(iter, 0)
-            pl = 'pulsesrc device=%s ! level message=true interval=50000000 ! fakesink' % (device)
-            model.pipeline = gst.parse_launch(pl)
-            model.pipeline.get_bus().add_signal_watch()
-            model.conn = model.pipeline.get_bus().connect('message::element',
-                                                          self.on_msg,
-                                                          model,
-                                                          iter)
-            model.pipeline.set_state(gst.STATE_PLAYING)
-
-        # This is so the gobject.timeout_add() keeps riding
-        return active
-
-    def on_msg(self, bus, message, model, iter):
-        if message.structure.get_name() == 'level':
-            peak = message.structure['peak']
-            # This is dangerous because it assumes a stereo source
-            channels = len(peak)
-            v = 0.0
-            for p in peak:
-                v = v + p
-            v = v/channels
-            model.set_value(iter, 2, 100-abs(int(v)))
-            self.main.queue_draw()
-        return True
 
     def on_record(self, *args):
         # Create temporary file
@@ -275,17 +171,15 @@ class PulseCasterUI:
         self.tempfile = os.fdopen(self.tempfd)
         _debugPrint('tempfile: %s (fd %s)' % (self.temppath, self.tempfd))
         # Adjust UI
-        self.user_vox.set_sensitive(False)
-        self.subject_vox.set_sensitive(False)
+        self.user_vox.cbox.set_sensitive(False)
+        self.subject_vox.cbox.set_sensitive(False)
         self.close.set_sensitive(False)
 
         self.combiner = gst.Pipeline('PulseCasterCombinePipe')
         self.lsource = gst.element_factory_make('pulsesrc', 'lsrc')
-        self.lsource.set_property('device', 
-                                  self.uservoxes[self.user_vox.get_active()][0])
+        self.lsource.set_property('device', self.user_vox.pulsesrc)
         self.rsource = gst.element_factory_make('pulsesrc', 'rsrc')
-        self.rsource.set_property('device',
-                                  self.subjectvoxes[self.subject_vox.get_active()][0])
+        self.rsource.set_property('device', self.subject_vox.pulsesrc)
         
         self.adder = gst.element_factory_make('adder', 'mix')
         self.encoder = gst.element_factory_make(self.gconfig.codec + 'enc', 'enc')
@@ -330,8 +224,8 @@ class PulseCasterUI:
         self.record.set_label(gtk.STOCK_MEDIA_RECORD)
         self.record.disconnect(self.stop_id)
         self.record_id = self.record.connect('clicked', self.on_record)
-        self.user_vox.set_sensitive(True)
-        self.subject_vox.set_sensitive(True)
+        self.user_vox.cbox.set_sensitive(True)
+        self.subject_vox.cbox.set_sensitive(True)
         self.close.set_sensitive(True)
         self.record.show()
 
