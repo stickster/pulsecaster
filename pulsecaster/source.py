@@ -65,7 +65,7 @@ class PulseCasterSource:
         '''Make a GStreamer pipeline that allows level checking'''
         print 'in create_level_pipeline'
         pl = 'pulsesrc device=%s' % (self.pulsesrc)
-        pl += '! level message=true interval=50000000 ! fakesink'
+        pl += ' ! level message=true interval=100000000 ! fakesink'
         print pl
         self.pipeline = gst.parse_launch(pl)
         self.pipeline.get_bus().add_signal_watch()
