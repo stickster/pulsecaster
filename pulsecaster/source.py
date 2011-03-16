@@ -59,6 +59,8 @@ class PulseCasterSource:
                     self.store.append([source.name,
                                        source.description,
                                        source])
+        # Don't leave without resetting a source
+        self.cbox.set_active(0)
         print 'out of repopulate'
 
     def create_level_pipeline(self, *args):
@@ -89,8 +91,9 @@ class PulseCasterSource:
         if self.pipeline is not None:
             self.remove_level_pipeline()
         i = self.cbox.get_active_iter()
-        self.pulsesrc = self.cbox.get_model().get_value(i, 0)
-        self.create_level_pipeline()
+        if i is not None:
+            self.pulsesrc = self.cbox.get_model().get_value(i, 0)
+            self.create_level_pipeline()
         self.cbox.set_sensitive(True)
         print 'out of set_meters'
         
