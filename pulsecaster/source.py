@@ -96,17 +96,11 @@ class PulseCasterSource:
         
     def update_level(self, bus, message, *args):
         '''Update this object's GtkProgressBar to reflect current level'''
-        print 'in update_level'
-        print message
         if message.structure.get_name() == 'level':
-            peaks = message.structure['peak']
-            channels = len(peaks)
-            for peak in peaks:
-                v = v + peak
-            v = iec_scale(v/channels)
-            self.pbar.set_fraction(v)
-        self.main.queue_draw()
-        print 'out of update_level'
+            # stick with left channel in stereo setups
+            peak = message.structure['peak'][0]
+            self.pbar.set_fraction(self.iec_scale(peak)/100)
+            self.pbar.queue_draw()
         return True
     
     def iec_scale(self, db):
