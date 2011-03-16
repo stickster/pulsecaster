@@ -136,10 +136,17 @@ class PulseCasterUI:
                                                gobject.TYPE_OBJECT)
         self.user_vox = gtk.ComboBox(self.user_vox_store)
         self.subject_vox = gtk.ComboBox(self.subject_vox_store)
+        self.table.set_col_spacing(2, 120)
+        self.uservu = gtk.ProgressBar()
+        self.subjectvu = gtk.ProgressBar()
         self.table.attach(self.user_vox, 1, 2, 0, 1,
                           xoptions=gtk.EXPAND|gtk.FILL)
         self.table.attach(self.subject_vox, 1, 2, 1, 2,
                           xoptions=gtk.EXPAND|gtk.FILL)
+        self.table.attach(self.uservu, 2, 3, 0, 1,
+                          xoptions=gtk.FILL)
+        self.table.attach(self.subjectvu, 2, 3, 1, 2,
+                          xoptions=gtk.FILL)
         self.user_vox.connect('button-press-event', self.repop_sources)
         self.subject_vox.connect('button-press-event', self.repop_sources)
 
@@ -177,23 +184,23 @@ class PulseCasterUI:
                                                False,
                                                None])
         # Set up cell layouts
-        self.user_vox_crt = gtk.CellRendererText()
-        self.subject_vox_crt = gtk.CellRendererText()
-        self.user_vox_crp = gtk.CellRendererProgress()
-        self.user_vox_crp.set_fixed_size(width=100, height=-1)
-        self.user_vox_crp.set_property('text', '')
-        self.subject_vox_crp = gtk.CellRendererProgress()
-        self.subject_vox_crp.set_fixed_size(width=100, height=-1)
-        self.subject_vox_crp.set_property('text', '')
-        self.user_vox.pack_start(self.user_vox_crt, True)
-        self.user_vox.add_attribute(self.user_vox_crt, 'text', 1)
-        self.subject_vox.pack_start(self.subject_vox_crt, True)
-        self.subject_vox.add_attribute(self.subject_vox_crt, 'text', 1)
-        self.user_vox.pack_start(self.user_vox_crp, False)
-        self.user_vox.add_attribute(self.user_vox_crp, 'value', 2)
-        self.subject_vox.pack_start(self.subject_vox_crp, False)
-        self.subject_vox.add_attribute(self.subject_vox_crp, 'value', 2)
-        # Default choice
+#        self.user_vox_crt = gtk.CellRendererText()
+#        self.subject_vox_crt = gtk.CellRendererText()
+#        self.user_vox_crp = gtk.CellRendererProgress()
+#        self.user_vox_crp.set_fixed_size(width=100, height=-1)
+#        self.user_vox_crp.set_property('text', '')
+#        self.subject_vox_crp = gtk.CellRendererProgress()
+#        self.subject_vox_crp.set_fixed_size(width=100, height=-1)
+#        self.subject_vox_crp.set_property('text', '')
+#        self.user_vox.pack_start(self.user_vox_crt, True)
+#        self.user_vox.add_attribute(self.user_vox_crt, 'text', 1)
+#        self.subject_vox.pack_start(self.subject_vox_crt, True)
+#        self.subject_vox.add_attribute(self.subject_vox_crt, 'text', 1)
+#        self.user_vox.pack_start(self.user_vox_crp, False)
+#        self.user_vox.add_attribute(self.user_vox_crp, 'value', 2)
+#        self.subject_vox.pack_start(self.subject_vox_crp, False)
+#        self.subject_vox.add_attribute(self.subject_vox_crp, 'value', 2)
+#        # Default choice
         # FIXME: Use the GNOME default sound setting?
         self.user_vox.set_active(0)
         self.subject_vox.set_active(0)
