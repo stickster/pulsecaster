@@ -23,7 +23,7 @@ import pygst
 import gobject
 pygst.require('0.10')
 import gst
-from pulseaudio.PulseObj import PulseObj, PulseSourceInfo
+from pulseaudio.PulseObj import PulseObj
 
 class PulseCasterSource:
     '''A source object that provides sound data for PulseCaster'''
