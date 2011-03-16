@@ -88,7 +88,6 @@ class PulseCasterSource:
         self.cbox.set_sensitive(False)
         if self.pipeline is not None:
             self.remove_level_pipeline()
-        active = self.cbox.get_active()
         i = self.cbox.get_active_iter()
         self.pulsesrc = self.cbox.get_model().get_value(i, 0)
         self.create_level_pipeline()
