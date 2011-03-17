@@ -34,7 +34,7 @@ setup(
 
     scripts = ['pulsecaster/pulsecaster'],
     data_files = [
-        ('/usr/share/pulsecaster/', ["pulsecaster/data/pulsecaster.glade"]),
+        ('/usr/share/pulsecaster/', ["pulsecaster/data/pulsecaster.ui"]),
         ('/usr/share/icons/hicolor/scalable/apps/',['pulsecaster/data/icons/scalable/pulsecaster.svg','pulsecaster/data/icons/scalable/pulsecaster-logo.svg']),
         ('/usr/share/icons/hicolor/16x16/apps/', ['pulsecaster/data/icons/16x16/pulsecaster-16.png']),
         ('/usr/share/icons/hicolor/24x24/apps/', ['pulsecaster/data/icons/24x24/pulsecaster-24.png']),
