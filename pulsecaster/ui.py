@@ -28,7 +28,7 @@ import gtk
 import os
 import sys
 import tempfile
-import gobject
+from gobject import timeout_add as gobject_timeout_add
 import pygst
 pygst.require('0.10')
 import gst
@@ -215,7 +215,7 @@ class PulseCasterUI:
         self.starttime = datetime.now()
         self._update_time()
         self.timeout = 1000
-        gobject.timeout_add(self.timeout, self._update_time)
+        gobject_timeout_add(self.timeout, self._update_time)
         self.trayicon.set_visible(True)
 
     def on_stop(self, *args):
