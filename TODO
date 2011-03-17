@@ -1,4 +1,6 @@
 TODO:
+* Remove strings from gtkBuilder .ui file and move to Python code
+  (Removes need for special pybabel treatment)
 * Volume leveling on user's behalf
 	* Set recording volume for both sources to reasonable level (75%?)
 	* Normalize each to something like -0.1dB
