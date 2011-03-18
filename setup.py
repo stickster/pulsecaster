@@ -46,7 +46,6 @@ setup(
     
     message_extractors = {
         'pulsecaster': [('**.py', 'python', None),
-                        ('**.glade', 'glade', None)
                         ],
         },
     packages = find_packages(),

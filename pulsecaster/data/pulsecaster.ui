@@ -35,7 +35,6 @@
                   <object class="GtkLabel" id="warning-label2">
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
-                    <property name="label" translatable="yes">&lt;big&gt;&lt;big&gt;&lt;b&gt;&lt;i&gt;Important notice&lt;/i&gt;&lt;/b&gt;&lt;/big&gt;&lt;/big&gt;</property>
                     <property name="use_markup">True</property>
                   </object>
                   <packing>
@@ -48,7 +47,6 @@
                 <child>
                   <object class="GtkLabel" id="warning-label3">
                     <property name="visible">True</property>
-                    <property name="label" translatable="yes">This program can be used to record speech from remote locations. You are responsible for adhering to all applicable laws and regulations when using this program. In general you should not record other parties without their consent.</property>
                     <property name="wrap">True</property>
                   </object>
                   <packing>
@@ -75,7 +73,6 @@
         </child>
         <child>
           <object class="GtkCheckButton" id="skip_warn_checkbox">
-            <property name="label" translatable="yes">_Do not show this again</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">False</property>
@@ -97,7 +94,6 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="dismiss_warning">
-                <property name="label">I _understand.</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -172,7 +168,6 @@
                 <property name="yalign">0</property>
                 <property name="xpad">10</property>
                 <property name="ypad">10</property>
-                <property name="label" translatable="yes">&lt;i&gt;Select the audio sources to mix, and a destination file for saving the resulting audio.&lt;/i&gt;</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
               </object>
@@ -194,7 +189,6 @@
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="xpad">10</property>
-                    <property name="label" translatable="yes">Your voice:</property>
                     <property name="justify">right</property>
                   </object>
                 </child>
@@ -203,7 +197,6 @@
                     <property name="visible">True</property>
                     <property name="xalign">0</property>
                     <property name="xpad">10</property>
-                    <property name="label" translatable="yes">Subject's voice:</property>
                     <property name="justify">right</property>
                   </object>
                   <packing>

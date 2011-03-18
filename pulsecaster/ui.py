@@ -82,6 +82,23 @@ class PulseCasterUI:
         self.warning.connect('destroy', self.on_close)
         self.warning.set_title(NAME)
         
+        # Miscellaneous dialog strings
+        s = _('Important notice')
+        self.builder.get_object('warning-label2').set_label('<big><big><b><i>' +
+                                                            s + '</i></b></big></big>')
+        s = _('This program can be used to record speech from remote locations. You are responsible for adhering to all applicable laws and regulations when using this program. In general you should not record other parties without their consent.')
+        self.builder.get_object('warning-label3').set_label(s)
+        s = _('Do not show this again')
+        self.builder.get_object('skip_warn_checkbox').set_label(s)
+        s = _('Select the audio sources to mix')
+        self.builder.get_object('label2').set_label(s)
+        s = _('I understand.')
+        self.builder.get_object('dismiss_warning').set_label(s)
+        s = _('Your voice')
+        self.builder.get_object('label3').set_label(s + ':')
+        s = _('Subject\'s voice')
+        self.builder.get_object('label4').set_label(s + ':')
+
         # Main dialog basics
         self.main = self.builder.get_object('main_dialog')
         self.main.set_title(NAME)
