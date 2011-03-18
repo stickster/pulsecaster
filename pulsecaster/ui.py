@@ -50,25 +50,35 @@ class PulseCasterUI:
     def __init__(self):
         self.builder = gtk.Builder()
         try:
-            self.builder.add_from_file(os.path.join(os.getcwd(),'data','pulsecaster.ui')
+            self.builder.add_from_file(os.path.join(os.getcwd(),
+                                                    'data',
+                                                    'pulsecaster.ui')
 )
             _debugPrint(_("loading UI file from current subdir"))
         except:
             try:
-                self.builder.add_from_file(os.path.join(sys.prefix,'share','pulsecaster','pulsecaster.ui'))
+                self.builder.add_from_file(os.path.join(sys.prefix,
+                                                        'share',
+                                                        'pulsecaster',
+                                                        'pulsecaster.ui'))
             except:
                 try:
-                    self.builder.add_from_file(os.path.join(os.path.dirname(sys.argv[0]),
-                                               'data', 'pulsecaster.ui'))
+                    self.builder.add_from_file(os.path.join
+                                               (os.path.dirname(sys.argv[0]),
+                                                'data', 'pulsecaster.ui'))
                 except Exception,e:
                     print(e)
                     raise SystemExit(_("Cannot load resources"))
 
         self.icontheme = gtk.icon_theme_get_default()
         # Convenience for developers
-        self.icontheme.append_search_path(os.path.join(os.getcwd(),'data','icons','scalable'))
-        self.icontheme.append_search_path(os.path.join(os.path.dirname(sys.argv[0]),
-                                          'data', 'icons', 'scalable'))
+        self.icontheme.append_search_path(os.path.join(os.getcwd(),
+                                                       'data',
+                                                       'icons',
+                                                       'scalable'))
+        self.icontheme.append_search_path(os.path.join
+                                          (os.path.dirname(sys.argv[0]),
+                                           'data', 'icons', 'scalable'))
         self.logo = self.icontheme.load_icon('pulsecaster', -1,
                                              gtk.ICON_LOOKUP_FORCE_SVG)
         gtk.window_set_default_icon(self.logo)
@@ -84,9 +94,16 @@ class PulseCasterUI:
         
         # Miscellaneous dialog strings
         s = _('Important notice')
-        self.builder.get_object('warning-label2').set_label('<big><big><b><i>' +
-                                                            s + '</i></b></big></big>')
-        s = _('This program can be used to record speech from remote locations. You are responsible for adhering to all applicable laws and regulations when using this program. In general you should not record other parties without their consent.')
+        self.builder.get_object('warning-label2').set_label('<big><big>'+
+                                                            '<b><i>'+
+                                                            s+
+                                                            '</i></b>'+
+                                                            '</big></big>')
+        s = _('This program can be used to record speech from remote ' +
+              'locations. You are responsible for adhering to all '+
+              'applicable laws and regulations when using this program. '+
+              'In general you should not record other parties without '+
+              'their consent.')
         self.builder.get_object('warning-label3').set_label(s)
         s = _('Do not show this again')
         self.builder.get_object('skip_warn_checkbox').set_label(s)
@@ -132,7 +149,8 @@ class PulseCasterUI:
             self.authors.append(contrib)
         self.about.set_authors(self.authors)
         self.about.set_program_name(NAME)
-        self.about.set_logo(self.icontheme.load_icon('pulsecaster', 96, gtk.ICON_LOOKUP_FORCE_SVG))
+        self.about.set_logo(self.icontheme.load_icon
+                            ('pulsecaster', 96, gtk.ICON_LOOKUP_FORCE_SVG))
 
         # Create PulseAudio backing
         self.pa = PulseObj(clientName=NAME)
@@ -177,14 +195,17 @@ class PulseCasterUI:
 
     def repop_sources(self, *args):
         self.main.set_sensitive(False)
-        self.user_vox.repopulate(self.pa, use_source=True, use_monitor=False)
-        self.subject_vox.repopulate(self.pa, use_source=False, use_monitor=True)
+        self.user_vox.repopulate(self.pa, use_source=True,
+                                 use_monitor=False)
+        self.subject_vox.repopulate(self.pa, use_source=False,
+                                    use_monitor=True)
         self.table.show_all()
         self.main.set_sensitive(True)
 
     def on_record(self, *args):
         # Create temporary file
-        (self.tempfd, self.temppath) = tempfile.mkstemp(prefix='%s-tmp.' % (NAME))
+        (self.tempfd, self.temppath) = tempfile.mkstemp(prefix='%s-tmp.'
+                                                        % (NAME))
         self.tempfile = os.fdopen(self.tempfd)
         _debugPrint('tempfile: %s (fd %s)' % (self.temppath, self.tempfd))
         # Adjust UI
@@ -199,7 +220,8 @@ class PulseCasterUI:
         self.rsource.set_property('device', self.subject_vox.pulsesrc)
         
         self.adder = gst.element_factory_make('adder', 'mix')
-        self.encoder = gst.element_factory_make(self.gconfig.codec + 'enc', 'enc')
+        self.encoder = gst.element_factory_make(self.gconfig.codec + 'enc',
+                                                'enc')
         if self.gconfig.codec == 'vorbis':
             self.muxer = gst.element_factory_make('oggmux', 'mux')
         self.filesink = gst.element_factory_make('filesink', 'fsink')
@@ -267,8 +289,10 @@ class PulseCasterUI:
     def showFileChooser(self, *args):
         self.file_chooser = gtk.FileChooserDialog(title=_('Save your recording'),
                                                   action=gtk.FILE_CHOOSER_ACTION_SAVE,
-                                                  buttons=('Cancel', gtk.RESPONSE_CANCEL,
-                                                           'OK', gtk.RESPONSE_OK))
+                                                  buttons=('Cancel', 
+                                                           gtk.RESPONSE_CANCEL,
+                                                           'OK',
+                                                           gtk.RESPONSE_OK))
         self.file_chooser.set_local_only(True)
         response = self.file_chooser.run()
         if response == gtk.RESPONSE_OK:
@@ -280,12 +304,12 @@ class PulseCasterUI:
 
     def hideFileChooser(self, *args):
         if not self.filesinkpath:
+            confirm_message=_('Are you sure you want to cancel saving '+
+                              'your work? If you choose Yes your audio '+
+                              'recording will be erased permanently.')
             confirm = gtk.MessageDialog(type=gtk.MESSAGE_WARNING,
                                         buttons=gtk.BUTTONS_YES_NO,
-                                        message_format=_('Are you sure you want to cancel ' + 
-                                                         'saving your work? If you choose "Yes" ' +
-                                                         'your audio recording will be erased ' +
-                                                         'permanently.'))
+                                        message_format=confirm_message)
             response = confirm.run()
             confirm.destroy()
             if response == gtk.RESPONSE_YES:
@@ -321,9 +345,10 @@ class PulseCasterUI:
         return True
 
     def _confirm_overwrite(self, *args):
+        confirm_message = _('File exists. OK to overwrite?')
         confirm = gtk.MessageDialog(type=gtk.MESSAGE_QUESTION,
                                     buttons=gtk.BUTTONS_YES_NO,
-                                    message_format=_('File exists. OK to overwrite?'))
+                                    message_format=confirm_message)
         response = confirm.run()
         if response == gtk.RESPONSE_YES:
             retval = True
