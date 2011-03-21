@@ -6,5 +6,5 @@ Exec=pulsecaster
 Terminal=false
 Type=Application
 StartupNotify=true
-Icon=/usr/share/pulsecaster/icons/scalable/pulsecaster.svg
+Icon=pulsecaster
 Categories=GNOME;AudioVideo;Audio;
