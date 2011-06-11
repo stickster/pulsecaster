@@ -18,7 +18,7 @@
 # Author: Paul W. Frields <stickster@gmail.com>
 
 from config import *
-import gtk
+from gi.repository import Gtk
 import pygst
 import gobject
 pygst.require('0.10')
@@ -30,16 +30,16 @@ class PulseCasterSource:
     def __init__(self):
         '''Construct the source object'''
         # Should include a PA source, a GtkCombBox, and a GtkProgressBar
-        self.store = gtk.ListStore(gobject.TYPE_STRING,
+        self.store = Gtk.ListStore(gobject.TYPE_STRING,
                                    gobject.TYPE_STRING,
                                    gobject.TYPE_PYOBJECT)
         self.bus = None
-        self.cbox = gtk.ComboBox(self.store)
-        self.cell = gtk.CellRendererText()
+        self.cbox = Gtk.ComboBox.new_with_model(self.store)
+        self.cell = Gtk.CellRendererText()
         self.cbox.pack_start(self.cell, True)
         self.cbox.add_attribute(self.cell, 'text', True)
         self.cbox.connect('changed', self.set_meters)
-        self.pbar = gtk.ProgressBar()
+        self.pbar = Gtk.ProgressBar()
         self.pipeline = None
         print 'out of __init__'
         

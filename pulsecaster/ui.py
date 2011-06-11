@@ -24,7 +24,8 @@ import gconfig
 from pulseaudio.PulseObj import PulseObj
 from listener import *
 from source import *
-import gtk
+import gobject
+from gi.repository import Gtk
 import os
 import sys
 import tempfile
@@ -48,7 +49,7 @@ def _debugPrint(text):
 
 class PulseCasterUI:
     def __init__(self):
-        self.builder = gtk.Builder()
+        self.builder = Gtk.Builder()
         try:
             self.builder.add_from_file(os.path.join(os.getcwd(),
                                                     'data',
@@ -70,7 +71,7 @@ class PulseCasterUI:
                     print(e)
                     raise SystemExit(_("Cannot load resources"))
 
-        self.icontheme = gtk.icon_theme_get_default()
+        self.icontheme = Gtk.IconTheme.get_default()
         # Convenience for developers
         self.icontheme.append_search_path(os.path.join(os.getcwd(),
                                                        'data',
@@ -80,8 +81,8 @@ class PulseCasterUI:
                                           (os.path.dirname(sys.argv[0]),
                                            'data', 'icons', 'scalable'))
         self.logo = self.icontheme.load_icon('pulsecaster', -1,
-                                             gtk.ICON_LOOKUP_FORCE_SVG)
-        gtk.window_set_default_icon(self.logo)
+                                             Gtk.IconLookupFlags.FORCE_SVG)
+        Gtk.Window.set_default_icon(self.logo)
         self.gconfig = gconfig.PulseCasterGconf()
         
         self.warning = self.builder.get_object('warning')
@@ -131,8 +132,8 @@ class PulseCasterUI:
         self.record_id = self.record.connect('clicked', self.on_record)
         self.record.set_sensitive(True)
         self.main_logo = self.builder.get_object('logo')
-        self.main_logo.set_from_icon_name('pulsecaster', gtk.ICON_SIZE_DIALOG)
-        self.main.set_icon_list(self.logo)
+        self.main_logo.set_from_icon_name('pulsecaster', Gtk.IconSize.DIALOG)
+        self.main.set_icon_list([self.logo])
         # About dialog basics
         self.about = self.builder.get_object('about_dialog')
         self.about.connect('delete_event', self.hideAbout)
@@ -150,7 +151,7 @@ class PulseCasterUI:
         self.about.set_authors(self.authors)
         self.about.set_program_name(NAME)
         self.about.set_logo(self.icontheme.load_icon
-                            ('pulsecaster', 96, gtk.ICON_LOOKUP_FORCE_SVG))
+                            ('pulsecaster', 96, Gtk.IconLookupFlags.FORCE_SVG))
 
         # Create PulseAudio backing
         self.pa = PulseObj(clientName=NAME)
@@ -162,13 +163,13 @@ class PulseCasterUI:
 
         self.table.set_col_spacing(2, 120)
         self.table.attach(self.user_vox.cbox, 1, 2, 0, 1,
-                          xoptions=gtk.EXPAND|gtk.FILL)
+                          xoptions=Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL)
         self.table.attach(self.subject_vox.cbox, 1, 2, 1, 2,
-                          xoptions=gtk.EXPAND|gtk.FILL)
+                          xoptions=Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL)
         self.table.attach(self.user_vox.pbar, 2, 3, 0, 1,
-                          xoptions=gtk.FILL)
+                          xoptions=Gtk.AttachOptions.FILL)
         self.table.attach(self.subject_vox.pbar, 2, 3, 1, 2,
-                          xoptions=gtk.FILL)
+                          xoptions=Gtk.AttachOptions.FILL)
         self.user_vox.cbox.connect('button-press-event',
                                    self.user_vox.repopulate,
                                    self.pa)
@@ -184,7 +185,7 @@ class PulseCasterUI:
 
         self.listener = PulseCasterListener(self)
         self.filesinkpath = ''
-        self.trayicon = gtk.StatusIcon()
+        self.trayicon = Gtk.StatusIcon()
         self.trayicon.set_visible(False)
         self.trayicon.set_from_icon_name('pulsecaster')
 
@@ -245,7 +246,7 @@ class PulseCasterUI:
         gst.element_link_many(self.rsource, self.adder)
 
         # FIXME: Dim elements other than the 'record' widget
-        self.record.set_label(gtk.STOCK_MEDIA_STOP)
+        self.record.set_label(Gtk.STOCK_MEDIA_STOP)
         self.record.disconnect(self.record_id)
         self.stop_id = self.record.connect('clicked', self.on_stop)
         self.record.show()
@@ -260,7 +261,7 @@ class PulseCasterUI:
     def on_stop(self, *args):
         self.combiner.set_state(gst.STATE_NULL)
         self.showFileChooser()
-        self.record.set_label(gtk.STOCK_MEDIA_RECORD)
+        self.record.set_label(Gtk.STOCK_MEDIA_RECORD)
         self.record.disconnect(self.stop_id)
         self.record_id = self.record.connect('clicked', self.on_record)
         self.user_vox.cbox.set_sensitive(True)
@@ -273,7 +274,7 @@ class PulseCasterUI:
             self.pa.disconnect()
         except:
             pass
-        gtk.main_quit()
+        Gtk.main_quit()
 
     def hideWarn(self, *args):
         self.gconfig.change_warn(self.swckbox.get_active())
@@ -287,19 +288,19 @@ class PulseCasterUI:
         self.about.hide()
         
     def showFileChooser(self, *args):
-        self.file_chooser = gtk.FileChooserDialog(title=_('Save your recording'),
-                                                  action=gtk.FILE_CHOOSER_ACTION_SAVE,
+        self.file_chooser = Gtk.FileChooserDialog(title=_('Save your recording'),
+                                                  action=Gtk.FileChooserAction.SAVE,
                                                   buttons=('Cancel', 
-                                                           gtk.RESPONSE_CANCEL,
+                                                           Gtk.ResponseType.CANCEL,
                                                            'OK',
-                                                           gtk.RESPONSE_OK))
+                                                           Gtk.ResponseType.OK))
         self.file_chooser.set_local_only(True)
         response = self.file_chooser.run()
-        if response == gtk.RESPONSE_OK:
+        if response == Gtk.ResponseType.OK:
             self.updateFileSinkPath()
-        elif response == gtk.RESPONSE_CANCEL:
+        elif response == Gtk.ResponseType.CANCEL:
             self.hideFileChooser()
-        elif response == gtk.RESPONSE_DELETE_EVENT:
+        elif response == Gtk.ResponseType.DELETE_EVENT:
             self.hideFileChooser()
 
     def hideFileChooser(self, *args):
@@ -307,12 +308,12 @@ class PulseCasterUI:
             confirm_message=_('Are you sure you want to cancel saving '+
                               'your work? If you choose Yes your audio '+
                               'recording will be erased permanently.')
-            confirm = gtk.MessageDialog(type=gtk.MESSAGE_WARNING,
-                                        buttons=gtk.BUTTONS_YES_NO,
+            confirm = Gtk.MessageDialog(type=Gtk.MessageType.WARNING,
+                                        buttons=Gtk.ButtonsType.YES_NO,
                                         message_format=confirm_message)
             response = confirm.run()
             confirm.destroy()
-            if response == gtk.RESPONSE_YES:
+            if response == Gtk.ResponseType.YES:
                 self._remove_tempfile(self.tempfile, self.temppath)
             else:
                 return
@@ -346,11 +347,11 @@ class PulseCasterUI:
 
     def _confirm_overwrite(self, *args):
         confirm_message = _('File exists. OK to overwrite?')
-        confirm = gtk.MessageDialog(type=gtk.MESSAGE_QUESTION,
-                                    buttons=gtk.BUTTONS_YES_NO,
+        confirm = Gtk.MessageDialog(type=Gtk.MessageType.QUESTION,
+                                    buttons=Gtk.ButtonsType.YES_NO,
                                     message_format=confirm_message)
         response = confirm.run()
-        if response == gtk.RESPONSE_YES:
+        if response == Gtk.ResponseType.YES:
             retval = True
         else:
             retval = False
@@ -375,4 +376,4 @@ class PulseCasterUI:
 
 if __name__ == '__main__':
     pulseCaster = PulseCasterUI()
-    gtk.main()
+    Gtk.main()
