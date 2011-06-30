@@ -134,6 +134,21 @@ class PulseCasterUI:
         self.main_logo = self.builder.get_object('logo')
         self.main_logo.set_from_icon_name('pulsecaster', Gtk.IconSize.DIALOG)
         self.main.set_icon_list([self.logo])
+        # Advanced dialog basics
+        self.adv = self.builder.get_object('adv_dialog')
+        self.adv.connect('delete_event', self.hideAdv)
+        self.adv.connect('response', self.hideAdv)
+        self.adv_stdlabel1 = self.builder.get_object('adv_stdlabel1')
+        self.adv_stdlabel2 = self.builder.get_object('adv_stdlabel2')
+        self.adv_explabel1 = self.builder.get_object('adv_explabel1')
+        self.adv_explabel2 = self.builder.get_object('adv_explabel2')
+        self.adv_stdlabel1.set_label(_('Standard settings'))
+        self.adv_explabel1.set_label(_('Expert settings'))
+        lbl = _('Save the conversation as a single audio file with compression. This is the right option for most people.')
+        self.adv_stdlabel2.set_label('<small><i>' + lbl + '</i></small>')
+        lbl = _('Save each voice as a separate audio file without compression. Use this option to mix and encode audio yourself.')
+        self.adv_explabel2.set_label('<small><i>' + lbl + '</i></small>')
+        # TODO: Add bits to set radio buttons and make them work
         # About dialog basics
         self.about = self.builder.get_object('about_dialog')
         self.about.connect('delete_event', self.hideAbout)
