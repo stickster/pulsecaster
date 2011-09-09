@@ -36,6 +36,10 @@
   <object class="GtkDialog" id="adv_dialog">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
+    <property name="type">popup</property>
+    <property name="resizable">False</property>
+    <property name="modal">True</property>
+    <property name="window_position">center-on-parent</property>
     <property name="type_hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox3">
@@ -87,7 +91,6 @@
                 <property name="xalign">0</property>
                 <property name="active">True</property>
                 <property name="draw_indicator">True</property>
-                <property name="group">flac_button</property>
                 <child>
                   <object class="GtkBox" id="box2">
                     <property name="visible">True</property>

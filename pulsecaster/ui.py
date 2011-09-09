@@ -217,11 +217,6 @@ class PulseCasterUI:
         self.main.set_sensitive(True)
 
     def on_record(self, *args):
-        # Create temporary file
-        (self.tempfd, self.temppath) = tempfile.mkstemp(prefix='%s-tmp.'
-                                                        % (NAME))
-        self.tempfile = os.fdopen(self.tempfd)
-        _debugPrint('tempfile: %s (fd %s)' % (self.temppath, self.tempfd))
         # Adjust UI
         self.user_vox.cbox.set_sensitive(False)
         self.subject_vox.cbox.set_sensitive(False)
@@ -232,31 +227,65 @@ class PulseCasterUI:
         self.lsource.set_property('device', self.user_vox.pulsesrc)
         self.rsource = gst.element_factory_make('pulsesrc', 'rsrc')
         self.rsource.set_property('device', self.subject_vox.pulsesrc)
-        
-        self.adder = gst.element_factory_make('adder', 'mix')
-        self.encoder = gst.element_factory_make(self.gconfig.codec + 'enc',
-                                                'enc')
-        if self.gconfig.codec == 'vorbis':
-            self.muxer = gst.element_factory_make('oggmux', 'mux')
-        self.filesink = gst.element_factory_make('filesink', 'fsink')
-        self.filesink.set_property('location', self.temppath)
 
-        self.combiner.add(self.lsource, 
-                          self.rsource, 
-                          self.adder, 
-                          self.encoder,
-                          self.filesink)
-        if self.gconfig.codec == 'vorbis':
-            self.combiner.add(self.muxer)
-        gst.element_link_many(self.lsource,
+        self.adder = gst.element_factory_make('adder', 'mix')
+
+        if self.gconfig.expert is not True:
+            # Create temporary file
+            (self.tempfd, self.temppath) = tempfile.mkstemp(prefix='%s-tmp.'
+                                                            % (NAME))
+            self.tempfile = os.fdopen(self.tempfd)
+            _debugPrint('tempfile: %s (fd %s)' % (self.temppath, self.tempfd))
+            self.encoder = gst.element_factory_make(self.gconfig.codec +
+                                                    'enc', 'enc')
+            if self.gconfig.codec == 'vorbis':
+                self.muxer = gst.element_factory_make('oggmux', 'mux')
+            self.filesink = gst.element_factory_make('filesink', 'fsink')
+            self.filesink.set_property('location', self.temppath)
+
+            self.combiner.add(self.lsource,
+                              self.rsource,
                               self.adder,
-                              self.encoder)
-        if self.gconfig.codec == 'vorbis':
-            self.encoder.link(self.muxer)
-            self.muxer.link(self.filesink)
-        else: # flac
-            self.encoder.link(self.filesink)
-        gst.element_link_many(self.rsource, self.adder)
+                              self.encoder,
+                              self.filesink)
+            if self.gconfig.codec == 'vorbis':
+                self.combiner.add(self.muxer)
+            gst.element_link_many(self.lsource,
+                                  self.adder,
+                                  self.encoder)
+            if self.gconfig.codec == 'vorbis':
+                self.encoder.link(self.muxer)
+                self.muxer.link(self.filesink)
+            else: # flac
+                self.encoder.link(self.filesink)
+            gst.element_link_many(self.rsource, self.adder)
+        else:
+            # Create temporary file
+            (self.tempfd1, self.temppath1) = tempfile.mkstemp(prefix='%s-1-tmp.'
+                                                              % (NAME))
+            (self.tempfd2, self.temppath2) = tempfile.mkstemp(prefix='%s-2-tmp.'
+                                                              % (NAME))
+            self.tempfile1 = os.fdopen(self.tempfd1)
+            self.tempfile2 = os.fdopen(self.tempfd2)
+            _debugPrint('tempfiles: %s (fd %s), %s (fd %s)' %
+                        (self.temppath1, self.tempfd1, self.temppath2,
+                         self.temppath2))
+            # We're in expert mode
+            # Disregard vorbis, use WAV
+            self.encoder1 = gst.element_factory_make('wavenc', 'enc1')
+            self.encoder2 = gst.element_factory_make('wavenc', 'enc2')
+            self.filesink1 = gst.element_factory_make('filesink', 'fsink1')
+            self.filesink1.set_property('location', self.temppath1)
+            self.filesink2 = gst.element_factory_make('filesink', 'fsink2')
+            self.filesink2.set_property('location', self.temppath2)
+            self.combiner.add(self.lsource,
+                              self.rsource,
+                              self.encoder1,
+                              self.encoder2,
+                              self.filesink1,
+                              self.filesink2)
+            gst.element_link_many(self.lsource, self.encoder1, self.filesink1)
+            gst.element_link_many(self.rsource, self.encoder2, self.filesink2)
 
         # FIXME: Dim elements other than the 'record' widget
         self.record.set_label(Gtk.STOCK_MEDIA_STOP)
@@ -300,9 +329,12 @@ class PulseCasterUI:
     def hideAbout(self, *args):
         self.about.hide()
 
+    def showAdv(self, *args):
+        self.adv.show()
+
     def hideAdv(self, *args):
-        pass
-        
+        self.adv.hide()
+
     def showFileChooser(self, *args):
         self.file_chooser = Gtk.FileChooserDialog(title=_('Save your recording'),
                                                   action=Gtk.FileChooserAction.SAVE,

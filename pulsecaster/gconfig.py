@@ -43,6 +43,11 @@ class PulseCasterGconf:
             self.codec = 'vorbis'
             self.client.set_string(self.dirbase + '/codec', self.codec)
 
+        self.expert = self.client.get(self.dirbase + '/expert')
+        if type(self.expert) is not bool:
+            self.expert = False
+            self.client.set_bool(self.dirbase + '/expert', self.expert)
+
     def change_warn(self, val):
         if type(val) is not bool:
             raise ValueError, "requires bool value"
