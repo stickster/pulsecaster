@@ -124,6 +124,8 @@ class PulseCasterUI:
         self.main.connect('delete_event', self.on_close)
         self.about_button = self.builder.get_object('about_button')
         self.about_button.connect('clicked', self.showAbout)
+        self.adv_button = self.builder.get_object('adv_button')
+        self.adv_button.connect('clicked', self.showAdv)
         self.close = self.builder.get_object('close_button')
         self.close.connect('clicked', self.on_close)
         self.record = self.builder.get_object('record_button')
@@ -134,6 +136,8 @@ class PulseCasterUI:
         self.main.set_icon_list([self.logo])
         # Advanced dialog basics
         self.adv = self.builder.get_object('adv_dialog')
+        self.adv.set_icon_list([self.logo])
+        self.adv.set_title(NAME)
         self.adv.connect('delete_event', self.hideAdv)
         self.adv.connect('response', self.hideAdv)
         self.adv_stdlabel1 = self.builder.get_object('adv_stdlabel1')
@@ -147,6 +151,10 @@ class PulseCasterUI:
         lbl = _('Save each voice as a separate audio file without compression. Use this option to mix and encode audio yourself.')
         self.adv_explabel2.set_label('<small><i>' + lbl + '</i></small>')
         # TODO: Add bits to set radio buttons and make them work
+        self.vorbis_button = self.builder.get_object('vorbis_button')
+        self.vorbis_button.connect('clicked', self.set_standard)
+        self.flac_button = self.builder.get_object('flac_button')
+        self.flac_button.connect('clicked', self.set_expert)
         # About dialog basics
         self.about = self.builder.get_object('about_dialog')
         self.about.connect('delete_event', self.hideAbout)
@@ -330,10 +338,22 @@ class PulseCasterUI:
         self.about.hide()
 
     def showAdv(self, *args):
+        if self.gconfig.expert is True:
+            self.flac_button.set_active(True)
+        else:
+            self.vorbis_button.set_active(True)
         self.adv.show()
 
     def hideAdv(self, *args):
         self.adv.hide()
+
+    def set_standard(self, *args):
+        self.gconfig.client.set_bool(self.gconfig.dirbase + '/expert',
+                                     False)
+
+    def set_expert(self, *args):
+        self.gconfig.client.set_bool(self.gconfig.dirbase + '/expert',
+                                     True)
 
     def showFileChooser(self, *args):
         self.file_chooser = Gtk.FileChooserDialog(title=_('Save your recording'),
