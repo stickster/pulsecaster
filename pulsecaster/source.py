@@ -18,9 +18,8 @@
 # Author: Paul W. Frields <stickster@gmail.com>
 
 from config import *
-from gi.repository import Gtk
+from gi.repository import Gtk, GObject
 import pygst
-import gobject
 pygst.require('0.10')
 import gst
 from pulseaudio.PulseObj import PulseObj
@@ -30,9 +29,9 @@ class PulseCasterSource:
     def __init__(self):
         '''Construct the source object'''
         # Should include a PA source, a GtkCombBox, and a GtkProgressBar
-        self.store = Gtk.ListStore(gobject.TYPE_STRING,
-                                   gobject.TYPE_STRING,
-                                   gobject.TYPE_PYOBJECT)
+        self.store = Gtk.ListStore(GObject.TYPE_STRING,
+                                   GObject.TYPE_STRING,
+                                   GObject.TYPE_PYOBJECT)
         self.bus = None
         self.cbox = Gtk.ComboBox.new_with_model(self.store)
         self.cell = Gtk.CellRendererText()
