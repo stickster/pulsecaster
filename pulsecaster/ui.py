@@ -24,12 +24,10 @@ import gconfig
 from pulseaudio.PulseObj import PulseObj
 from listener import *
 from source import *
-import gobject
-from gi.repository import Gtk
+from gi.repository import Gtk, GObject
 import os
 import sys
 import tempfile
-from gobject import timeout_add as gobject_timeout_add
 import pygst
 pygst.require('0.10')
 import gst
@@ -255,7 +253,7 @@ class PulseCasterUI:
         self.starttime = datetime.now()
         self._update_time()
         self.timeout = 1000
-        gobject_timeout_add(self.timeout, self._update_time)
+        GObject.timeout_add(self.timeout, self._update_time)
         self.trayicon.set_visible(True)
 
     def on_stop(self, *args):
