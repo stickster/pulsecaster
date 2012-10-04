@@ -299,6 +299,9 @@ class PulseCasterUI:
 
     def hideAbout(self, *args):
         self.about.hide()
+
+    def hideAdv(self, *args):
+        pass
         
     def showFileChooser(self, *args):
         self.file_chooser = Gtk.FileChooserDialog(title=_('Save your recording'),
