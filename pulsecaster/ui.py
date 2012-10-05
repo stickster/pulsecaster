@@ -373,9 +373,9 @@ class PulseCasterUI:
     def showFileChooser(self, *args):
         self.file_chooser = Gtk.FileChooserDialog(title=_('Save your recording'),
                                                   action=Gtk.FileChooserAction.SAVE,
-                                                  buttons=('Cancel', 
+                                                  buttons=(Gtk.STOCK_CANCEL,
                                                            Gtk.ResponseType.CANCEL,
-                                                           'OK',
+                                                           Gtk.STOCK_OK,
                                                            Gtk.ResponseType.OK))
         self.file_chooser.set_local_only(True)
         response = self.file_chooser.run()
@@ -447,7 +447,7 @@ class PulseCasterUI:
         delta = datetime.now() - self.starttime
         deltamin = delta.seconds // 60
         deltasec = delta.seconds - (deltamin * 60)
-        self.trayicon.set_tooltip_text('Recording: %d:%02d' %
+        self.trayicon.set_tooltip_text(_('Recording') + ': %d:%02d' %
                                   (deltamin, deltasec))
         return True
 
