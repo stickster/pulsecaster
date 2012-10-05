@@ -234,6 +234,7 @@ class PulseCasterUI:
         self.user_vox.cbox.set_sensitive(False)
         self.subject_vox.cbox.set_sensitive(False)
         self.close.set_sensitive(False)
+        self.adv_button.set_sensitive(False)
 
         self.combiner = gst.Pipeline('PulseCasterCombinePipe')
         self.lsource = gst.element_factory_make('pulsesrc', 'lsrc')
@@ -322,6 +323,7 @@ class PulseCasterUI:
         self.user_vox.cbox.set_sensitive(True)
         self.subject_vox.cbox.set_sensitive(True)
         self.close.set_sensitive(True)
+        self.adv_button.set_sensitive(True)
         self.record.show()
 
     def on_close(self, *args):
