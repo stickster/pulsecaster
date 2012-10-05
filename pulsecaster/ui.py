@@ -156,7 +156,7 @@ class PulseCasterUI:
         self.flac_button = self.builder.get_object('flac_button')
         self.flac_button.connect('clicked', self.set_expert)
         self.flac_button.join_group(self.vorbis_button)
-        if self.gconfig.expert:
+        if self.gconfig.expert is True:
             self.flac_button.set_active(True)
         else:
             self.vorbis_button.set_active(True)
