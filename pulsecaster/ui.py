@@ -405,13 +405,32 @@ class PulseCasterUI:
         if not self.filesinkpath:
             return
         self.hideFileChooser()
-        if os.path.lexists(self.filesinkpath):
-            if not self._confirm_overwrite():
-                self.showFileChooser()
-                return
+        if self.gconfig.expert is False:
+            if os.path.lexists(self.filesinkpath):
+                if not self._confirm_overwrite():
+                    self.showFileChooser()
+                    return
+        else:
+            if os.path.lexists(self.filesinkpath+'-1.wav') or \
+                    os.path.lexists(self.filesinkpath+'-2.wav'):
+                if not self._confirm_overwrite():
+                    self.showFileChooser()
+                    return
         # Copy the temporary file to its new home
         self._copy_temp_to_perm()
-        self._remove_tempfile(self.tempfile, self.temppath)
+        if self.gconfig.expert is False:
+            self._remove_tempfile(self.tempfile, self.temppath)
+        else:
+            expert_message = _('WAV files are written here:')
+            expert_message += '\n%s\n%s' % (self.filesinkpath+'-1.wav',
+                                            self.filesinkpath+'-2.wav')
+            expertdlg = Gtk.MessageDialog(type=Gtk.MessageType.INFO,
+                                          buttons=Gtk.ButtonsType.OK,
+                                          message_format=expert_message)
+            response = expertdlg.run()
+            expertdlg.destroy()
+            self._remove_tempfile(self.tempfile1, self.temppath1)
+            self._remove_tempfile(self.tempfile2, self.temppath2)
         self.record.set_sensitive(True)
     
     def _update_time(self, *args):
@@ -440,15 +459,30 @@ class PulseCasterUI:
         return retval
     
     def _copy_temp_to_perm(self):
-        self.permfile = open(self.filesinkpath, 'w')
-        self.tempfile.seek(0)
-        while True:
-            buf = self.tempfile.read(1024*1024)
-            if buf:
-                self.permfile.write(buf)
-            else:
-                break
-        self.permfile.close()
+        # This is a really stupid way to do this.
+        # FIXME: abstract out the duplicated code, lazybones.
+        if self.gconfig.expert is False:
+            self.permfile = open(self.filesinkpath, 'w')
+            self.tempfile.seek(0)
+            while True:
+                buf = self.tempfile.read(1024*1024)
+                if buf:
+                    self.permfile.write(buf)
+                else:
+                    break
+            self.permfile.close()
+        else:
+            self.permfile1 = open(self.filesinkpath + '-1.wav', 'w')
+            self.permfile2 = open(self.filesinkpath + '-2.wav', 'w')
+            for pf, tf in ([1, self.tempfile1], [2, self.tempfile2]):
+                permfile = open(self.filesinkpath + '-%d.wav' % (pf), 'w')
+                while True:
+                    buf = tf.read(1024*1024)
+                    if buf:
+                        permfile.write(buf)
+                    else:
+                        break
+                permfile.close()
 
     def _remove_tempfile(self, tempfile, temppath):
         tempfile.close()
