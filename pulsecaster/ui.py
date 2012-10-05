@@ -357,6 +357,7 @@ class PulseCasterUI:
                                      False)
         self.gconfig.client.set_string(self.gconfig.dirbase + '/codec',
                                        'vorbis')
+        self.gconfig.expert = False
         self.gconfig.client.suggest_sync()
 
     def set_expert(self, *args):
@@ -364,6 +365,7 @@ class PulseCasterUI:
                                      True)
         self.gconfig.client.set_string(self.gconfig.dirbase + '/codec',
                                        'flac')
+        self.gconfig.expert = True
         self.gconfig.client.suggest_sync()
 
     def showFileChooser(self, *args):
