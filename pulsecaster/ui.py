@@ -155,6 +155,11 @@ class PulseCasterUI:
         self.vorbis_button.connect('clicked', self.set_standard)
         self.flac_button = self.builder.get_object('flac_button')
         self.flac_button.connect('clicked', self.set_expert)
+        self.flac_button.join_group(self.vorbis_button)
+        if self.gconfig.expert:
+            self.flac_button.set_active(True)
+        else:
+            self.vorbis_button.set_active(True)
         # About dialog basics
         self.about = self.builder.get_object('about_dialog')
         self.about.connect('delete_event', self.hideAbout)
@@ -350,10 +355,16 @@ class PulseCasterUI:
     def set_standard(self, *args):
         self.gconfig.client.set_bool(self.gconfig.dirbase + '/expert',
                                      False)
+        self.gconfig.client.set_string(self.gconfig.dirbase + '/codec',
+                                       'vorbis')
+        self.gconfig.client.suggest_sync()
 
     def set_expert(self, *args):
         self.gconfig.client.set_bool(self.gconfig.dirbase + '/expert',
                                      True)
+        self.gconfig.client.set_string(self.gconfig.dirbase + '/codec',
+                                       'flac')
+        self.gconfig.client.suggest_sync()
 
     def showFileChooser(self, *args):
         self.file_chooser = Gtk.FileChooserDialog(title=_('Save your recording'),

@@ -43,7 +43,7 @@ class PulseCasterGconf:
             self.codec = 'vorbis'
             self.client.set_string(self.dirbase + '/codec', self.codec)
 
-        self.expert = self.client.get(self.dirbase + '/expert')
+        self.expert = self.client.get_bool(self.dirbase + '/expert')
         if type(self.expert) is not bool:
             self.expert = False
             self.client.set_bool(self.dirbase + '/expert', self.expert)
