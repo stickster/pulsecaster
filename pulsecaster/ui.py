@@ -395,7 +395,11 @@ class PulseCasterUI:
             response = confirm.run()
             confirm.destroy()
             if response == Gtk.ResponseType.YES:
-                self._remove_tempfile(self.tempfile, self.temppath)
+                if self.gconfig.expert is False:
+                    self._remove_tempfile(self.tempfile, self.temppath)
+                else:
+                    self._remove_tempfile(self.tempfile1, self.temppath1)
+                    self._remove_tempfile(self.tempfile2, self.temppath2)
             else:
                 return
         self.file_chooser.destroy()
