@@ -3,6 +3,7 @@
 utils/palist
 build/
 dist/
+locale/
 pulsecaster.egg-info/
 
 # Yes, I like Emacs.
