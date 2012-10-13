@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2009, 2010 Paul W. Frields and others.
+# Copyright (C) 2009, 2010, 2012 Paul W. Frields and others.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -47,6 +47,9 @@ setup(
     message_extractors = {
         'pulsecaster': [('**.py', 'python', None),
                         ],
+        },
+    package_data={
+        'pulsecaster': ['po/*.mo'],
         },
     packages = find_packages(),
 )
