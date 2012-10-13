@@ -1,6 +1,7 @@
 *.pyc
 .svn
 utils/palist
+build/
 dist/
 pulsecaster.egg-info/
 
