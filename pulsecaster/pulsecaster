@@ -20,7 +20,7 @@
 # Author: Jürgen Geuter <tante@the-gay-bar.com>
 
 from pulsecaster import ui
-import gtk
+from gi.repository import Gtk
 
 pk = ui.PulseCasterUI()
-gtk.main()
+Gtk.main()
