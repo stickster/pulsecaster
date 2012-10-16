@@ -4,9 +4,11 @@ utils/palist
 build/
 dist/
 locale/
+messages.mo
 po/*.mo
 pulsecaster.egg-info/
 
+*~
 # Yes, I like Emacs.
 .\#*
 \#*\#
