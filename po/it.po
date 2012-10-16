@@ -1,0 +1,111 @@
+# Translations template for pulsecaster.
+# Copyright (C) 2012 Paul W. Frields
+# This file is distributed under the same license as the pulsecaster
+# project.
+# 
+# Translators:
+# fugolini <f.ugolini@yahoo.com>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: PulseCaster\n"
+"Report-Msgid-Bugs-To: http://pulsecaster.org/\n"
+"POT-Creation-Date: 2012-10-04 22:10-0400\n"
+"PO-Revision-Date: 2012-10-05 02:15+0000\n"
+"Last-Translator: Paul Frields <stickster@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: pulsecaster/config.py:29
+msgid "PulseAudio based podcast recorder"
+msgstr "Registratore di podcast basato su PulseAudio"
+
+#: pulsecaster/config.py:31
+msgid "Copyright © 2009-2010 "
+msgstr "Copyright © 2009-2010"
+
+#: pulsecaster/ui.py:56
+msgid "loading UI file from current subdir"
+msgstr "caricamento dell'interfaccia utente dalla sottodirectory attuale"
+
+#: pulsecaster/ui.py:70
+msgid "Cannot load resources"
+msgstr "Non è possibile caricare le risorse"
+
+#: pulsecaster/ui.py:95
+msgid "Important notice"
+msgstr "Avviso importante"
+
+#: pulsecaster/ui.py:101
+msgid ""
+"This program can be used to record speech from remote locations. You are "
+"responsible for adhering to all applicable laws and regulations when using "
+"this program. In general you should not record other parties without their "
+"consent."
+msgstr "Questo programma può essere usato per registrare una conversazione da una postazione remota. Hai la responsabilità di conformarti a tutte le leggi e regolamenti quando usi questo programma. In generale non devi registrare altre parti senza il loro consenso."
+
+#: pulsecaster/ui.py:107
+msgid "Do not show this again"
+msgstr "Non mostrarlo di nuovo"
+
+#: pulsecaster/ui.py:109
+msgid "Select the audio sources to mix"
+msgstr "Selezionare la sorgente audio da unire"
+
+#: pulsecaster/ui.py:111
+msgid "I understand."
+msgstr "Ho compreso."
+
+#: pulsecaster/ui.py:113
+msgid "Your voice"
+msgstr "La tua voce"
+
+#: pulsecaster/ui.py:115
+msgid "Subject's voice"
+msgstr "La voce del soggetto"
+
+#: pulsecaster/ui.py:147
+msgid "Standard settings"
+msgstr ""
+
+#: pulsecaster/ui.py:148
+msgid "Expert settings"
+msgstr ""
+
+#: pulsecaster/ui.py:149
+msgid ""
+"Save the conversation as a single audio file with compression. This is the "
+"right option for most people."
+msgstr ""
+
+#: pulsecaster/ui.py:151
+msgid ""
+"Save each voice as a separate audio file without compression. Use this "
+"option to mix and encode audio yourself."
+msgstr ""
+
+#: pulsecaster/ui.py:374
+msgid "Save your recording"
+msgstr "Salva la tua registrazione"
+
+#: pulsecaster/ui.py:391
+msgid ""
+"Are you sure you want to cancel saving your work? If you choose Yes your "
+"audio recording will be erased permanently."
+msgstr "Sei sicuro di voler annullare il salvataggio del tuo lavoro? Se scegli Yes, la tua registrazione audio sarà cancellata permanentemente."
+
+#: pulsecaster/ui.py:430
+msgid "WAV files are written here:"
+msgstr ""
+
+#: pulsecaster/ui.py:450
+msgid "Recording"
+msgstr ""
+
+#: pulsecaster/ui.py:455
+msgid "File exists. OK to overwrite?"
+msgstr "Il file esiste già. Vuoi sovrascriverlo?"
