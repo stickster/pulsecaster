@@ -4,6 +4,7 @@ utils/palist
 build/
 dist/
 locale/
+po/*.mo
 pulsecaster.egg-info/
 
 # Yes, I like Emacs.
