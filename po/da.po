@@ -5,12 +5,13 @@
 # 
 # Translators:
 # Kris Thomsen <lakristho@gmail.com>, 2011.
+# Peter Larsen <ego.alter@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: PulseCaster\n"
 "Report-Msgid-Bugs-To: http://pulsecaster.org/\n"
 "POT-Creation-Date: 2012-10-04 22:10-0400\n"
-"PO-Revision-Date: 2012-10-05 02:15+0000\n"
+"PO-Revision-Date: 2012-10-16 22:57+0000\n"
 "Last-Translator: Paul Frields <stickster@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -70,23 +71,23 @@ msgstr "Emnets stemme"
 
 #: pulsecaster/ui.py:147
 msgid "Standard settings"
-msgstr ""
+msgstr "Standard konfiguration"
 
 #: pulsecaster/ui.py:148
 msgid "Expert settings"
-msgstr ""
+msgstr "Avanceret konfiguration"
 
 #: pulsecaster/ui.py:149
 msgid ""
 "Save the conversation as a single audio file with compression. This is the "
 "right option for most people."
-msgstr ""
+msgstr "Gem hele samtalen i en enkel komprimeret lydfil. Anbefalet for de fleste brugere."
 
 #: pulsecaster/ui.py:151
 msgid ""
 "Save each voice as a separate audio file without compression. Use this "
 "option to mix and encode audio yourself."
-msgstr ""
+msgstr "Gem hver part i separate ikke komprimeret lydfiler. Brug denne indstilling hvis du selv vil vælge filformat mv."
 
 #: pulsecaster/ui.py:374
 msgid "Save your recording"
@@ -100,11 +101,11 @@ msgstr "Er du sikker på at du vil annullere gemningen af dit arbejde. Hvis du v
 
 #: pulsecaster/ui.py:430
 msgid "WAV files are written here:"
-msgstr ""
+msgstr "WAV filer skrives hertil"
 
 #: pulsecaster/ui.py:450
 msgid "Recording"
-msgstr ""
+msgstr "Optager"
 
 #: pulsecaster/ui.py:455
 msgid "File exists. OK to overwrite?"
