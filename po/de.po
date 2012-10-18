@@ -1,25 +1,24 @@
-# Translations template for pulsecaster.
+# German translations for pulsecaster.
 # Copyright (C) 2012 Paul W. Frields
 # This file is distributed under the same license as the pulsecaster
 # project.
 #
 # Translators:
-#   <felix@fetzig.org>, 2012.
+# <felix@fetzig.org>, 2012.
 # Mario Blättermann <mariobl@freenet.de>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: PulseCaster\n"
+"Project-Id-Version:  PulseCaster\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2012-10-04 22:10-0400\n"
 "PO-Revision-Date: 2012-10-16 19:46+0000\n"
 "Last-Translator: Heffer <felix@fetzig.org>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: pulsecaster/config.py:29
 msgid "PulseAudio based podcast recorder"
@@ -44,14 +43,14 @@ msgstr "Wichtiger Hinweis"
 #: pulsecaster/ui.py:101
 msgid ""
 "This program can be used to record speech from remote locations. You are "
-"responsible for adhering to all applicable laws and regulations when using "
-"this program. In general you should not record other parties without their "
-"consent."
+"responsible for adhering to all applicable laws and regulations when "
+"using this program. In general you should not record other parties "
+"without their consent."
 msgstr ""
 "Dieses Programm kann zur Aufzeichnung von Sprache von entfernten Orten "
 "verwendet werden. Sie sind dafür verantwortlich, bei der Nutzung dieses "
-"Programms alle geltenden Gesetze und Einschränkungen zu berücksichtigen. Im "
-"Allgemienen sollten Sie keine Stimmen fremder Personen ohne deren "
+"Programms alle geltenden Gesetze und Einschränkungen zu berücksichtigen. "
+"Im Allgemienen sollten Sie keine Stimmen fremder Personen ohne deren "
 "ausdrückliches Einverständnis aufzeichnen."
 
 #: pulsecaster/ui.py:107
@@ -84,8 +83,8 @@ msgstr "Experteneinstellungen"
 
 #: pulsecaster/ui.py:149
 msgid ""
-"Save the conversation as a single audio file with compression. This is the "
-"right option for most people."
+"Save the conversation as a single audio file with compression. This is "
+"the right option for most people."
 msgstr ""
 "Das Gespräch als einzelne, komprimierte Audio-Datei speichern. Dies ist "
 "richtige Option für die meisten Leute."
@@ -95,9 +94,9 @@ msgid ""
 "Save each voice as a separate audio file without compression. Use this "
 "option to mix and encode audio yourself."
 msgstr ""
-"Jede Stimme als einzelne Audio-Datei ohne Kompression speichern. Wählen Sie "
-"diese Option, wenn Sie die Aufzeichnung selbst abmischen und enkodieren "
-"möchten."
+"Jede Stimme als einzelne Audio-Datei ohne Kompression speichern. Wählen "
+"Sie diese Option, wenn Sie die Aufzeichnung selbst abmischen und "
+"enkodieren möchten."
 
 #: pulsecaster/ui.py:374
 msgid "Save your recording"
@@ -108,8 +107,8 @@ msgid ""
 "Are you sure you want to cancel saving your work? If you choose Yes your "
 "audio recording will be erased permanently."
 msgstr ""
-"Wollen Sie wirklich abbrechen, ohne Ihre Arbeit zu speichern? Falls ja, wird "
-"Ihre Aufzeichnung dauerhaft gelöscht."
+"Wollen Sie wirklich abbrechen, ohne Ihre Arbeit zu speichern? Falls ja, "
+"wird Ihre Aufzeichnung dauerhaft gelöscht."
 
 #: pulsecaster/ui.py:430
 msgid "WAV files are written here:"
@@ -122,3 +121,4 @@ msgstr "Aufzeichnung"
 #: pulsecaster/ui.py:455
 msgid "File exists. OK to overwrite?"
 msgstr "Datei existiert bereits. Soll sie überschrieben werden?"
+
