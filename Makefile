@@ -42,7 +42,7 @@ po: tx-pull $(foreach L,$(LANGUAGES),po/$(L).po)
 define PO_template =
 PO_FILES+= po/$(1).po
 po/$(1).po: po/$(DOMAIN).pot
-	$(TX) pull -a -l $(1)
+	$(TX) pull -l $(1)
 	$(PYTHON) setup.py update_catalog -l $(1) -i po/$(DOMAIN).pot -o po/$(1).po -D $(DOMAIN) >/dev/null
 endef
 $(foreach L,$(LANGUAGES),$(eval $(call PO_template,$(L))))
