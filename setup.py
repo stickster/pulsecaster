@@ -28,7 +28,7 @@ def get_mo_files(*args):
     mo = []
     for f in glob('po/*.mo'):
         locale = f.replace('po/', '').split('.')[0]
-        mo.append(('/usr/share/locale/%s/LC_MESSAGES/pulsecaster.mo' % locale, [f]))
+        mo.append(('/usr/share/locale/%s/LC_MESSAGES/' % locale, [f]))
     return mo
 
 my_data_files = [
