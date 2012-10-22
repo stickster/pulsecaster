@@ -22,6 +22,27 @@
 
 from setuptools import setup, find_packages
 from pulsecaster.config import *
+from glob import glob
+
+def get_mo_files(*args):
+    mo = []
+    for f in glob('po/*.mo'):
+        locale = f.replace('po/', '').split('.')[0]
+        mo.append(('/usr/share/locale/%s/LC_MESSAGES/pulsecaster.mo' % locale, [f]))
+    return mo
+
+my_data_files = [
+    ('/usr/share/pulsecaster/', ["pulsecaster/data/pulsecaster.ui"]),
+    ('/usr/share/icons/hicolor/scalable/apps/', ['pulsecaster/data/icons/scalable/pulsecaster.svg', 'pulsecaster/data/icons/scalable/pulsecaster-logo.svg']),
+    ('/usr/share/icons/hicolor/16x16/apps/', ['pulsecaster/data/icons/16x16/pulsecaster-16.png']),
+    ('/usr/share/icons/hicolor/24x24/apps/', ['pulsecaster/data/icons/24x24/pulsecaster-24.png']),
+    ('/usr/share/icons/hicolor/32x32/apps/', ['pulsecaster/data/icons/32x32/pulsecaster-32.png']),
+    ('/usr/share/icons/hicolor/48x48/apps/', ['pulsecaster/data/icons/48x48/pulsecaster-48.png']),
+    ('/usr/share/icons/hicolor/64x64/apps/', ['pulsecaster/data/icons/64x64/pulsecaster-64.png']),
+    ('/usr/share/applications/', ['pulsecaster.desktop']),
+    ]
+my_data_files.extend(get_mo_files())
+
 setup(
     name = "pulsecaster",
     version = VERSION,
@@ -33,23 +54,11 @@ setup(
     url = URL,
 
     scripts = ['pulsecaster/pulsecaster'],
-    data_files = [
-        ('/usr/share/pulsecaster/', ["pulsecaster/data/pulsecaster.ui"]),
-        ('/usr/share/icons/hicolor/scalable/apps/',['pulsecaster/data/icons/scalable/pulsecaster.svg','pulsecaster/data/icons/scalable/pulsecaster-logo.svg']),
-        ('/usr/share/icons/hicolor/16x16/apps/', ['pulsecaster/data/icons/16x16/pulsecaster-16.png']),
-        ('/usr/share/icons/hicolor/24x24/apps/', ['pulsecaster/data/icons/24x24/pulsecaster-24.png']),
-        ('/usr/share/icons/hicolor/32x32/apps/', ['pulsecaster/data/icons/32x32/pulsecaster-32.png']),
-        ('/usr/share/icons/hicolor/48x48/apps/', ['pulsecaster/data/icons/48x48/pulsecaster-48.png']),
-        ('/usr/share/icons/hicolor/64x64/apps/', ['pulsecaster/data/icons/64x64/pulsecaster-64.png']),
-        ('/usr/share/applications/', ['pulsecaster.desktop']),
-        ],
+    data_files = my_data_files,
     
     message_extractors = {
         'pulsecaster': [('**.py', 'python', None),
                         ],
-        },
-    package_data={
-        'pulsecaster': ['po/*.mo'],
         },
     packages = find_packages(),
 )
