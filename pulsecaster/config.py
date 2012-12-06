@@ -19,6 +19,7 @@
 # Author: Paul W. Frields <stickster@gmail.com>
 
 NAME = u'PulseCaster'
+LNAME = u'pulsecaster'
 
 import gettext
 _ = lambda x: gettext.ldgettext(NAME, x)

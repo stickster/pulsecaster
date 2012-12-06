@@ -34,7 +34,8 @@ import gst
 from datetime import datetime
 
 import gettext
-_ = lambda x: gettext.ldgettext(NAME, x)
+t = gettext.translation(LNAME)
+_ = t.gettext
 
 try:
     _debug = os.environ['PULSECASTER_DEBUG']
@@ -48,6 +49,7 @@ def _debugPrint(text):
 class PulseCasterUI:
     def __init__(self):
         self.builder = Gtk.Builder()
+        self.builder.set_translation_domain(NAME)
         try:
             self.builder.add_from_file(os.path.join(os.getcwd(),
                                                     'data',
