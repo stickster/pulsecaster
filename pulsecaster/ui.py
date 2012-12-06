@@ -34,8 +34,7 @@ import gst
 from datetime import datetime
 
 import gettext
-t = gettext.translation(LNAME)
-_ = t.gettext
+gettext.install(LNAME)
 
 try:
     _debug = os.environ['PULSECASTER_DEBUG']
