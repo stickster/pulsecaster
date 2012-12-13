@@ -11,7 +11,6 @@ TODO:
 * Pause toggle button
 * Advanced settings
 	* Volume settings
-	* Option for separate stream recording
 * Record from streams instead of devices (maybe more human understandable?)
 * "Test mode" before recording
   	* Offer a dummy text to test levels (plosives, etc.)
