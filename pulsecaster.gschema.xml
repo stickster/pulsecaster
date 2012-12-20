@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schemalist>
+  <schema path="/org/gnome/pulsecaster/" id="org.gnome.PulseCaster"
+	  gettext-domain="pulsecaster">
+    <key type="b" name="expert">
+      <default>false</default>
+      <summary>Whether streams should be saved separately and in a lossless format</summary>
+      <description>Set to "true" to save audio streams separately and in a lossless format for later mixing. Set to "false" to save as a single compressed stream for easy publishing.</description>
+    </key>
+    <key type="b" name="skip-warning">
+      <default>false</default>
+      <summary>Whether to skip warning dialog at startup</summary>
+      <description>Set to "true" to avoid displaying the warning dialog about recording telephone conversations during startup. Set to "false" to display the dialog during startup.</description>
+    </key>
+    <key type="s" name="codec">
+      <default>vorbis</default>
+      <summary>Codec to use in recordings</summary>
+      <description>Set to "vorbis" to use the Ogg Vorbis format. Set to "flac" to use the lossless FLAC format.</description>
+    </key>
+    <key type="i" name="vorbisq">
+      <default>4</default>
+      <summary>(UNUSED)</summary>
+      <description>(UNUSED)</description>
+      <description>foo</description>
+    </key>
+  </schema>
+</schemalist>
