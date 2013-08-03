@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="preparing">
+  <info>
+    <credit type="author">
+      <name>Paul W. Frields</name>
+      <email>stickster@gmail.com</email>
+    </credit>
+    <license>
+      <p>Creative Commons Attribution-ShareAlike 3.0</p>
+    </license>
+  </info>
+  <title>Preparing to record</title>
+
+  <p>Before you record a podcast using PulseCaster, there are a few
+  steps you should take.  This process will improve the quality of
+  your recording and make the experience more enjoyable.</p>
+  <steps>
+    <item>
+      <p>Use a good quality microphone to capture your own voice. The
+      microphone in a laptop usually will not provide an acceptable
+      sound quality for your listeners. Get a powered USB condenser
+      microphone, or use a high quality headset with a microphone
+      built in.</p>
+    </item>
+    <item>
+      <p>Make sure your voice-over-IP (VoIP) application and your
+      network connection are working properly. A wired network
+      connection may give better results if your wireless connection
+      is unreliable. If you are in charge of your network
+      configuration, such as at home, you may want to check and adjust
+      any required settings to optimize your VoIP use when
+      recording.</p>
+    </item>
+    <item>
+      <p>Have a plan for your podcast. Whether you start with a topic
+      list or a full script, some prior organization will make your
+      podcast more polished and professional sounding. This step is
+      important even if you are trying to do an informal podcast.</p>
+    </item>
+  </steps>
+</page>

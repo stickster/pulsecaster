@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="recording">
+  <info>
+    <credit type="author">
+      <name>Paul W. Frields</name>
+      <email>stickster@gmail.com</email>
+    </credit>
+    <license>
+      <p>Creative Commons Attribution-ShareAlike 3.0</p>
+    </license>
+  </info>
+  <title>Recording a podcast</title>
+
+  <steps>
+    <item>
+      <p>First, ensure your microphone is attached to a sound
+      interface on your system. If it has a power switch, turn it
+      on.</p>
+    </item>
+    <item>
+      <p>Using the dropdown selector in PulseCaster, select the sound
+      input to which your microphone is attached.</p>
+      <note style="tip">
+	<p>If you're not sure which sound card to use, speak into your
+	mic as you switch between inputs in PulseCaster. When you see
+	the levels changing along with your voice, you've selected the
+	right input.</p>
+      </note>
+    </item>
+    <item>
+      <p>If you are recording another party over VoIP, have that
+      person speak while you select the appropriate sound input for
+      their voice in PulseCaster.</p>
+    </item>
+    <item>
+      <p>Press the <gui>Record</gui> button to start your
+      recording.</p>
+    </item>
+    <item>
+      <p>When you are ready to stop the recording and save it, press
+      the <gui>Stop</gui> button.</p>
+    </item>
+  </steps>
+</page>

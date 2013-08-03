@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page xmlns="http://projectmallard.org/1.0/"
+      type="guide"
+      id="index">
+
+  <info>
+    <title type="link" role="trail">
+      <media type="image" src="figures/pulsecaster-logo.png"/>
+      PulseCaster podcast recorder
+    </title>
+    <title type="link">PulseCaster podcast recorder</title>
+    <title type="text">PulseCaster podcast recorder</title>
+    <!-- The variables below will be inserted during a build -->
+    <revision date="@@DATE@@" docversion="0.1"
+	      pkgversion="@@VERSION@@" status="draft"/>
+    <credit type="author">
+      <name>Paul W. Frields</name>
+      <email>stickster@gmail.com</email>
+    </credit>
+    <license>
+      <p>Creative Commons Attribution-ShareAlike 3.0</p>
+    </license>
+    <link type="topic" xref="preparing" group="#first"/>
+    <link type="topic" xref="recording"/>
+    <link type="topic" xref="settings" group="#last"/>
+  </info>
+  <title>
+    <media type="image" src="figures/pulsecaster-logo.png">PulseCaster
+    logo</media> PulseCaster podcast recorder
+  </title>
+
+  <p>You can use PulseCaster to record yourself, or a conversation
+  with someone else that runs through your computer's sound system,
+  such as a voice-over-IP (VoIP) phone call. PulseCaster can be useful
+  for recording podcasts or interviews.</p>
+  <p>Because PulseCaster can be used to record someone, it's important
+  you have any necessary permission to use it. Your country or
+  locality may have laws that govern recording phone
+  conversations. Therefore you should have the consent of anyone you
+  will record before you start.</p>
+  <note style="important">
+    <p>PulseCaster asks you to confirm you understand this information
+    before you can use the recording option. If you don't want to see
+    this confirmation question each time you record, select the
+    checkbox marked <gui>Do not show this again</gui> before you
+    proceed.</p>
+  </note>
+
+</page>
