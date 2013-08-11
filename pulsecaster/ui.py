@@ -45,7 +45,7 @@ def _debugPrint(text):
     if _debug:
         print ('%s: %s' % (NAME, text))
 
-class PulseCasterUI:
+class PulseCasterUI(Gtk.Application):
     def __init__(self):
         self.builder = Gtk.Builder()
         self.builder.set_translation_domain(NAME)
@@ -70,6 +70,9 @@ class PulseCasterUI:
                     print(e)
                     raise SystemExit(_("Cannot load resources"))
 
+        self.gsettings = Gtk.Settings.get_default()
+        self.gsettings.set_property('gtk-application-prefer-dark-theme',
+                                    True)
         self.icontheme = Gtk.IconTheme.get_default()
         # Convenience for developers
         self.icontheme.append_search_path(os.path.join(os.getcwd(),
