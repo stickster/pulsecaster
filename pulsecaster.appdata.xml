@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application>
+  <id type="desktop">pulsecaster.desktop</id>
+  <license>CC0</license>
+  <name>PulseCaster</name>
+  <summary>Record a podcast or interview</summary>
+  <description>
+    <p>PulseCaster is a PulseAudio-based sound recorder. You can use
+    it to record podcasts or interviews made at your laptop or from a
+    separate voice-over-IP (VoIP) app.</p>
+  </description>
+  <screenshot type="default"
+	      size="full">https://fedorahosted.org/pulsecaster/raw-attachment/wiki/WikiStart/pulsecaster-0.1.9-running.png</screenshot>
+  <url type="homepage">http://pulsecaster.org/</url>
+  <updatecontact>stickster@gmail.com</updatecontact>
+</application>

@@ -1,4 +1,5 @@
 TODO:
+* Extract messages properly from AppData (need to switch to intltool?)
 * Volume leveling on user's behalf
 	* Set recording volume for both sources to reasonable level (75%?)
 	* Normalize each to something like -0.1dB

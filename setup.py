@@ -40,6 +40,7 @@ my_data_files = [
     ('/usr/share/icons/hicolor/48x48/apps/', ['pulsecaster/data/icons/48x48/pulsecaster-48.png']),
     ('/usr/share/icons/hicolor/64x64/apps/', ['pulsecaster/data/icons/64x64/pulsecaster-64.png']),
     ('/usr/share/applications/', ['pulsecaster.desktop']),
+    ('/usr/share/appdata/', ['pulsecaster.appdata.xml']),
     ]
 my_data_files.extend(get_mo_files())
 
