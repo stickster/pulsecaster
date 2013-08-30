@@ -8,6 +8,11 @@
     <p>PulseCaster is a PulseAudio-based sound recorder. You can use
     it to record podcasts or interviews made at your laptop or from a
     separate voice-over-IP (VoIP) app.</p>
+    <p>PulseCaster allows you to select which sources you use for your
+    podcast. It then automatically mixes the sound sources into one
+    recording that's ready to publish.</p>
+    <p>There is also an expert mode so you can mix or enhance the
+    recording on your own.</p>
   </description>
   <screenshot type="default"
 	      size="full">https://fedorahosted.org/pulsecaster/raw-attachment/wiki/WikiStart/pulsecaster-0.1.9-running.png</screenshot>
