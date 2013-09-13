@@ -1,5 +1,6 @@
 include AUTHORS COPYING TODO pulsecaster.desktop
 include org.pulsecaster.PulseCaster.gschema.xml
 include pulsecaster.appdata.xml
+include pulsecaster.convert
 recursive-include pulsecaster *.png *.svg *.ui
 recursive-include po *.pot *.po

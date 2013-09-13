@@ -1,0 +1,5 @@
+[org.pulsecaster.PulseCaster.config]
+skip_warning=/apps/pulsecaster/skip_warning
+vorbisq=/apps/pulsecaster/vorbisq
+codec=/apps/pulsecaster/codec
+expert=/apps/pulsecaster/expert
