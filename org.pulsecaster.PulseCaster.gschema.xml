@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schemalist>
-  <schema path="/org/gnome/pulsecaster/" id="org.gnome.PulseCaster"
+  <schema path="/org/pulsecaster/PulseCaster/" id="org.pulsecaster.pulsecaster"
 	  gettext-domain="pulsecaster">
     <key type="b" name="expert">
       <default>false</default>

@@ -41,6 +41,7 @@ my_data_files = [
     ('/usr/share/icons/hicolor/64x64/apps/', ['pulsecaster/data/icons/64x64/pulsecaster-64.png']),
     ('/usr/share/applications/', ['pulsecaster.desktop']),
     ('/usr/share/appdata/', ['pulsecaster.appdata.xml']),
+    ('/usr/share/glib-2.0/schemas/', ['org.pulsecaster.PulseCaster.gschema.xml'])
     ]
 my_data_files.extend(get_mo_files())
 
