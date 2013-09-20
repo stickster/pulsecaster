@@ -59,9 +59,5 @@ setup(
     scripts = ['pulsecaster/pulsecaster'],
     data_files = my_data_files,
     
-    message_extractors = {
-        'pulsecaster': [('**.py', 'python', None),
-                        ],
-        },
     packages = find_packages(),
 )

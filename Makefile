@@ -12,12 +12,21 @@ endif
 
 DOMAIN=pulsecaster
 PYTHON=$(shell which python)
+XGETTEXT=$(shell which xgettext)
+MSGMERGE=$(shell which msgmerge)
+MSGFMT=$(shell which msgfmt)
 TX=$(shell which tx)
+PYFILES=$(shell find -name '*.py')
+XMLINFILES=$(shell find -name '*.xml.in')
 PWD=$(shell pwd)
 GIT=$(shell which git)
 
 LATEST_TAG=$(shell git describe --tags --abbrev=0)
 LATEST_VERSION=$(shell $(PYTHON) -c 'from pulsecaster.config import VERSION; print "%s" % (VERSION)')
+
+AUTHOR=$(shell $(PYTHON) -c 'from $(DOMAIN).config import * ; print AUTHOR')
+EMAIL=$(shell $(PYTHON) -c 'from $(DOMAIN).config import * ; print AUTHOR_EMAIL')
+URL=$(shell $(PYTHON) -c 'from $(DOMAIN).config import * ; print URL')
 
 #####################
 # Initial stuff
@@ -36,6 +45,13 @@ vars::
 tx-pull::
 	$(TX) pull -a
 
+.PHONY:: pot
+pot: po/$(DOMAIN).pot
+
+po/$(DOMAIN).pot:: $(PYFILES) $(XMLINFILES)
+	$(XGETTEXT) -L python --force-po -o $@ $(PYFILES)
+	$(XGETTEXT) -k -k_summary -k_p -L glade -j -o $@ $(XMLINFILES)
+
 .PHONY:: po
 po: tx-pull $(foreach L,$(LANGUAGES),po/$(L).po)
 
@@ -43,7 +59,8 @@ define PO_template =
 PO_FILES+= po/$(1).po
 po/$(1).po: po/$(DOMAIN).pot
 	$(TX) pull -l $(1)
-	$(PYTHON) setup.py update_catalog -l $(1) -i po/$(DOMAIN).pot -o po/$(1).po -D $(DOMAIN) >/dev/null
+	$(MSGMERGE) --lang $(1) --backup=none --width=72 -U \
+		po/$(1).po po/$(DOMAIN).pot
 endef
 $(foreach L,$(LANGUAGES),$(eval $(call PO_template,$(L))))
 vars::
@@ -56,7 +73,8 @@ mo: $(foreach L,$(LANGUAGES),po/$(L).mo)
 define MO_template =
 MO_FILES+= po/$(1).mo
 po/$(1).mo: po/$(1).po
-	mkdir -p locale/$(1)/LC_MESSAGES && $(PYTHON) setup.py compile_catalog -l $(1) -i po/$(1).po -o po/$(1).mo -D $(DOMAIN) >/dev/null
+	mkdir -p locale/$(1)/LC_MESSAGES && \
+		$(MSGFMT) -o po/$(1).mo po/$(1).po >/dev/null
 clean::
 	rm -f po/$(1).mo
 endef
