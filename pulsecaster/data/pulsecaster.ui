@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.16.0 on Sat Dec 21 13:40:54 2013 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <!-- interface-requires gtk+ 3.8 -->
   <object class="GtkAboutDialog" id="about_dialog">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
@@ -8,7 +9,7 @@
     <property name="window_position">center-always</property>
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">normal</property>
-    <property name="authors"></property>
+    <property name="authors"/>
     <child internal-child="vbox">
       <object class="GtkBox" id="dialog-vbox1">
         <property name="visible">True</property>
@@ -280,7 +281,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkHBox" id="hbox1">
+          <object class="GtkBox" id="hbox1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="spacing">10</property>
@@ -319,9 +320,10 @@
           </packing>
         </child>
         <child>
-          <object class="GtkVBox" id="vbox2">
+          <object class="GtkBox" id="vbox2">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
             <property name="spacing">5</property>
             <child>
               <object class="GtkLabel" id="label2">
@@ -341,37 +343,11 @@
               </packing>
             </child>
             <child>
-              <object class="GtkTable" id="table1">
+              <object class="GtkGrid" id="table1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="n_rows">2</property>
-                <property name="n_columns">3</property>
-                <property name="column_spacing">5</property>
                 <property name="row_spacing">5</property>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="label3">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
-                    <property name="xpad">10</property>
-                    <property name="justify">right</property>
-                  </object>
-                </child>
+                <property name="column_spacing">5</property>
                 <child>
                   <object class="GtkLabel" id="label4">
                     <property name="visible">True</property>
@@ -381,9 +357,38 @@
                     <property name="justify">right</property>
                   </object>
                   <packing>
+                    <property name="left_attach">0</property>
                     <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
+                    <property name="width">1</property>
+                    <property name="height">1</property>
                   </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label3">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="xalign">0</property>
+                    <property name="xpad">10</property>
+                    <property name="justify">right</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
+                    <property name="width">1</property>
+                    <property name="height">1</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
                 </child>
               </object>
               <packing>
@@ -416,13 +421,14 @@
     <property name="destroy_with_parent">True</property>
     <property name="urgency_hint">True</property>
     <child>
-      <object class="GtkVBox" id="warning-vbox">
+      <object class="GtkBox" id="warning-vbox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="border_width">10</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">5</property>
         <child>
-          <object class="GtkHBox" id="warning-hbox1">
+          <object class="GtkBox" id="warning-hbox1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
@@ -431,7 +437,7 @@
                 <property name="can_focus">False</property>
                 <property name="yalign">0</property>
                 <property name="stock">gtk-dialog-warning</property>
-                <property name="icon-size">6</property>
+                <property name="icon_size">6</property>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -441,9 +447,10 @@
               </packing>
             </child>
             <child>
-              <object class="GtkVBox" id="warning-vbox2">
+              <object class="GtkBox" id="warning-vbox2">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkLabel" id="warning-label2">
                     <property name="visible">True</property>
@@ -463,6 +470,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="wrap">True</property>
+                    <property name="max_width_chars">50</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -503,7 +511,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkHButtonBox" id="hbuttonbox1">
+          <object class="GtkButtonBox" id="hbuttonbox1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="spacing">10</property>

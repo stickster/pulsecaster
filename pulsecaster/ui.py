@@ -188,15 +188,10 @@ class PulseCasterUI(Gtk.Application):
         self.user_vox = PulseCasterSource()
         self.subject_vox = PulseCasterSource()
 
-        self.table.set_col_spacing(2, 120)
-        self.table.attach(self.user_vox.cbox, 1, 2, 0, 1,
-                          xoptions=Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL)
-        self.table.attach(self.subject_vox.cbox, 1, 2, 1, 2,
-                          xoptions=Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL)
-        self.table.attach(self.user_vox.pbar, 2, 3, 0, 1,
-                          xoptions=Gtk.AttachOptions.FILL)
-        self.table.attach(self.subject_vox.pbar, 2, 3, 1, 2,
-                          xoptions=Gtk.AttachOptions.FILL)
+        self.table.attach(self.user_vox.cbox, 1, 0, 1, 1)
+        self.table.attach(self.subject_vox.cbox, 1, 1, 1, 1)
+        self.table.attach(self.user_vox.pbar, 2, 0, 1, 1)
+        self.table.attach(self.subject_vox.pbar, 2, 1, 1, 1)
         self.user_vox.cbox.connect('button-press-event',
                                    self.user_vox.repopulate,
                                    self.pa)
