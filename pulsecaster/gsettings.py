@@ -54,7 +54,7 @@ class PulseCasterGSettings:
             self.gsettings.set_int('audiorate', 48000)
             self.audiorate = self.gsettings.get_int('audiorate')
 
-        def change_warn(self, val):
-            if type(val) is not bool:
-                raise ValueError, "requires bool value"
-            self.gsettings.set_boolean('skip-warning', val)
+    def change_warn(self, val):
+        if type(val) is not bool:
+            raise ValueError, "requires bool value"
+        self.gsettings.set_boolean('skip-warning', val)
