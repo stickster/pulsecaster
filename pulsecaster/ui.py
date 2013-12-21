@@ -374,16 +374,16 @@ class PulseCasterUI(Gtk.Application):
         self.adv.hide()
 
     def set_standard(self, *args):
-        self.gsettings.set_boolean('expert', False)
-        self.gsettings.set_string('codec', 'vorbis')
+        self.gsettings.gsettings.set_boolean('expert', False)
+        self.gsettings.gsettings.set_string('codec', 'vorbis')
         self.gsettings.expert = False
-        self.gsettings.sync()
+        self.gsettings.gsettings.sync()
 
     def set_expert(self, *args):
-        self.gsettings.set_boolean('expert', True)
-        self.gsettings.set_string('codec', 'flac')
+        self.gsettings.gsettings.set_boolean('expert', True)
+        self.gsettings.gsettings.set_string('codec', 'flac')
         self.gsettings.expert = True
-        self.gsettings.sync()
+        self.gsettings.gsettings.sync()
 
     def showFileChooser(self, *args):
         self.file_chooser = Gtk.FileChooserDialog(title=_('Save your recording'),
