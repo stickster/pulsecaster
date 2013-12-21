@@ -48,6 +48,12 @@ class PulseCasterGconf:
             self.expert = False
             self.client.set_bool(self.dirbase + '/expert', self.expert)
 
+        self.audiorate = self.client.get_int(self.dirbase + '/audiorate')
+        if type(self.audiorate) is not int or \
+               self.audiorate not in [44100, 48000]:
+            self.client.set_int(self.dirbase + '/audiorate', 48000)
+            self.audiorate = 48000
+
     def change_warn(self, val):
         if type(val) is not bool:
             raise ValueError, "requires bool value"

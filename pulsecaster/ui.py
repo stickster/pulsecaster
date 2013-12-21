@@ -246,7 +246,12 @@ class PulseCasterUI(Gtk.Application):
         self.rsource = gst.element_factory_make('pulsesrc', 'rsrc')
         self.rsource.set_property('device', self.subject_vox.pulsesrc)
 
+        self._default_caps = gst.Caps('audio/x-raw-int, '
+                                      'rate=(int)%d' % (self.gconfig.audiorate))
         self.adder = gst.element_factory_make('adder', 'mix')
+        self.lfilter = gst.element_factory_make('capsfilter', 'lfilter')
+        self.rfilter = gst.element_factory_make('capsfilter', 'rfilter')
+        _debugPrint('audiorate: %d' % self.gconfig.audiorate)
 
         if self.gconfig.expert is not True:
             # Create temporary file
@@ -262,13 +267,16 @@ class PulseCasterUI(Gtk.Application):
             self.filesink.set_property('location', self.temppath)
 
             self.combiner.add(self.lsource,
+                              self.lfilter,
                               self.rsource,
+                              self.rfilter,
                               self.adder,
                               self.encoder,
                               self.filesink)
             if self.gconfig.codec == 'vorbis':
                 self.combiner.add(self.muxer)
             gst.element_link_many(self.lsource,
+                                  self.lfilter,
                                   self.adder,
                                   self.encoder)
             if self.gconfig.codec == 'vorbis':
@@ -276,7 +284,7 @@ class PulseCasterUI(Gtk.Application):
                 self.muxer.link(self.filesink)
             else: # flac
                 self.encoder.link(self.filesink)
-            gst.element_link_many(self.rsource, self.adder)
+            gst.element_link_many(self.rsource, self.rfilter, self.adder)
         else:
             # Create temporary file
             (self.tempfd1, self.temppath1) = tempfile.mkstemp(prefix='%s-1-tmp.'
@@ -297,13 +305,21 @@ class PulseCasterUI(Gtk.Application):
             self.filesink2 = gst.element_factory_make('filesink', 'fsink2')
             self.filesink2.set_property('location', self.temppath2)
             self.combiner.add(self.lsource,
+                              self.lfilter,
                               self.rsource,
+                              self.rfilter,
                               self.encoder1,
                               self.encoder2,
                               self.filesink1,
                               self.filesink2)
-            gst.element_link_many(self.lsource, self.encoder1, self.filesink1)
-            gst.element_link_many(self.rsource, self.encoder2, self.filesink2)
+            gst.element_link_many(self.lsource,
+                                  self.lfilter,
+                                  self.encoder1,
+                                  self.filesink1)
+            gst.element_link_many(self.rsource,
+                                  self.rfilter,
+                                  self.encoder2,
+                                  self.filesink2)
 
         # FIXME: Dim elements other than the 'record' widget
         self.record.set_label(Gtk.STOCK_MEDIA_STOP)
