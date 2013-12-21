@@ -52,8 +52,8 @@ script that's provided:
 $ python setup.py build
 $ python setup.py install
 
-Refer to the wiki at http://fedorahosted.org/pulsecaster for a full
-list of dependencies and requirements.
+Refer to the wiki at http://pulsecaster.org/ for a full list of
+dependencies and requirements.
 
 
 GSTREAMER
