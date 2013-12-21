@@ -23,5 +23,10 @@
       <description>(UNUSED)</description>
       <description>foo</description>
     </key>
+    <key type="i" name="audiorate">
+      <default>48000</default>
+      <summary>Rate in Hz for recordings</summary>
+      <description>Typically set this to either 44100 or 48000 for most post processing usage.</description>
+    </key>
   </schema>
 </schemalist>
