@@ -20,7 +20,7 @@
 
 
 from config import *
-import gconfig
+import gsettings
 from pulseaudio.PulseObj import PulseObj
 from listener import *
 from source import *
@@ -82,7 +82,7 @@ class PulseCasterUI(Gtk.Application):
         self.logo = self.icontheme.load_icon('pulsecaster', -1,
                                              Gtk.IconLookupFlags.FORCE_SVG)
         Gtk.Window.set_default_icon(self.logo)
-        self.gconfig = gconfig.PulseCasterGconf()
+        self.gconfig = gsettings.PulseCasterGSettings()
         
         self.warning = self.builder.get_object('warning')
         self.dismiss = self.builder.get_object('dismiss_warning')
