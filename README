@@ -27,6 +27,12 @@ To switch back to Vorbis:
 
 $ gconftool-2 --set --type=string /apps/PulseCaster/codec vorbis
 
+There's an additional function for setting audio rate (default is
+48000 Hz):
+
+$ gconftool-2 --set --type=int /apps/PulseCaster/audiorate 44100
+$ gconftool-2 --set --type=int /apps/PulseCaster/audiorate 48000
+
 
 INSTALLING
 ==========
