@@ -232,17 +232,18 @@ class PulseCasterUI(Gtk.Application):
         self.close.set_sensitive(False)
         self.adv_button.set_sensitive(False)
 
-        self.combiner = Gst.Pipeline('PulseCasterCombinePipe')
-        self.lsource = Gst.element_factory_make('pulsesrc', 'lsrc')
+        self.combiner = Gst.Pipeline()
+        self.lsource = Gst.ElementFactory.make('pulsesrc', 'lsrc')
         self.lsource.set_property('device', self.user_vox.pulsesrc)
-        self.rsource = Gst.element_factory_make('pulsesrc', 'rsrc')
+        self.rsource = Gst.ElementFactory.make('pulsesrc', 'rsrc')
         self.rsource.set_property('device', self.subject_vox.pulsesrc)
 
-        self._default_caps = Gst.Caps('audio/x-raw-int, '
-                                      'rate=(int)%d' % (self.gconfig.audiorate))
-        self.adder = Gst.element_factory_make('adder', 'mix')
-        self.lfilter = Gst.element_factory_make('capsfilter', 'lfilter')
-        self.rfilter = Gst.element_factory_make('capsfilter', 'rfilter')
+        self._default_caps = Gst.Caps.from_string('audio/x-raw-int, '
+                                                  'rate=(int)%d' % 
+                                                  (self.gconfig.audiorate))
+        self.adder = Gst.ElementFactory.make('adder', 'mix')
+        self.lfilter = Gst.ElementFactory.make('capsfilter', 'lfilter')
+        self.rfilter = Gst.ElementFactory.make('capsfilter', 'rfilter')
         _debugPrint('audiorate: %d' % self.gconfig.audiorate)
 
         if self.gconfig.expert is not True:
@@ -251,32 +252,35 @@ class PulseCasterUI(Gtk.Application):
                                                             % (NAME))
             self.tempfile = os.fdopen(self.tempfd)
             _debugPrint('tempfile: %s (fd %s)' % (self.temppath, self.tempfd))
-            self.encoder = Gst.element_factory_make(self.gconfig.codec +
+            self.encoder = Gst.ElementFactory.make(self.gconfig.codec +
                                                     'enc', 'enc')
             if self.gconfig.codec == 'vorbis':
-                self.muxer = Gst.element_factory_make('oggmux', 'mux')
-            self.filesink = Gst.element_factory_make('filesink', 'fsink')
+                self.muxer = Gst.ElementFactory.make('oggmux', 'mux')
+            self.filesink = Gst.ElementFactory.make('filesink', 'fsink')
             self.filesink.set_property('location', self.temppath)
 
-            self.combiner.add(self.lsource,
-                              self.lfilter,
-                              self.rsource,
-                              self.rfilter,
-                              self.adder,
-                              self.encoder,
-                              self.filesink)
+            for e in (self.lsource,
+                      self.lfilter,
+                      self.rsource,
+                      self.rfilter,
+                      self.adder,
+                      self.encoder,
+                      self.filesink):
+                self.combiner.add(e)
             if self.gconfig.codec == 'vorbis':
                 self.combiner.add(self.muxer)
-            Gst.element_link_many(self.lsource,
-                                  self.lfilter,
-                                  self.adder,
-                                  self.encoder)
+            for e in (self.lsource,
+                      self.lfilter,
+                      self.adder,
+                      self.encoder):
+                self.combiner.link(e)
             if self.gconfig.codec == 'vorbis':
                 self.encoder.link(self.muxer)
                 self.muxer.link(self.filesink)
             else: # flac
                 self.encoder.link(self.filesink)
-            Gst.element_link_many(self.rsource, self.rfilter, self.adder)
+            for e in (self.rsource, self.rfilter, self.adder):
+                self.combiner.link(e)
         else:
             # Create temporary file
             (self.tempfd1, self.temppath1) = tempfile.mkstemp(prefix='%s-1-tmp.'
@@ -290,28 +294,31 @@ class PulseCasterUI(Gtk.Application):
                          self.temppath2))
             # We're in expert mode
             # Disregard vorbis, use WAV
-            self.encoder1 = Gst.element_factory_make('wavenc', 'enc1')
-            self.encoder2 = Gst.element_factory_make('wavenc', 'enc2')
-            self.filesink1 = Gst.element_factory_make('filesink', 'fsink1')
+            self.encoder1 = Gst.ElementFactory.make('wavenc', 'enc1')
+            self.encoder2 = Gst.ElementFactory.make('wavenc', 'enc2')
+            self.filesink1 = Gst.ElementFactory.make('filesink', 'fsink1')
             self.filesink1.set_property('location', self.temppath1)
-            self.filesink2 = Gst.element_factory_make('filesink', 'fsink2')
+            self.filesink2 = Gst.ElementFactory.make('filesink', 'fsink2')
             self.filesink2.set_property('location', self.temppath2)
-            self.combiner.add(self.lsource,
-                              self.lfilter,
-                              self.rsource,
-                              self.rfilter,
-                              self.encoder1,
-                              self.encoder2,
-                              self.filesink1,
-                              self.filesink2)
-            Gst.element_link_many(self.lsource,
-                                  self.lfilter,
-                                  self.encoder1,
-                                  self.filesink1)
-            Gst.element_link_many(self.rsource,
-                                  self.rfilter,
-                                  self.encoder2,
-                                  self.filesink2)
+            for e in (self.lsource,
+                      self.lfilter,
+                      self.rsource,
+                      self.rfilter,
+                      self.encoder1,
+                      self.encoder2,
+                      self.filesink1,
+                      self.filesink2):
+                self.combiner.add(e)
+            for e in (self.lsource,
+                      self.lfilter,
+                      self.encoder1,
+                      self.filesink1):
+                self.combiner.link(e)
+            for e in (self.rsource,
+                      self.rfilter,
+                      self.encoder2,
+                      self.filesink2):
+                self.combiner.link(e)
 
         # FIXME: Dim elements other than the 'record' widget
         self.record.set_label(Gtk.STOCK_MEDIA_STOP)
@@ -452,7 +459,7 @@ class PulseCasterUI(Gtk.Application):
         self.record.set_sensitive(True)
     
     def _update_time(self, *args):
-        if self.combiner.get_state()[1] == Gst.State.NULL:
+        if self.combiner.get_state(Gst.CLOCK_TIME_NONE)[1] == Gst.State.NULL:
             self.trayicon.set_tooltip_text('')
             self.trayicon.set_visible(False)
             return False
