@@ -67,8 +67,8 @@ class PulseCasterUI(Gtk.Application):
                     print(e)
                     raise SystemExit(_("Cannot load resources"))
 
-        self.gsettings = Gtk.Settings.get_default()
-        self.gsettings.set_property('gtk-application-prefer-dark-theme',
+        self.tempgsettings = Gtk.Settings.get_default()
+        self.tempgsettings.set_property('gtk-application-prefer-dark-theme',
                                     True)
         self.icontheme = Gtk.IconTheme.get_default()
         # Convenience for developers
