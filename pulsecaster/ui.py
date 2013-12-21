@@ -318,7 +318,7 @@ class PulseCasterUI(Gtk.Application):
         self.record.disconnect(self.record_id)
         self.stop_id = self.record.connect('clicked', self.on_stop)
         self.record.show()
-        self.combiner.set_state(Gst.STATE_PLAYING)
+        self.combiner.set_state(Gst.State.PLAYING)
         # Start timer
         self.starttime = datetime.now()
         self._update_time()
@@ -327,7 +327,7 @@ class PulseCasterUI(Gtk.Application):
         self.trayicon.set_visible(True)
 
     def on_stop(self, *args):
-        self.combiner.set_state(Gst.STATE_NULL)
+        self.combiner.set_state(Gst.State.NULL)
         self.showFileChooser()
         self.record.set_label(Gtk.STOCK_MEDIA_RECORD)
         self.record.disconnect(self.stop_id)
@@ -452,7 +452,7 @@ class PulseCasterUI(Gtk.Application):
         self.record.set_sensitive(True)
     
     def _update_time(self, *args):
-        if self.combiner.get_state()[1] == Gst.STATE_NULL:
+        if self.combiner.get_state()[1] == Gst.State.NULL:
             self.trayicon.set_tooltip_text('')
             self.trayicon.set_visible(False)
             return False

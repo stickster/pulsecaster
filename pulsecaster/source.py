@@ -19,6 +19,7 @@
 
 from config import *
 from gi.repository import Gtk, GObject, Gst
+Gst.init(None)
 from pulseaudio.PulseObj import PulseObj
 import os
 
@@ -78,13 +79,13 @@ class PulseCasterSource:
         self.pipeline = Gst.parse_launch(pl)
         self.pipeline.get_bus().add_signal_watch()
         self.conn = self.pipeline.get_bus().connect('message::element', self.update_level)
-        self.pipeline.set_state(Gst.STATE_PLAYING)
+        self.pipeline.set_state(Gst.State.PLAYING)
         _debugPrint('out of create_level_pipeline')
     
     def remove_level_pipeline(self, *args):
         '''Tear down the GStreamer pipeline attached to this object'''
         _debugPrint('in remove_level_pipeline')
-        self.pipeline.set_state(Gst.STATE_NULL)
+        self.pipeline.set_state(Gst.State.NULL)
         self.pipeline.get_bus().remove_signal_watch()
         self.pipeline.get_bus().disconnect(self.conn)
         self.conn = None
@@ -105,9 +106,9 @@ class PulseCasterSource:
         
     def update_level(self, bus, message, *args):
         '''Update this object's GtkProgressBar to reflect current level'''
-        if message.structure.get_name() == 'level':
+        if message.get_structure().get_name() == 'level':
             # stick with left channel in stereo setups
-            peak = message.structure['peak'][0]
+            peak = message.get_structure().get_value('peak')[0]
             self.pbar.set_fraction(self.iec_scale(peak)/100)
             self.pbar.queue_draw()
         return True
