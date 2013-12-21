@@ -18,10 +18,7 @@
 # Author: Paul W. Frields <stickster@gmail.com>
 
 from config import *
-from gi.repository import Gtk, GObject
-import pygst
-pygst.require('0.10')
-import gst
+from gi.repository import Gtk, GObject, Gst
 from pulseaudio.PulseObj import PulseObj
 import os
 
@@ -78,16 +75,16 @@ class PulseCasterSource:
         pl = 'pulsesrc device=%s' % (self.pulsesrc)
         pl += ' ! level message=true interval=100000000 ! fakesink'
         _debugPrint(pl)
-        self.pipeline = gst.parse_launch(pl)
+        self.pipeline = Gst.parse_launch(pl)
         self.pipeline.get_bus().add_signal_watch()
         self.conn = self.pipeline.get_bus().connect('message::element', self.update_level)
-        self.pipeline.set_state(gst.STATE_PLAYING)
+        self.pipeline.set_state(Gst.STATE_PLAYING)
         _debugPrint('out of create_level_pipeline')
     
     def remove_level_pipeline(self, *args):
         '''Tear down the GStreamer pipeline attached to this object'''
         _debugPrint('in remove_level_pipeline')
-        self.pipeline.set_state(gst.STATE_NULL)
+        self.pipeline.set_state(Gst.STATE_NULL)
         self.pipeline.get_bus().remove_signal_watch()
         self.pipeline.get_bus().disconnect(self.conn)
         self.conn = None
