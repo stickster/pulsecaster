@@ -82,12 +82,12 @@ class PulseCasterUI(Gtk.Application):
         self.logo = self.icontheme.load_icon('pulsecaster', -1,
                                              Gtk.IconLookupFlags.FORCE_SVG)
         Gtk.Window.set_default_icon(self.logo)
-        self.gconfig = gsettings.PulseCasterGSettings()
+        self.gsettings = gsettings.PulseCasterGSettings()
         
         self.warning = self.builder.get_object('warning')
         self.dismiss = self.builder.get_object('dismiss_warning')
         self.swckbox = self.builder.get_object('skip_warn_checkbox')
-        self.swckbox.set_active(int(self.gconfig.skip_warn))
+        self.swckbox.set_active(int(self.gsettings.skip_warn))
         self.dismiss.connect('clicked', self.hideWarn)
         self.warning.connect('destroy', self.on_close)
         self.warning.set_title(NAME)
@@ -157,7 +157,7 @@ class PulseCasterUI(Gtk.Application):
         self.flac_button = self.builder.get_object('flac_button')
         self.flac_button.connect('clicked', self.set_expert)
         self.flac_button.join_group(self.vorbis_button)
-        if self.gconfig.expert is True:
+        if self.gsettings.expert is True:
             self.flac_button.set_active(True)
         else:
             self.vorbis_button.set_active(True)
@@ -211,7 +211,7 @@ class PulseCasterUI(Gtk.Application):
         self.trayicon.set_visible(False)
         self.trayicon.set_from_icon_name('pulsecaster')
 
-        if self.gconfig.skip_warn is False:
+        if self.gsettings.skip_warn is False:
             self.warning.show()
         else:
             self.hideWarn()
@@ -240,21 +240,21 @@ class PulseCasterUI(Gtk.Application):
 
         self._default_caps = Gst.Caps.from_string('audio/x-raw-int, '
                                                   'rate=(int)%d' % 
-                                                  (self.gconfig.audiorate))
+                                                  (self.gsettings.audiorate))
         self.adder = Gst.ElementFactory.make('adder', 'mix')
         self.lfilter = Gst.ElementFactory.make('capsfilter', 'lfilter')
         self.rfilter = Gst.ElementFactory.make('capsfilter', 'rfilter')
-        _debugPrint('audiorate: %d' % self.gconfig.audiorate)
+        _debugPrint('audiorate: %d' % self.gsettings.audiorate)
 
-        if self.gconfig.expert is not True:
+        if self.gsettings.expert is not True:
             # Create temporary file
             (self.tempfd, self.temppath) = tempfile.mkstemp(prefix='%s-tmp.'
                                                             % (NAME))
             self.tempfile = os.fdopen(self.tempfd)
             _debugPrint('tempfile: %s (fd %s)' % (self.temppath, self.tempfd))
-            self.encoder = Gst.ElementFactory.make(self.gconfig.codec +
+            self.encoder = Gst.ElementFactory.make(self.gsettings.codec +
                                                     'enc', 'enc')
-            if self.gconfig.codec == 'vorbis':
+            if self.gsettings.codec == 'vorbis':
                 self.muxer = Gst.ElementFactory.make('oggmux', 'mux')
             self.filesink = Gst.ElementFactory.make('filesink', 'fsink')
             self.filesink.set_property('location', self.temppath)
@@ -267,14 +267,14 @@ class PulseCasterUI(Gtk.Application):
                       self.encoder,
                       self.filesink):
                 self.combiner.add(e)
-            if self.gconfig.codec == 'vorbis':
+            if self.gsettings.codec == 'vorbis':
                 self.combiner.add(self.muxer)
             for e in (self.lsource,
                       self.lfilter,
                       self.adder,
                       self.encoder):
                 self.combiner.link(e)
-            if self.gconfig.codec == 'vorbis':
+            if self.gsettings.codec == 'vorbis':
                 self.encoder.link(self.muxer)
                 self.muxer.link(self.filesink)
             else: # flac
@@ -353,7 +353,7 @@ class PulseCasterUI(Gtk.Application):
         Gtk.main_quit()
 
     def hideWarn(self, *args):
-        self.gconfig.change_warn(self.swckbox.get_active())
+        self.gsettings.change_warn(self.swckbox.get_active())
         self.warning.hide()
         self.main.show()
     
@@ -364,7 +364,7 @@ class PulseCasterUI(Gtk.Application):
         self.about.hide()
 
     def showAdv(self, *args):
-        if self.gconfig.expert is True:
+        if self.gsettings.expert is True:
             self.flac_button.set_active(True)
         else:
             self.vorbis_button.set_active(True)
@@ -374,20 +374,16 @@ class PulseCasterUI(Gtk.Application):
         self.adv.hide()
 
     def set_standard(self, *args):
-        self.gconfig.client.set_bool(self.gconfig.dirbase + '/expert',
-                                     False)
-        self.gconfig.client.set_string(self.gconfig.dirbase + '/codec',
-                                       'vorbis')
-        self.gconfig.expert = False
-        self.gconfig.client.suggest_sync()
+        self.gsettings.set_boolean('expert', False)
+        self.gsettings.set_string('codec', 'vorbis')
+        self.gsettings.expert = False
+        self.gsettings.sync()
 
     def set_expert(self, *args):
-        self.gconfig.client.set_bool(self.gconfig.dirbase + '/expert',
-                                     True)
-        self.gconfig.client.set_string(self.gconfig.dirbase + '/codec',
-                                       'flac')
-        self.gconfig.expert = True
-        self.gconfig.client.suggest_sync()
+        self.gsettings.set_boolean('expert', True)
+        self.gsettings.set_string('codec', 'flac')
+        self.gsettings.expert = True
+        self.gsettings.sync()
 
     def showFileChooser(self, *args):
         self.file_chooser = Gtk.FileChooserDialog(title=_('Save your recording'),
@@ -416,7 +412,7 @@ class PulseCasterUI(Gtk.Application):
             response = confirm.run()
             confirm.destroy()
             if response == Gtk.ResponseType.YES:
-                if self.gconfig.expert is False:
+                if self.gsettings.expert is False:
                     self._remove_tempfile(self.tempfile, self.temppath)
                 else:
                     self._remove_tempfile(self.tempfile1, self.temppath1)
@@ -430,7 +426,7 @@ class PulseCasterUI(Gtk.Application):
         if not self.filesinkpath:
             return
         self.hideFileChooser()
-        if self.gconfig.expert is False:
+        if self.gsettings.expert is False:
             if os.path.lexists(self.filesinkpath):
                 if not self._confirm_overwrite():
                     self.showFileChooser()
@@ -443,7 +439,7 @@ class PulseCasterUI(Gtk.Application):
                     return
         # Copy the temporary file to its new home
         self._copy_temp_to_perm()
-        if self.gconfig.expert is False:
+        if self.gsettings.expert is False:
             self._remove_tempfile(self.tempfile, self.temppath)
         else:
             expert_message = _('WAV files are written here:')
@@ -486,7 +482,7 @@ class PulseCasterUI(Gtk.Application):
     def _copy_temp_to_perm(self):
         # This is a really stupid way to do this.
         # FIXME: abstract out the duplicated code, lazybones.
-        if self.gconfig.expert is False:
+        if self.gsettings.expert is False:
             self.permfile = open(self.filesinkpath, 'w')
             self.tempfile.seek(0)
             while True:
