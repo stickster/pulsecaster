@@ -12,15 +12,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version:  PulseCaster\n"
-"Report-Msgid-Bugs-To: http://pulsecaster.org/\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2012-10-04 22:10-0400\n"
 "PO-Revision-Date: 2012-10-18 23:43+0000\n"
 "Last-Translator: Paul Frields <stickster@gmail.com>\n"
 "Language-Team: de_DE <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "Generated-By: Babel 0.9.6\n"
 
 #: pulsecaster/config.py:29
@@ -45,16 +46,16 @@ msgstr "Wichtiger Hinweis"
 
 #: pulsecaster/ui.py:101
 msgid ""
-"This program can be used to record speech from remote locations. You are "
-"responsible for adhering to all applicable laws and regulations when "
-"using this program. In general you should not record other parties "
-"without their consent."
+"This program can be used to record speech from remote locations. You "
+"are responsible for adhering to all applicable laws and regulations "
+"when using this program. In general you should not record other "
+"parties without their consent."
 msgstr ""
-"Dieses Programm kann zur Aufzeichnung von Sprache von entfernten Orten "
-"verwendet werden. Sie sind dafür verantwortlich, bei der Nutzung dieses "
-"Programms alle geltenden Gesetze und Einschränkungen zu berücksichtigen. "
-"Im Allgemienen sollten Sie keine Stimmen fremder Personen ohne deren "
-"ausdrückliches Einverständnis aufzeichnen."
+"Dieses Programm kann zur Aufzeichnung von Sprache von entfernten "
+"Orten verwendet werden. Sie sind dafür verantwortlich, bei der "
+"Nutzung dieses Programms alle geltenden Gesetze und Einschränkungen "
+"zu berücksichtigen. Im Allgemienen sollten Sie keine Stimmen fremder "
+"Personen ohne deren ausdrückliches Einverständnis aufzeichnen."
 
 #: pulsecaster/ui.py:107
 msgid "Do not show this again"
@@ -86,20 +87,20 @@ msgstr "Experteneinstellungen"
 
 #: pulsecaster/ui.py:149
 msgid ""
-"Save the conversation as a single audio file with compression. This is "
-"the right option for most people."
+"Save the conversation as a single audio file with compression. This "
+"is the right option for most people."
 msgstr ""
-"Das Gespräch als einzelne, komprimierte Audio-Datei speichern. Dies ist "
-"richtige Option für die meisten Leute."
+"Das Gespräch als einzelne, komprimierte Audio-Datei speichern. Dies "
+"ist richtige Option für die meisten Leute."
 
 #: pulsecaster/ui.py:151
 msgid ""
-"Save each voice as a separate audio file without compression. Use this "
-"option to mix and encode audio yourself."
+"Save each voice as a separate audio file without compression. Use "
+"this option to mix and encode audio yourself."
 msgstr ""
-"Jede Stimme als einzelne Audio-Datei ohne Kompression speichern. Wählen "
-"Sie diese Option, wenn Sie die Aufzeichnung selbst abmischen und "
-"enkodieren möchten."
+"Jede Stimme als einzelne Audio-Datei ohne Kompression speichern. "
+"Wählen Sie diese Option, wenn Sie die Aufzeichnung selbst abmischen "
+"und enkodieren möchten."
 
 #: pulsecaster/ui.py:374
 msgid "Save your recording"
@@ -107,11 +108,11 @@ msgstr "Ihre Aufzeichnung speichern"
 
 #: pulsecaster/ui.py:391
 msgid ""
-"Are you sure you want to cancel saving your work? If you choose Yes your "
-"audio recording will be erased permanently."
+"Are you sure you want to cancel saving your work? If you choose Yes "
+"your audio recording will be erased permanently."
 msgstr ""
-"Wollen Sie wirklich abbrechen, ohne Ihre Arbeit zu speichern? Falls ja, "
-"wird Ihre Aufzeichnung dauerhaft gelöscht."
+"Wollen Sie wirklich abbrechen, ohne Ihre Arbeit zu speichern? Falls "
+"ja, wird Ihre Aufzeichnung dauerhaft gelöscht."
 
 #: pulsecaster/ui.py:430
 msgid "WAV files are written here:"
@@ -124,4 +125,3 @@ msgstr "Aufzeichnung"
 #: pulsecaster/ui.py:455
 msgid "File exists. OK to overwrite?"
 msgstr "Datei existiert bereits. Soll sie überschrieben werden?"
-

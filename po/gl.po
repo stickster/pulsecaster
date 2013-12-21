@@ -12,10 +12,11 @@ msgstr ""
 "PO-Revision-Date: 2011-03-04 18:26+0000\n"
 "Last-Translator: stickster <stickster@gmail.com>\n"
 "Language-Team: gl <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "Generated-By: Babel 0.9.6\n"
 
 #: pulsecaster/config.py:29
@@ -42,10 +43,10 @@ msgstr ""
 
 #: pulsecaster/ui.py:101
 msgid ""
-"This program can be used to record speech from remote locations. You are "
-"responsible for adhering to all applicable laws and regulations when "
-"using this program. In general you should not record other parties "
-"without their consent."
+"This program can be used to record speech from remote locations. You "
+"are responsible for adhering to all applicable laws and regulations "
+"when using this program. In general you should not record other "
+"parties without their consent."
 msgstr ""
 
 #: pulsecaster/ui.py:107
@@ -78,14 +79,14 @@ msgstr ""
 
 #: pulsecaster/ui.py:149
 msgid ""
-"Save the conversation as a single audio file with compression. This is "
-"the right option for most people."
+"Save the conversation as a single audio file with compression. This "
+"is the right option for most people."
 msgstr ""
 
 #: pulsecaster/ui.py:151
 msgid ""
-"Save each voice as a separate audio file without compression. Use this "
-"option to mix and encode audio yourself."
+"Save each voice as a separate audio file without compression. Use "
+"this option to mix and encode audio yourself."
 msgstr ""
 
 #: pulsecaster/ui.py:374
@@ -94,8 +95,8 @@ msgstr ""
 
 #: pulsecaster/ui.py:391
 msgid ""
-"Are you sure you want to cancel saving your work? If you choose Yes your "
-"audio recording will be erased permanently."
+"Are you sure you want to cancel saving your work? If you choose Yes "
+"your audio recording will be erased permanently."
 msgstr ""
 
 #: pulsecaster/ui.py:430
@@ -109,4 +110,3 @@ msgstr ""
 #: pulsecaster/ui.py:455
 msgid "File exists. OK to overwrite?"
 msgstr ""
-
