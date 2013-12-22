@@ -427,6 +427,8 @@ class PulseCasterUI(Gtk.Application):
             return
         self.hideFileChooser()
         if self.gsettings.expert is False:
+            if not self.filesinkpath.endswith('.ogg'):
+                self.filesinkpath += '.ogg'
             if os.path.lexists(self.filesinkpath):
                 if not self._confirm_overwrite():
                     self.showFileChooser()
