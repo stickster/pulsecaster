@@ -33,11 +33,6 @@ from datetime import datetime
 import gettext
 gettext.install(LNAME)
 
-try:
-    _debug = os.environ['PULSECASTER_DEBUG']
-except:
-    _debug = False
-
 def _debugPrint(text):
     if _debug:
         print ('%s: %s' % (NAME, text))

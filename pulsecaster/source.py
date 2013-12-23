@@ -23,15 +23,6 @@ Gst.init(None)
 from pulseaudio.PulseObj import PulseObj
 import os
 
-try:
-    _debug = os.environ['PULSECASTER_DEBUG']
-except:
-    _debug = False
-
-def _debugPrint(text):
-    if _debug:
-        print ('%s: %s' % (NAME, text))
-
 class PulseCasterSource:
     '''A source object that provides sound data for PulseCaster'''
     def __init__(self):
