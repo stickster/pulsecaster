@@ -49,8 +49,8 @@ tx-pull::
 pot: po/$(DOMAIN).pot
 
 po/$(DOMAIN).pot:: $(PYFILES) $(XMLINFILES)
-	$(XGETTEXT) -L python --force-po -o $@ $(PYFILES)
-	$(XGETTEXT) -k -k_summary -k_p -L glade -j -o $@ $(XMLINFILES)
+	$(XGETTEXT) -L python --force-po -w 75 -o $@ $(PYFILES)
+	$(XGETTEXT) -k -k_summary -k_p -L glade -w 75 -j -o $@ $(XMLINFILES)
 
 .PHONY:: po
 po: tx-pull $(foreach L,$(LANGUAGES),po/$(L).po)
@@ -59,7 +59,7 @@ define PO_template =
 PO_FILES+= po/$(1).po
 po/$(1).po: po/$(DOMAIN).pot
 	$(TX) pull -l $(1)
-	$(MSGMERGE) --lang $(1) --backup=none --width=72 -U \
+	$(MSGMERGE) --lang $(1) --backup=none --width=75 -U \
 		po/$(1).po po/$(DOMAIN).pot
 endef
 $(foreach L,$(LANGUAGES),$(eval $(call PO_template,$(L))))
