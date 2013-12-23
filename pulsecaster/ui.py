@@ -35,10 +35,6 @@ from datetime import datetime
 import gettext
 gettext.install(LNAME)
 
-def _debugPrint(text):
-    if _debug:
-        print ('%s: %s' % (NAME, text))
-
 class PulseCasterUI(Gtk.Application):
     def __init__(self):
         self.builder = Gtk.Builder()
@@ -48,7 +44,7 @@ class PulseCasterUI(Gtk.Application):
                                                     'data',
                                                     'pulsecaster.ui')
 )
-            _debugPrint(_("loading UI file from current subdir"))
+            debugPrint(_("loading UI file from current subdir"))
         except:
             try:
                 self.builder.add_from_file(os.path.join(sys.prefix,
@@ -241,14 +237,14 @@ class PulseCasterUI(Gtk.Application):
         self.adder = Gst.ElementFactory.make('adder', 'mix')
         self.lfilter = Gst.ElementFactory.make('capsfilter', 'lfilter')
         self.rfilter = Gst.ElementFactory.make('capsfilter', 'rfilter')
-        _debugPrint('audiorate: %d' % self.gsettings.audiorate)
+        debugPrint('audiorate: %d' % self.gsettings.audiorate)
 
         if self.gsettings.expert is not True:
             # Create temporary file
             (self.tempfd, self.temppath) = tempfile.mkstemp(prefix='%s-tmp.'
                                                             % (NAME))
             self.tempfile = os.fdopen(self.tempfd)
-            _debugPrint('tempfile: %s (fd %s)' % (self.temppath, self.tempfd))
+            debugPrint('tempfile: %s (fd %s)' % (self.temppath, self.tempfd))
             self.encoder = Gst.ElementFactory.make(self.gsettings.codec +
                                                     'enc', 'enc')
             if self.gsettings.codec == 'vorbis':
@@ -284,7 +280,7 @@ class PulseCasterUI(Gtk.Application):
                                                               % (NAME))
             self.tempfile1 = os.fdopen(self.tempfd1)
             self.tempfile2 = os.fdopen(self.tempfd2)
-            _debugPrint('tempfiles: %s (fd %s), %s (fd %s)' %
+            debugPrint('tempfiles: %s (fd %s), %s (fd %s)' %
                         (self.temppath1, self.tempfd1, self.temppath2,
                          self.temppath2))
             # We're in expert mode

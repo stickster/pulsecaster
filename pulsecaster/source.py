@@ -40,11 +40,11 @@ class PulseCasterSource:
         self.cbox.connect('changed', self.set_meters)
         self.pbar = Gtk.ProgressBar()
         self.pipeline = None
-        _debugPrint('out of __init__')
+        debugPrint('out of __init__')
         
     def repopulate(self, pa, use_source=True, use_monitor=True):
         '''Repopulate the ComboBox for this object'''
-        _debugPrint('in repopulate')
+        debugPrint('in repopulate')
         sources = pa.pulse_source_list()
         self.store.clear()
         for source in sources:
@@ -60,32 +60,32 @@ class PulseCasterSource:
                                        source])
         # Don't leave without resetting a source
         self.cbox.set_active(0)
-        _debugPrint('out of repopulate')
+        debugPrint('out of repopulate')
 
     def create_level_pipeline(self, *args):
         '''Make a GStreamer pipeline that allows level checking'''
-        _debugPrint('in create_level_pipeline')
+        debugPrint('in create_level_pipeline')
         pl = 'pulsesrc device=%s' % (self.pulsesrc)
         pl += ' ! level message=true interval=100000000 ! fakesink'
-        _debugPrint(pl)
+        debugPrint(pl)
         self.pipeline = Gst.parse_launch(pl)
         self.pipeline.get_bus().add_signal_watch()
         self.conn = self.pipeline.get_bus().connect('message::element', self.update_level)
         self.pipeline.set_state(Gst.State.PLAYING)
-        _debugPrint('out of create_level_pipeline')
+        debugPrint('out of create_level_pipeline')
     
     def remove_level_pipeline(self, *args):
         '''Tear down the GStreamer pipeline attached to this object'''
-        _debugPrint('in remove_level_pipeline')
+        debugPrint('in remove_level_pipeline')
         self.pipeline.set_state(Gst.State.NULL)
         self.pipeline.get_bus().remove_signal_watch()
         self.pipeline.get_bus().disconnect(self.conn)
         self.conn = None
         self.pipeline = None
-        _debugPrint('out of remove_level_pipeline')
+        debugPrint('out of remove_level_pipeline')
     
     def set_meters(self, *args):
-        _debugPrint('in set_meters')
+        debugPrint('in set_meters')
         self.cbox.set_sensitive(False)
         if self.pipeline is not None:
             self.remove_level_pipeline()
@@ -94,7 +94,7 @@ class PulseCasterSource:
             self.pulsesrc = self.cbox.get_model().get_value(i, 0)
             self.create_level_pipeline()
         self.cbox.set_sensitive(True)
-        _debugPrint('out of set_meters')
+        debugPrint('out of set_meters')
         
     def update_level(self, bus, message, *args):
         '''Update this object's GtkProgressBar to reflect current level'''

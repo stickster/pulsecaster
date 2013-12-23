@@ -29,7 +29,7 @@ try:
 except:
     _debug = False
 
-def _debugPrint(text):
+def debugPrint(text):
     if _debug:
         print ('%s: %s' % (NAME, text))
 
