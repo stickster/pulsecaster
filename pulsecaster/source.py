@@ -19,6 +19,7 @@
 
 from config import *
 from gi.repository import Gtk, GObject, Gst
+GObject.threads_init()
 Gst.init(None)
 from pulseaudio.PulseObj import PulseObj
 import os

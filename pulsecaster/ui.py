@@ -25,6 +25,8 @@ from pulseaudio.PulseObj import PulseObj
 from listener import *
 from source import *
 from gi.repository import Gtk, GObject, Gst
+GObject.threads_init()
+Gst.init(None)
 import os
 import sys
 import tempfile
