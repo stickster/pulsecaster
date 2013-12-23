@@ -269,18 +269,16 @@ class PulseCasterUI(Gtk.Application):
                 self.combiner.add(e)
             if self.gsettings.codec == 'vorbis':
                 self.combiner.add(self.muxer)
-            for e in (self.lsource,
-                      self.lfilter,
-                      self.adder,
-                      self.encoder):
-                self.combiner.link(e)
+            self.lsource.link(self.lfilter)
+            self.lfilter.link(self.adder)
+            self.adder.link(self.encoder)
             if self.gsettings.codec == 'vorbis':
                 self.encoder.link(self.muxer)
                 self.muxer.link(self.filesink)
             else: # flac
                 self.encoder.link(self.filesink)
-            for e in (self.rsource, self.rfilter, self.adder):
-                self.combiner.link(e)
+            self.rsource.link(self.rfilter)
+            self.rfilter.link(self.adder)
         else:
             # Create temporary file
             (self.tempfd1, self.temppath1) = tempfile.mkstemp(prefix='%s-1-tmp.'
@@ -309,16 +307,12 @@ class PulseCasterUI(Gtk.Application):
                       self.filesink1,
                       self.filesink2):
                 self.combiner.add(e)
-            for e in (self.lsource,
-                      self.lfilter,
-                      self.encoder1,
-                      self.filesink1):
-                self.combiner.link(e)
-            for e in (self.rsource,
-                      self.rfilter,
-                      self.encoder2,
-                      self.filesink2):
-                self.combiner.link(e)
+            self.lsource.link(self.lfilter)
+            self.lfilter.link(self.encoder1)
+            self.encoder1.link(self.filesink1)
+            self.rsource.link(self.rfilter)
+            self.rfilter.link(self.encoder2)
+            self.encoder2.link(self.filesink2)
 
         # FIXME: Dim elements other than the 'record' widget
         self.record.set_label(Gtk.STOCK_MEDIA_STOP)
