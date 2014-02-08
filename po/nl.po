@@ -8,38 +8,40 @@
 msgid ""
 msgstr ""
 "Project-Id-Version:  PulseCaster\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2012-10-04 22:10-0400\n"
-"PO-Revision-Date: 2012-10-05 02:15+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-02-08 03:33-0500\n"
+"PO-Revision-Date: 2014-02-08 03:36-0500\n"
 "Last-Translator: Paul Frields <stickster@gmail.com>\n"
 "Language-Team: nl <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: pulsecaster/config.py:29
+#: pulsecaster/config.py:39
 msgid "PulseAudio based podcast recorder"
 msgstr "Op PulseAudio gebaseerde podcast-recorder"
 
-#: pulsecaster/config.py:31
-msgid "Copyright © 2009-2010 "
-msgstr "Copyright © 2009-2010"
+#: pulsecaster/config.py:41
+#, fuzzy
+msgid "Copyright © 2009-2013 "
+msgstr "Copyright © 2009-2013"
 
-#: pulsecaster/ui.py:56
+#: pulsecaster/ui.py:47
 msgid "loading UI file from current subdir"
 msgstr "UI bestand laden uit de huidige submap"
 
-#: pulsecaster/ui.py:70
+#: pulsecaster/ui.py:61
 msgid "Cannot load resources"
 msgstr "Kan geen hulpmiddelen laden"
 
-#: pulsecaster/ui.py:95
+#: pulsecaster/ui.py:89
 msgid "Important notice"
 msgstr "Belangrijke opmerking"
 
-#: pulsecaster/ui.py:101
+#: pulsecaster/ui.py:95
 msgid ""
 "This program can be used to record speech from remote locations. You are "
 "responsible for adhering to all applicable laws and regulations when "
@@ -52,51 +54,51 @@ msgstr ""
 "programma. In het algemeen mag je anderen niet opnemen zonder hun "
 "toestemming."
 
-#: pulsecaster/ui.py:107
+#: pulsecaster/ui.py:101
 msgid "Do not show this again"
 msgstr "Laat dit niet meerzien"
 
-#: pulsecaster/ui.py:109
+#: pulsecaster/ui.py:103
 msgid "Select the audio sources to mix"
 msgstr "Selecteer de te mengen audio-bronnen"
 
-#: pulsecaster/ui.py:111
+#: pulsecaster/ui.py:105
 msgid "I understand."
 msgstr "Ik begrijp het."
 
-#: pulsecaster/ui.py:113
+#: pulsecaster/ui.py:107
 msgid "Your voice"
 msgstr "Jouw stem"
 
-#: pulsecaster/ui.py:115
+#: pulsecaster/ui.py:109
 msgid "Subject's voice"
 msgstr "De stem van de subject"
 
-#: pulsecaster/ui.py:147
+#: pulsecaster/ui.py:141
 msgid "Standard settings"
 msgstr ""
 
-#: pulsecaster/ui.py:148
+#: pulsecaster/ui.py:142
 msgid "Expert settings"
 msgstr ""
 
-#: pulsecaster/ui.py:149
+#: pulsecaster/ui.py:143
 msgid ""
 "Save the conversation as a single audio file with compression. This is "
 "the right option for most people."
 msgstr ""
 
-#: pulsecaster/ui.py:151
+#: pulsecaster/ui.py:145
 msgid ""
 "Save each voice as a separate audio file without compression. Use this "
 "option to mix and encode audio yourself."
 msgstr ""
 
-#: pulsecaster/ui.py:374
+#: pulsecaster/ui.py:376
 msgid "Save your recording"
 msgstr "Sla je opname op"
 
-#: pulsecaster/ui.py:391
+#: pulsecaster/ui.py:393
 msgid ""
 "Are you sure you want to cancel saving your work? If you choose Yes your "
 "audio recording will be erased permanently."
@@ -104,15 +106,14 @@ msgstr ""
 "Weet je zeker dat je het opslaan van jouw werk wilt annuleren? Als je Ja "
 "kiest zal jouw audio-opname permanent gewist worden."
 
-#: pulsecaster/ui.py:430
+#: pulsecaster/ui.py:434
 msgid "WAV files are written here:"
 msgstr ""
 
-#: pulsecaster/ui.py:450
+#: pulsecaster/ui.py:454
 msgid "Recording"
 msgstr ""
 
-#: pulsecaster/ui.py:455
+#: pulsecaster/ui.py:459
 msgid "File exists. OK to overwrite?"
 msgstr "Bestand bestaat. Is het OK om deze te overschrijven?"
-

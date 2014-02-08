@@ -2,111 +2,115 @@
 # Copyright (C) 2012 Paul W. Frields
 # This file is distributed under the same license as the pulsecaster
 # project.
-# 
+#
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2011.
 # Walter Cheuk <wwycheuk@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: PulseCaster\n"
-"Report-Msgid-Bugs-To: http://pulsecaster.org/\n"
-"POT-Creation-Date: 2012-10-04 22:10-0400\n"
-"PO-Revision-Date: 2012-12-19 00:14+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-02-08 03:33-0500\n"
+"PO-Revision-Date: 2014-02-08 03:36-0500\n"
 "Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
-"Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: pulsecaster/config.py:29
+#: pulsecaster/config.py:39
 msgid "PulseAudio based podcast recorder"
 msgstr "以 PulseAudio 為基礎的 Podcast 錄音器"
 
-#: pulsecaster/config.py:31
-msgid "Copyright © 2009-2010 "
-msgstr "著作權所有 © 2009-2010 "
+#: pulsecaster/config.py:41
+#, fuzzy
+msgid "Copyright © 2009-2013 "
+msgstr "著作權所有 © 2009-2013 "
 
-#: pulsecaster/ui.py:56
+#: pulsecaster/ui.py:47
 msgid "loading UI file from current subdir"
 msgstr "正在從目前的子目錄載入圖像介面檔"
 
-#: pulsecaster/ui.py:70
+#: pulsecaster/ui.py:61
 msgid "Cannot load resources"
 msgstr "無法載入資源"
 
-#: pulsecaster/ui.py:95
+#: pulsecaster/ui.py:89
 msgid "Important notice"
 msgstr "重要通知"
 
-#: pulsecaster/ui.py:101
+#: pulsecaster/ui.py:95
 msgid ""
 "This program can be used to record speech from remote locations. You are "
-"responsible for adhering to all applicable laws and regulations when using "
-"this program. In general you should not record other parties without their "
-"consent."
-msgstr "這個程式可以從遠端位置錄製談話。當您使用本程式時應當負起遵守所有可適用法律與條例的責任。一般來說，若您未取得他人同意，不應錄音。"
+"responsible for adhering to all applicable laws and regulations when "
+"using this program. In general you should not record other parties "
+"without their consent."
+msgstr ""
+"這個程式可以從遠端位置錄製談話。當您使用本程式時應當負起遵守所有可適用法"
+"律與條例的責任。一般來說，若您未取得他人同意，不應錄音。"
 
-#: pulsecaster/ui.py:107
+#: pulsecaster/ui.py:101
 msgid "Do not show this again"
 msgstr "不要再顯示"
 
-#: pulsecaster/ui.py:109
+#: pulsecaster/ui.py:103
 msgid "Select the audio sources to mix"
 msgstr "選取音源至混音"
 
-#: pulsecaster/ui.py:111
+#: pulsecaster/ui.py:105
 msgid "I understand."
 msgstr "我瞭解。"
 
-#: pulsecaster/ui.py:113
+#: pulsecaster/ui.py:107
 msgid "Your voice"
 msgstr "您的聲音"
 
-#: pulsecaster/ui.py:115
+#: pulsecaster/ui.py:109
 msgid "Subject's voice"
 msgstr "受訪者的聲音"
 
-#: pulsecaster/ui.py:147
+#: pulsecaster/ui.py:141
 msgid "Standard settings"
 msgstr "標準設定"
 
-#: pulsecaster/ui.py:148
+#: pulsecaster/ui.py:142
 msgid "Expert settings"
 msgstr "專業設定"
 
-#: pulsecaster/ui.py:149
+#: pulsecaster/ui.py:143
 msgid ""
-"Save the conversation as a single audio file with compression. This is the "
-"right option for most people."
+"Save the conversation as a single audio file with compression. This is "
+"the right option for most people."
 msgstr ""
 
-#: pulsecaster/ui.py:151
+#: pulsecaster/ui.py:145
 msgid ""
 "Save each voice as a separate audio file without compression. Use this "
 "option to mix and encode audio yourself."
 msgstr ""
 
-#: pulsecaster/ui.py:374
+#: pulsecaster/ui.py:376
 msgid "Save your recording"
 msgstr "儲存您的錄音"
 
-#: pulsecaster/ui.py:391
+#: pulsecaster/ui.py:393
 msgid ""
 "Are you sure you want to cancel saving your work? If you choose Yes your "
 "audio recording will be erased permanently."
-msgstr "您確定要取消您作業的儲存嗎？若您選擇「是」，您的錄音作業將永久消除。"
+msgstr ""
+"您確定要取消您作業的儲存嗎？若您選擇「是」，您的錄音作業將永久消除。"
 
-#: pulsecaster/ui.py:430
+#: pulsecaster/ui.py:434
 msgid "WAV files are written here:"
 msgstr "WAV 檔寫入在此處："
 
-#: pulsecaster/ui.py:450
+#: pulsecaster/ui.py:454
 msgid "Recording"
 msgstr "正在錄音"
 
-#: pulsecaster/ui.py:455
+#: pulsecaster/ui.py:459
 msgid "File exists. OK to overwrite?"
 msgstr "檔案已存在。要按「確定」來覆寫嗎？"
