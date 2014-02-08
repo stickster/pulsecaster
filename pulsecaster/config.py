@@ -33,7 +33,7 @@ def debugPrint(text):
     if _debug:
         print ('%s: %s' % (NAME, text))
 
-VERSION = '0.1.10'
+VERSION = '0.1.11'
 AUTHOR = u'Paul W. Frields'
 AUTHOR_EMAIL = u'stickster@gmail.com'
 DESCRIPTION = _(u'PulseAudio based podcast recorder')
