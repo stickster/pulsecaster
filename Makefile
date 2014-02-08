@@ -12,7 +12,6 @@ endif
 
 DOMAIN=pulsecaster
 PYTHON=$(shell which python)
-XGETTEXT=$(shell which xgettext)
 MSGMERGE=$(shell which msgmerge)
 MSGFMT=$(shell which msgfmt)
 TX=$(shell which tx)
@@ -48,18 +47,20 @@ tx-pull::
 .PHONY:: pot
 pot: po/$(DOMAIN).pot
 
-po/$(DOMAIN).pot:: $(PYFILES) $(XMLINFILES)
-	$(XGETTEXT) -L python --force-po -w 75 -o $@ $(PYFILES)
-	$(XGETTEXT) -k -k_summary -k_p -L glade -w 75 -j -o $@ $(XMLINFILES)
+po/$(DOMAIN).pot:: $(shell cat po/POTFILES.in) po/POTFILES.in
+	cd po && intltool-update -p -g $(DOMAIN) && cd ..
+#	xgettext -L python --force-po -w 75 -o $@ $(PYFILES)
+#	xgettext -j -L C --force-po -w 75 -o $@ pulsecaster.appdata.xml.in.h $(PYFILES)
 
 .PHONY:: po
-po: tx-pull $(foreach L,$(LANGUAGES),po/$(L).po)
+po: $(foreach L,$(LANGUAGES),po/$(L).po)
 
 define PO_template =
 PO_FILES+= po/$(1).po
 po/$(1).po: po/$(DOMAIN).pot
 	$(TX) pull -l $(1)
-	$(MSGMERGE) --lang $(1) --backup=none --width=75 -U \
+	cd po && intltool-update -d $(1) -g $(DOMAIN) && cd ..
+#	$(MSGMERGE) --lang $(1) --backup=none --width=75 -U \
 		po/$(1).po po/$(DOMAIN).pot
 endef
 $(foreach L,$(LANGUAGES),$(eval $(call PO_template,$(L))))
