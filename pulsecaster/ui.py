@@ -231,7 +231,7 @@ class PulseCasterUI(Gtk.Application):
         self.rsource = Gst.ElementFactory.make('pulsesrc', 'rsrc')
         self.rsource.set_property('device', self.subject_vox.pulsesrc)
 
-        self._default_caps = Gst.Caps.from_string('audio/x-raw-int, '
+        self._default_caps = Gst.Caps.from_string('audio/x-raw, '
                                                   'rate=(int)%d' % 
                                                   (self.gsettings.audiorate))
         self.adder = Gst.ElementFactory.make('adder', 'mix')
