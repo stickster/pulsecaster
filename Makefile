@@ -15,8 +15,6 @@ PYTHON=$(shell which python)
 MSGMERGE=$(shell which msgmerge)
 MSGFMT=$(shell which msgfmt)
 TX=$(shell which tx)
-PYFILES=$(shell find -name '*.py')
-XMLINFILES=$(shell find -name '*.xml.in')
 PWD=$(shell pwd)
 GIT=$(shell which git)
 
@@ -49,8 +47,6 @@ pot: po/$(DOMAIN).pot
 
 po/$(DOMAIN).pot:: $(shell cat po/POTFILES.in) po/POTFILES.in
 	cd po && intltool-update -p -g $(DOMAIN) && cd ..
-#	xgettext -L python --force-po -w 75 -o $@ $(PYFILES)
-#	xgettext -j -L C --force-po -w 75 -o $@ pulsecaster.appdata.xml.in.h $(PYFILES)
 
 .PHONY:: po
 po: $(foreach L,$(LANGUAGES),po/$(L).po)
@@ -60,8 +56,6 @@ PO_FILES+= po/$(1).po
 po/$(1).po: po/$(DOMAIN).pot
 	$(TX) pull -l $(1)
 	cd po && intltool-update -d $(1) -g $(DOMAIN) && cd ..
-#	$(MSGMERGE) --lang $(1) --backup=none --width=75 -U \
-		po/$(1).po po/$(DOMAIN).pot
 endef
 $(foreach L,$(LANGUAGES),$(eval $(call PO_template,$(L))))
 vars::
