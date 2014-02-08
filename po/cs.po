@@ -1,0 +1,109 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# fri <pavelfric@seznam.cz>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: PulseCaster\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-23 10:19-0500\n"
+"PO-Revision-Date: 2013-12-25 17:23+0000\n"
+"Last-Translator: fri <pavelfric@seznam.cz>\n"
+"Language-Team: Czech (http://www.transifex.com/projects/p/pulsecaster/language/cs/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: pulsecaster/config.py:30
+msgid "PulseAudio based podcast recorder"
+msgstr "Nahrávač zvukových záznamů založený na PulseAudio"
+
+#: pulsecaster/config.py:32
+msgid "Copyright © 2009-2013 "
+msgstr "Autorské právo © 2009-2013 "
+
+#: pulsecaster/ui.py:54
+msgid "loading UI file from current subdir"
+msgstr "Nahrává se soubor s uživatelským rozhraním z nynějšího podadresáře"
+
+#: pulsecaster/ui.py:68
+msgid "Cannot load resources"
+msgstr "Nelze nahrát zdroje"
+
+#: pulsecaster/ui.py:96
+msgid "Important notice"
+msgstr "Důležitá poznámka"
+
+#: pulsecaster/ui.py:102
+msgid ""
+"This program can be used to record speech from remote locations. You are "
+"responsible for adhering to all applicable laws and regulations when using "
+"this program. In general you should not record other parties without their "
+"consent."
+msgstr "Tento program lze použít na nahrávání rozhovoru ze vzdálených míst. Při používání tohoto programu zodpovídáte za dodržování všech platných zákonů a omezení. Obecně byste neměl nahrávat jiné strany bez jejich souhlasu."
+
+#: pulsecaster/ui.py:108
+msgid "Do not show this again"
+msgstr "Neukazovat toto znovu"
+
+#: pulsecaster/ui.py:110
+msgid "Select the audio sources to mix"
+msgstr "Vybrat zdroje zvuku ke smíchání"
+
+#: pulsecaster/ui.py:112
+msgid "I understand."
+msgstr "Rozumím."
+
+#: pulsecaster/ui.py:114
+msgid "Your voice"
+msgstr "Váš hlas"
+
+#: pulsecaster/ui.py:116
+msgid "Subject's voice"
+msgstr "Hlas protějšku"
+
+#: pulsecaster/ui.py:148
+msgid "Standard settings"
+msgstr "Standardní nastavení"
+
+#: pulsecaster/ui.py:149
+msgid "Expert settings"
+msgstr "Znalecká nastavení"
+
+#: pulsecaster/ui.py:150
+msgid ""
+"Save the conversation as a single audio file with compression. This is the "
+"right option for most people."
+msgstr "Rozhovor uložit jako jeden zkomprimovaný zvukový soubor. Toto je správná volba pro většinu lidí."
+
+#: pulsecaster/ui.py:152
+msgid ""
+"Save each voice as a separate audio file without compression. Use this "
+"option to mix and encode audio yourself."
+msgstr "Každý hlas uložit jako jeden nekomprimovaný zvukový soubor. Tuto volbu zvolte, když chcete smíchání a zakódování provést sám."
+
+#: pulsecaster/ui.py:383
+msgid "Save your recording"
+msgstr "Uložit nahrávku"
+
+#: pulsecaster/ui.py:400
+msgid ""
+"Are you sure you want to cancel saving your work? If you choose Yes your "
+"audio recording will be erased permanently."
+msgstr "Jste si jistý, že chcete zrušit ukládání své práce? Pokud zvolíte Ano, vaše zvuková nahrávka bude smazána trvale."
+
+#: pulsecaster/ui.py:441
+msgid "WAV files are written here:"
+msgstr "Soubory WAV jsou zapsány zde:"
+
+#: pulsecaster/ui.py:461
+msgid "Recording"
+msgstr "Nahrávání"
+
+#: pulsecaster/ui.py:466
+msgid "File exists. OK to overwrite?"
+msgstr "Soubor již existuje. Má se přepsat?"
