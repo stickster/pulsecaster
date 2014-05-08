@@ -4,44 +4,39 @@ Thanks to Harry Karvonen for his Python ctypes-based bindings for
 PulseAudio.  Thanks also to Jürgen Geuter for helping me understand
 distutils and contributing some fixes.
 
-
-INSTRUCTIONS
-============
+## Instructions
 
 If you are looking at the source, 'cd' to the top of this project and
 then run the following command to try it out:
 
-$ cd pulsecaster
-$ python ui.py
+    $ cd pulsecaster
+    $ python ui.py
 
+## Advanced Tips
 
-ADVANCED TIPS
-=============
 The code currently contains a very hacky function to allow you to
 record to FLAC (the Free Lossless Audio Codec) instead of Ogg Vorbis,
 which is the default.  To turn that capability on, run this command:
 
-$ gconftool-2 --set --type=string /apps/PulseCaster/codec flac
+    $ gconftool-2 --set --type=string /apps/PulseCaster/codec flac
 
 To switch back to Vorbis:
 
-$ gconftool-2 --set --type=string /apps/PulseCaster/codec vorbis
+    $ gconftool-2 --set --type=string /apps/PulseCaster/codec vorbis
 
 There's an additional function for setting audio rate (default is
 48000 Hz):
 
-$ gconftool-2 --set --type=int /apps/PulseCaster/audiorate 44100
-$ gconftool-2 --set --type=int /apps/PulseCaster/audiorate 48000
+    $ gconftool-2 --set --type=int /apps/PulseCaster/audiorate 44100
+    $ gconftool-2 --set --type=int /apps/PulseCaster/audiorate 48000
 
-
-INSTALLING
-==========
+## Installing
 
 The easiest way to use this application is to simply install it using
 your platform's preferred tool set.  To install it using Fedora, run
 the folowing command:
 
-  pkcon install pulsecaster
+    pkcon install pulsecaster
 
 To install it on another flavor of Linux, check the documentation for
 your particular distribution.
@@ -49,21 +44,18 @@ your particular distribution.
 To install directly from this source code, use the handy "distutils"
 script that's provided:
 
-$ python setup.py build
-$ python setup.py install
+    $ python setup.py build
+    $ python setup.py install
 
 Refer to the wiki at http://pulsecaster.org/ for a full list of
 dependencies and requirements.
 
+## GStreamer
 
-GSTREAMER
-=========
 The pipeline for capturing from a running PulseAudio source:
 
-gst-launch pulsesrc device-name='<NAME>' \
+    gst-launch pulsesrc device-name='<NAME>' \
 	   ! vorbisenc quality=0.5 \
 	   ! oggmux \
 	   ! filesink location=foo.ogg
 
-
--*- coding: utf-8 -*-
