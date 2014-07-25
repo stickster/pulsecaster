@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <application>
   <id type="desktop">pulsecaster.desktop</id>
-  <licence>CC0</licence>
+  <metadata_license>CC0-1.0</metadata_license>
   <name>PulseCaster</name>
   <summary>Record a podcast or interview</summary>
   <description>
