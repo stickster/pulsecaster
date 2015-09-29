@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2009, 2010 Paul W. Frields
+# Copyright (C) 2009-2015 Paul W. Frields
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ AUTHOR = u'Paul W. Frields'
 AUTHOR_EMAIL = u'stickster@gmail.com'
 DESCRIPTION = _(u'PulseAudio based podcast recorder')
 LICENSE = u'GPLv3+'
-COPYRIGHT = _(u'Copyright © 2009-2013 ' + AUTHOR)
+COPYRIGHT = _(u'Copyright © 2009-2015 ' + AUTHOR)
 KEYWORDS = u'pulseaudio podcast recorder mixer gstreamer pygtk'
 URL = u'http://pulsecaster.org'
 CONTRIBUTORS = [u'Jürgen Geuter <tante@the-gay-bar.com>',
