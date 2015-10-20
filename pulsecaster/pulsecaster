@@ -22,5 +22,5 @@
 from pulsecaster import ui
 from gi.repository import Gtk
 
-pk = ui.PulseCasterUI()
+pc = ui.PulseCasterUI()
 Gtk.main()
