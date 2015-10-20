@@ -18,6 +18,9 @@
 # Author: Paul W. Frields <stickster@gmail.com>
 
 from config import *
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('Gst', '1.0')
 from gi.repository import Gtk, GObject, Gst
 GObject.threads_init()
 Gst.init(None)

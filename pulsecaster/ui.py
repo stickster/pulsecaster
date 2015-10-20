@@ -24,7 +24,12 @@ import gsettings
 from pulseaudio.PulseObj import PulseObj
 from listener import *
 from source import *
-from gi.repository import Gtk, GObject, Gst
+
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('Gst', '1.0')
+from gi.repository import Gtk, Gst, GObject, Gio
+
 GObject.threads_init()
 Gst.init(None)
 import os
