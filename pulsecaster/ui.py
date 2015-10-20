@@ -42,6 +42,11 @@ gettext.install(LNAME)
 
 class PulseCasterUI(Gtk.Application):
     def __init__(self):
+        Gtk.Application.__init__(self, application_id='apps.org.pulsecaster.PulseCaster',
+                                 flags=Gio.ApplicationFlags.FLAGS_NONE)
+        self.connect('activate', self.on_activate)
+
+    def on_activate(self, app):
         self.builder = Gtk.Builder()
         self.builder.set_translation_domain(NAME)
         try:
@@ -509,4 +514,4 @@ class PulseCasterUI(Gtk.Application):
 
 if __name__ == '__main__':
     pulseCaster = PulseCasterUI()
-    Gtk.main()
+    pulseCaster.run(sys.argv)
