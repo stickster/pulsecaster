@@ -88,6 +88,7 @@ class PulseCasterUI(Gtk.Application):
         self.gsettings = gsettings.PulseCasterGSettings()
         
         self.warning = self.builder.get_object('warning')
+        self.add_window(self.warning)
         self.dismiss = self.builder.get_object('dismiss_warning')
         self.swckbox = self.builder.get_object('skip_warn_checkbox')
         self.swckbox.set_active(int(self.gsettings.skip_warn))
@@ -121,6 +122,7 @@ class PulseCasterUI(Gtk.Application):
 
         # Main dialog basics
         self.main = self.builder.get_object('main_dialog')
+        self.add_window(self.main)
         self.main.set_title(NAME)
         self.main_title = self.builder.get_object('main_title')
         self.main_title.set_label('<big><big><big><b><i>' +
@@ -169,6 +171,7 @@ class PulseCasterUI(Gtk.Application):
             self.vorbis_button.set_active(True)
         # About dialog basics
         self.about = self.builder.get_object('about_dialog')
+        self.add_window(self.about)
         self.about.connect('delete_event', self.hideAbout)
         self.about.connect('response', self.hideAbout)
         self.about.set_name(NAME)
