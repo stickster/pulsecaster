@@ -89,8 +89,24 @@ script that's provided:</p>
 $ python setup.py install
 </code></pre>
 
-<p>Refer to the wiki at <a href="http://pulsecaster.org/">http://pulsecaster.org/</a> for a full list of
-dependencies and requirements.</p>
+<p>You'll need the following pieces of software installed to use
+PulseCaster.  The best way to install PulseCaster is to use your
+operating system's built-in utility for adding and removing software.
+(For instance, on Fedora this would be the Software tool, or dnf.)  The
+package names for your distribution may be slightly different.</p>
+
+<ul>
+	<li>pygobject3</li>
+	<li>dbus-python >= 0.83</li>
+	<li>pulseaudio-libs >= 0.9.15</li>
+	<li>GStreamer >= 1.0</li>
+</ul>
+
+<p>If you want to help with development, you may also need these supporting packages:</p>
+<ul>
+	<li>python-babel</li>
+	<li>transifex-client</li>
+</ul>
 
 <h2>
 <a name="gstreamer" class="anchor" href="#gstreamer"><span class="octicon octicon-link"></span></a>GStreamer</h2>
