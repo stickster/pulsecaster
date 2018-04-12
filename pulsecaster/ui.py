@@ -66,7 +66,7 @@ class PulseCasterUI(Gtk.Application):
                     self.builder.add_from_file(os.path.join
                                                (os.path.dirname(sys.argv[0]),
                                                 'data', 'pulsecaster.ui'))
-                except Exception,e:
+                except Exception as e:
                     print(e)
                     raise SystemExit(_("Cannot load resources"))
 

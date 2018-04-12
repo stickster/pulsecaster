@@ -20,10 +20,10 @@
 # Author: Harry Karvonen <harry.karvonen@gmail.com>
 #
 
-from lib_pulseaudio import *
+from pulseaudio.lib_pulseaudio import *
 
-from PulseClient import PulseClient
-from PulseVolume import PulseVolumeCtypes
+from pulseaudio.PulseClient import PulseClient
+from pulseaudio.PulseVolume import PulseVolumeCtypes
 
 # This class contains all commons features from PulseSinkInputInfo and
 # PulseSinkInfo
@@ -52,11 +52,11 @@ class PulseSink:
     return
 
   def printDebug(self):
-    print "self.index:", self.index
-    print "self.name:", self.name
-    print "self.mute:", self.mute
-    print "self.volume:", self.volume
-    print "self.client:", self.client
+    print ("self.index:", self.index)
+    print ("self.name:", self.name)
+    print ("self.mute:", self.mute)
+    print ("self.volume:", self.volume)
+    print ("self.client:", self.client)
     return
 
 ################################################################################
@@ -112,19 +112,19 @@ class PulseSinkInfo(PulseSink):
   ###
 
   def printDebug(self):
-    print "PulseSinkInfo"
+    print ("PulseSinkInfo")
     PulseSink.printDebug(self)
-    print "self.description", self.description
-    print "self.sample_spec", self.sample_spec
-    print "self.channel_map", self.channel_map
-    print "self.owner_module", self.owner_module
-    print "self.monitor_source", self.monitor_source
-    print "self.monitor_source_name", self.monitor_source_name
-    print "self.latency", self.latency
-    print "self.driver", self.driver
-    print "self.flags", self.flags
-    print "self.proplist", self.proplist
-    print "self.configured_latency", self.configured_latency
+    print ("self.description", self.description)
+    print ("self.sample_spec", self.sample_spec)
+    print ("self.channel_map", self.channel_map)
+    print ("self.owner_module", self.owner_module)
+    print ("self.monitor_source", self.monitor_source)
+    print ("self.monitor_source_name", self.monitor_source_name)
+    print ("self.latency", self.latency)
+    print ("self.driver", self.driver)
+    print ("self.flags", self.flags)
+    print ("self.proplist", self.proplist)
+    print ("self.configured_latency", self.configured_latency)
     return
 
   ###
@@ -189,18 +189,18 @@ class PulseSinkInputInfo(PulseSink):
   ###
 
   def printDebug(self):
-    print "PulseSinkInputInfo"
+    print ("PulseSinkInputInfo")
     PulseSink.printDebug(self)
 
-    print "self.owner_module:", self.owner_module
-    print "self.client_id:", self.client_id
-    print "self.sink:", self.sink
-    print "self.sample_spec:", self.sample_spec
-    print "self.channel_map:", self.channel_map
-    print "self.buffer_usec:", self.buffer_usec
-    print "self.sink_usec:", self.sink_usec
-    print "self.resample_method:", self.resample_method
-    print "self.driver:", self.driver
+    print ("self.owner_module:", self.owner_module)
+    print ("self.client_id:", self.client_id)
+    print ("self.sink:", self.sink)
+    print ("self.sample_spec:", self.sample_spec)
+    print ("self.channel_map:", self.channel_map)
+    print ("self.buffer_usec:", self.buffer_usec)
+    print ("self.sink_usec:", self.sink_usec)
+    print ("self.resample_method:", self.resample_method)
+    print ("self.driver:", self.driver)
 
   ###
 

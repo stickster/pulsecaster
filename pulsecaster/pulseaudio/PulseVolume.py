@@ -20,7 +20,7 @@
 # Author: Harry Karvonen <harry.karvonen@gmail.com>
 #
 
-from lib_pulseaudio import *
+from pulseaudio.lib_pulseaudio import *
 import math
 
 # This contains all basic volume features
@@ -29,7 +29,7 @@ class PulseVolume:
     self.channels = channels
 
     if vol > 100 or vol < 0:
-      print "WARNING: Volume is invalid!"
+      print ("WARNING: Volume is invalid!")
       vol = 0
 
     self.values   = [vol] * self.channels
@@ -58,10 +58,10 @@ class PulseVolume:
   ###
 
   def printDebug(self):
-    print "PulseVolume"
-    print "self.channels:", self.channels
-    print "self.values:", self.values
-    #print "self.proplist:", self.proplist
+    print ("PulseVolume")
+    print ("self.channels:", self.channels)
+    print ("self.values:", self.values)
+    #print ("self.proplist:", self.proplist)
 
   ###
 

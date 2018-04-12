@@ -22,7 +22,7 @@
 
 
 
-from PulseObj import *
-from PulseVolume import *
-from PulseClient import *
-from PulseSink import *
+from pulseaudio.PulseObj import *
+from pulseaudio.PulseVolume import *
+from pulseaudio.PulseClient import *
+from pulseaudio.PulseSink import *

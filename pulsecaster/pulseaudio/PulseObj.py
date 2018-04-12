@@ -20,10 +20,10 @@
 # Author: Harry Karvonen <harry.karvonen@gmail.com>
 #
 
-from lib_pulseaudio import *
-from PulseSink      import PulseSinkInputInfo, PulseSinkInfo
-from PulseSource    import PulseSourceOutputInfo, PulseSourceInfo
-from PulseClient    import PulseClientCtypes
+from pulseaudio.lib_pulseaudio import *
+from pulseaudio.PulseSink      import PulseSinkInputInfo, PulseSinkInfo
+from pulseaudio.PulseSource    import PulseSourceOutputInfo, PulseSourceInfo
+from pulseaudio.PulseClient    import PulseClientCtypes
 #from PulseStream    import PulseStream
 
 ################################################################################
@@ -78,7 +78,7 @@ class PulseObj:
 
     if r != 0:
       # FIXME
-      print "FIXME Do something. Something is wrong"
+      print("FIXME Do something. Something is wrong")
 
     # SIGINT
     pa_signal_new(2, self.PA_SIGNAL_CB, None)
@@ -270,8 +270,8 @@ class PulseObj:
   ###
 
   def py_subscribe_cb(self, c, event, index, userdata):
-    print 'py_subscribe_cb: called'
-    print 'py_subscribe_cb:', c, event, index, userdata
+    print ('py_subscribe_cb: called')
+    print ('py_subscribe_cb:', c, event, index, userdata)
     self.complete_action()
     return 0
 
@@ -551,7 +551,7 @@ class PulseObj:
   def pulse_context_subscribe(self, mask):
     "Subscribe to event"
     self.start_action()
-    print "pulse_context_subscribe:", mask
+    print ("pulse_context_subscribe:", mask)
     CONTEXT_SUCCESS = PA_CONTEXT_SUCCESS_CB_T(self.py_context_success)
     
     self.operation = pa_context_subscribe(self.context,
@@ -565,7 +565,7 @@ class PulseObj:
 
   def pulse_context_set_subscribe_callback(self, callback):
     "Set subscribe callback"
-    print "py_context_set_subscribe_callback:", callback
+    print ("py_context_set_subscribe_callback:", callback)
     PA_CONTEXT_SUBSCRIBE_CB = PA_CONTEXT_SUBSCRIBE_CB_T(callback)
 
     # This returns a void, not a PA_OPERATION

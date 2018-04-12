@@ -52,7 +52,7 @@ PA_VOLUME_NORM = 0x10000
   PA_SAMPLE_S24_32BE,
   PA_SAMPLE_MAX,
   PA_SAMPLE_INVALID
-) = map(c_int, xrange(15))
+) = map(c_int, range(15))
 
 # channel positions
 (
@@ -113,7 +113,7 @@ PA_VOLUME_NORM = 0x10000
   PA_CHANNEL_POSITION_TOP_REAR_RIGHT,
   PA_CHANNEL_POSITION_TOP_REAR_CENTER,
   PA_CHANNEL_POSITION_MAX
-) = map(c_int, xrange(57))
+) = map(c_int, range(57))
 
 # stream states
 (
@@ -122,7 +122,7 @@ PA_VOLUME_NORM = 0x10000
   PA_STREAM_READY,
   PA_STREAM_FAILED,
   PA_STREAM_TERMINATED
-) = map(c_int, xrange(5))
+) = map(c_int, range(5))
 
 # stream directions
 (
@@ -130,7 +130,7 @@ PA_VOLUME_NORM = 0x10000
   PA_STREAM_PLAYBACK,
   PA_STREAM_RECORD,
   PA_STREAM_UPLOAD
-) = map(c_int, xrange(4))
+) = map(c_int, range(4))
 
 # stream flags
 (
@@ -152,7 +152,7 @@ PA_VOLUME_NORM = 0x10000
   PA_STREAM_DONT_INHIBIT_AUTO_SUSPEND,
   PA_STREAM_START_UNMUTED,
   PA_STREAM_FAIL_ON_SUSPEND
-) = map(c_int, xrange(18))
+) = map(c_int, range(18))
 
 # subscription event masks
 PA_SUBSCRIPTION_MASK_NULL = 0x0000
