@@ -21,7 +21,7 @@
 
 from config import *
 import gsettings
-from pulseaudio.PulseObj import PulseObj
+from pulsectl import PulseObject as PulseObj
 from listener import *
 from source import *
 

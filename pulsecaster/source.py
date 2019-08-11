@@ -53,13 +53,13 @@ class PulseCasterSource:
         for source in sources:
             if source.monitor_of_sink_name == None:
                 if use_source == True:
-                    self.store.append([source.name,
-                                       source.description,
+                    self.store.append([str(source.name, 'ascii'),
+                                       str(source.description, 'ascii'),
                                        source])
             else:
                 if use_monitor == True:
-                    self.store.append([source.name,
-                                       source.description,
+                    self.store.append([str(source.name, 'ascii'),
+                                       str(source.description, 'ascii'),
                                        source])
         # Don't leave without resetting a source
         self.cbox.set_active(0)
