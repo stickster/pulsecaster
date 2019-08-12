@@ -21,7 +21,7 @@
 
 from config import *
 import gsettings
-from pulseaudio.PulseObj import PulseObj
+from pulsectl import Pulse
 from listener import *
 from source import *
 
@@ -190,7 +190,7 @@ class PulseCasterUI(Gtk.Application):
                             ('pulsecaster', 96, Gtk.IconLookupFlags.FORCE_SVG))
 
         # Create PulseAudio backing
-        self.pa = PulseObj(clientName=NAME)
+        self.pa = Pulse(client_name=NAME)
 
         # Create and populate combo boxes
         self.table = self.builder.get_object('table1')
