@@ -36,9 +36,9 @@ def debugPrint(text):
 VERSION = '0.1.11'
 AUTHOR = u'Paul W. Frields'
 AUTHOR_EMAIL = u'stickster@gmail.com'
-DESCRIPTION = _(u'PulseAudio based podcast recorder')
+DESCRIPTION = u'PulseAudio based podcast recorder'
 LICENSE = u'GPLv3+'
-COPYRIGHT = _(u'Copyright © 2009-2015 ' + AUTHOR)
+COPYRIGHT = 'Copyright (C) 2009-2015 ' + AUTHOR
 KEYWORDS = u'pulseaudio podcast recorder mixer gstreamer pygtk'
 URL = u'http://pulsecaster.org'
 CONTRIBUTORS = [u'Jürgen Geuter <tante@the-gay-bar.com>',
