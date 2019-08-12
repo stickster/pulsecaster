@@ -17,4 +17,4 @@
 # Author: Paul W. Frields <stickster@gmail.com>
 
 
-from config import *
+from .config import *
