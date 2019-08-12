@@ -33,12 +33,12 @@ def debugPrint(text):
     if _debug:
         print ('%s: %s' % (NAME, text))
 
-VERSION = '0.1.11'
+VERSION = '0.9'
 AUTHOR = u'Paul W. Frields'
 AUTHOR_EMAIL = u'stickster@gmail.com'
 DESCRIPTION = u'PulseAudio based podcast recorder'
 LICENSE = u'GPLv3+'
-COPYRIGHT = 'Copyright (C) 2009-2015 ' + AUTHOR
+COPYRIGHT = 'Copyright (C) 2009-2019 ' + AUTHOR
 KEYWORDS = u'pulseaudio podcast recorder mixer gstreamer pygtk'
 URL = u'http://pulsecaster.org'
 CONTRIBUTORS = [u'Jürgen Geuter <tante@the-gay-bar.com>',
