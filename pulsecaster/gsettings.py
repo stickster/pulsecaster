@@ -56,5 +56,5 @@ class PulseCasterGSettings:
 
     def change_warn(self, val):
         if type(val) is not bool:
-            raise ValueError, "requires bool value"
+            raise ValueError("requires bool value")
         self.gsettings.set_boolean('skip-warning', val)

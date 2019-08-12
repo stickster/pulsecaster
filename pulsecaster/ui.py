@@ -21,7 +21,7 @@
 
 from config import *
 import gsettings
-from pulsectl import PulseObject as PulseObj
+from pulsectl import Pulse
 from listener import *
 from source import *
 
@@ -66,7 +66,7 @@ class PulseCasterUI(Gtk.Application):
                     self.builder.add_from_file(os.path.join
                                                (os.path.dirname(sys.argv[0]),
                                                 'data', 'pulsecaster.ui'))
-                except Exception,e:
+                except Exception as e:
                     print(e)
                     raise SystemExit(_("Cannot load resources"))
 
@@ -190,7 +190,7 @@ class PulseCasterUI(Gtk.Application):
                             ('pulsecaster', 96, Gtk.IconLookupFlags.FORCE_SVG))
 
         # Create PulseAudio backing
-        self.pa = PulseObj(clientName=NAME)
+        self.pa = Pulse(client_name=NAME)
 
         # Create and populate combo boxes
         self.table = self.builder.get_object('table1')

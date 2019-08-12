@@ -24,7 +24,6 @@ gi.require_version('Gst', '1.0')
 from gi.repository import Gtk, GObject, Gst
 GObject.threads_init()
 Gst.init(None)
-from pulseaudio.PulseObj import PulseObj
 import os
 
 class PulseCasterSource:
@@ -48,7 +47,7 @@ class PulseCasterSource:
     def repopulate(self, pa, use_source=True, use_monitor=True):
         '''Repopulate the ComboBox for this object'''
         debugPrint('in repopulate')
-        sources = pa.pulse_source_list()
+        sources = pa.source_list()
         self.store.clear()
         for source in sources:
             if source.monitor_of_sink_name == None:

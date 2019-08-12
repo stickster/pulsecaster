@@ -17,3 +17,6 @@ pulsecaster.egg-info/
 #.project
 #.pydevproject
 .settings
+
+# VS Code
+.vscode
