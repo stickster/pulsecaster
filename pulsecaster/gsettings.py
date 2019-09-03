@@ -22,7 +22,14 @@ from config import *
 
 class PulseCasterGSettings:
     def __init__(self):
-        self.gsettings = Gio.Settings.new(GIO_ID)
+        gss = Gio.SettingsSchemaSource.get_default()
+        schema = gss.lookup(GIO_ID, True)
+        if schema == None:
+            # We're probably developing, then.
+            gss = Gio.SettingsSchemaSource.new_from_directory('.', None, False)
+            schema = gss.lookup(GIO_ID, True)
+
+        self.gsettings = Gio.Settings.new_full(schema, None, '/org/pulsecaster/PulseCaster/')
 
         try:
             self.skip_warn = self.gsettings.get_boolean('skip-warning')
