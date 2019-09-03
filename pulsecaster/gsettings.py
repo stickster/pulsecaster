@@ -18,7 +18,12 @@
 
 
 from gi.repository import Gio
-from pulsecaster.config import *
+try:
+    from pulsecaster.config import *
+except ModuleNotFoundError:
+    sys.path.append(os.getcwd())
+    sys.path.append(os.path.join(os.getcwd(), '..'))
+    from pulsecaster.config import *
 
 class PulseCasterGSettings:
     def __init__(self):
