@@ -225,9 +225,6 @@ class PulseCasterUI(Gtk.Application):
 
         self.listener = PulseCasterListener(self)
         self.filesinkpath = ''
-        self.trayicon = Gtk.StatusIcon()
-        self.trayicon.set_visible(False)
-        self.trayicon.set_from_icon_name('pulsecaster')
 
         if self.gsettings.skip_warn is False:
             self.warning.show()
@@ -343,7 +340,6 @@ class PulseCasterUI(Gtk.Application):
         self._update_time()
         self.timeout = 1000
         GObject.timeout_add(self.timeout, self._update_time)
-        self.trayicon.set_visible(True)
 
     def on_stop(self, *args):
         self.combiner.set_state(Gst.State.NULL)
@@ -470,14 +466,10 @@ class PulseCasterUI(Gtk.Application):
     
     def _update_time(self, *args):
         if self.combiner.get_state(Gst.CLOCK_TIME_NONE)[1] == Gst.State.NULL:
-            self.trayicon.set_tooltip_text('')
-            self.trayicon.set_visible(False)
             return False
         delta = datetime.now() - self.starttime
         deltamin = delta.seconds // 60
         deltasec = delta.seconds - (deltamin * 60)
-        self.trayicon.set_tooltip_text(_('Recording') + ': %d:%02d' %
-                                  (deltamin, deltasec))
         return True
 
     def _confirm_overwrite(self, *args):
