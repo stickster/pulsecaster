@@ -18,7 +18,7 @@
 
 
 from gi.repository import Gio
-from config import *
+from pulsecaster.config import *
 
 class PulseCasterGSettings:
     def __init__(self):
