@@ -29,7 +29,7 @@ class PulseCasterGSettings:
             gss = Gio.SettingsSchemaSource.new_from_directory('.', None, False)
             schema = gss.lookup(GIO_ID, True)
 
-        self.gsettings = Gio.Settings.new_full(schema, None, '/org/pulsecaster/PulseCaster/')
+        self.gsettings = Gio.Settings.new_full(schema, None, GIO_PATH)
 
         try:
             self.skip_warn = self.gsettings.get_boolean('skip-warning')
