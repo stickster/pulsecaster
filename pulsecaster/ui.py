@@ -19,11 +19,21 @@
 #         Jürgen Geuter <tante@the-gay-bar.com>
 
 
-from config import *
-import gsettings
+import os, sys
+try:
+    from pulsecaster.config import *
+    from pulsecaster.gsettings import *
+    from pulsecaster.listener import *
+    from pulsecaster.source import *
+except ModuleNotFoundError:
+    sys.path.append(os.getcwd())
+    sys.path.append(os.path.join(os.getcwd(), '..'))
+    from pulsecaster.config import *
+    from pulsecaster.gsettings import *
+    from pulsecaster.listener import *
+    from pulsecaster.source import *
+
 from pulsectl import Pulse
-from listener import *
-from source import *
 
 import gi
 gi.require_version('Gtk', '3.0')
