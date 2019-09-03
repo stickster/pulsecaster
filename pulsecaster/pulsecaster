@@ -19,7 +19,14 @@
 #
 # Author: Jürgen Geuter <tante@the-gay-bar.com>
 
-from pulsecaster import ui
+try:
+    from pulsecaster import ui
+except ModuleNotFoundError:
+    import os, sys
+    sys.path.append(os.getcwd())
+    sys.path.append(os.path.join(os.getcwd(), '..'))
+    from pulsecaster import ui
+
 from gi.repository import Gtk
 
 pc = ui.PulseCasterUI()
