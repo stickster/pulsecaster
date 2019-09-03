@@ -94,7 +94,7 @@ class PulseCasterUI(Gtk.Application):
         self.logo = self.icontheme.load_icon('pulsecaster', -1,
                                              Gtk.IconLookupFlags.FORCE_SVG)
         Gtk.Window.set_default_icon(self.logo)
-        self.gsettings = gsettings.PulseCasterGSettings()
+        self.gsettings = PulseCasterGSettings()
         
         self.warning = self.builder.get_object('warning')
         self.add_window(self.warning)
