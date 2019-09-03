@@ -27,6 +27,8 @@ except ModuleNotFoundError:
     sys.path.append(os.path.join(os.getcwd(), '..'))
     from pulsecaster import ui
 
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
 pc = ui.PulseCasterUI()
