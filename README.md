@@ -1,8 +1,9 @@
 A PulseAudio based podcasting application
 
 Thanks to Harry Karvonen for his Python ctypes-based bindings for
-PulseAudio.  Thanks also to Jürgen Geuter for helping me understand
-distutils and contributing some fixes.
+PulseAudio. (These are now removed in favor of the pulsectl module.)
+Thanks also to Jürgen Geuter for helping me understand distutils and
+contributing some fixes.
 
 ## Instructions
 
@@ -10,7 +11,7 @@ If you are looking at the source, 'cd' to the top of this project and
 then run the following command to try it out:
 
     $ cd pulsecaster
-    $ python ui.py
+    $ ./pulsecaster/pulsecaster
 
 ## Advanced Tips
 
@@ -18,17 +19,17 @@ The code currently contains a very hacky function to allow you to
 record to FLAC (the Free Lossless Audio Codec) instead of Ogg Vorbis,
 which is the default.  To turn that capability on, run this command:
 
-    $ gconftool-2 --set --type=string /apps/PulseCaster/codec flac
+    $ gsettings set org.pulsecaster.PulseCaster codec flac
 
 To switch back to Vorbis:
 
-    $ gconftool-2 --set --type=string /apps/PulseCaster/codec vorbis
+    $ gsettings set org.pulsecaster.PulseCaster codec vorbis
 
 There's an additional function for setting audio rate (default is
 48000 Hz):
 
-    $ gconftool-2 --set --type=int /apps/PulseCaster/audiorate 44100
-    $ gconftool-2 --set --type=int /apps/PulseCaster/audiorate 48000
+    $ gsettings set org.pulsecaster.PulseCaster audiorate 44100
+    $ gsettings set org.pulsecaster.PulseCaster audiorate 48000
 
 ## Installing
 
@@ -36,7 +37,7 @@ The easiest way to use this application is to simply install it using
 your platform's preferred tool set.  To install it using Fedora, run
 the folowing command:
 
-    pkcon install pulsecaster
+    dnf install pulsecaster
 
 To install it on another flavor of Linux, check the documentation for
 your particular distribution.
