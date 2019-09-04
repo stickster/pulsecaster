@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: PulseCaster\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-04 16:44-0400\n"
+"PO-Revision-Date: 2019-09-04 20:48+0000\n"
+"Last-Translator: Paul Frields <stickster@gmail.com>\n"
+"Language-Team: Serbian (http://www.transifex.com/stickster/pulsecaster/language/sr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sr\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../pulsecaster.appdata.xml.in.h:1
+msgid "Record a podcast or interview"
+msgstr "Снимите подемисију или интервју"
+
+#: ../pulsecaster.appdata.xml.in.h:2
+msgid ""
+"PulseCaster is a PulseAudio-based sound recorder. You can use it to record "
+"podcasts or interviews made at your laptop or from a separate voice-over-IP "
+"(VoIP) app."
+msgstr "Пулсе Кастер је снимач звука заснован на Пулсе Аудиу. Можете га користити за снимање подемисија или интервјуа на вашем преносном рачунару или из засебног програма гласа-преко-ИП-а (VoIP)."
+
+#: ../pulsecaster.appdata.xml.in.h:3
+msgid ""
+"PulseCaster allows you to select which sources you use for your podcast. It "
+"then automatically mixes the sound sources into one recording that's ready "
+"to publish."
+msgstr "Пулсе Кастер вам омогућава да изаберете извор за ваше подемисије. Затим сам меша изворе звука у један снимак који је спреман за објављивање."
+
+#: ../pulsecaster.appdata.xml.in.h:4
+msgid ""
+"There is also an expert mode so you can mix or enhance the recording on your"
+" own."
+msgstr "Постоји и напредни режим тако да можете да мешате или да побољшате снимање по вашој жељи."
+
+#: ../pulsecaster/ui.py:66
+msgid "loading UI file from current subdir"
+msgstr "учитавам датотеку КС-а из текућег поддиректоријума"
+
+#: ../pulsecaster/ui.py:80
+msgid "Cannot load resources"
+msgstr "Не могу да учитам изворишта"
+
+#. Miscellaneous dialog strings
+#: ../pulsecaster/ui.py:109
+msgid "Important notice"
+msgstr "Важно обавештење"
+
+#: ../pulsecaster/ui.py:115
+msgid ""
+"This program can be used to record speech from remote locations. You are "
+"responsible for adhering to all applicable laws and regulations when using "
+"this program. In general you should not record other parties without their "
+"consent."
+msgstr "Овај програм може бити коришћен за снимање говора са удаљених места. Ви сте одговорни за поштовање свих важећих закона и прописа приликом коришћења овог програма. Уопште не треба снимати друге странке без њиховог пристанка."
+
+#: ../pulsecaster/ui.py:121
+msgid "Do not show this again"
+msgstr "Не приказуј више ово"
+
+#: ../pulsecaster/ui.py:123
+msgid "Select the audio sources to mix"
+msgstr "Изаберите изворе звука за мешање"
+
+#: ../pulsecaster/ui.py:125
+msgid "I understand."
+msgstr "Разумем."
+
+#: ../pulsecaster/ui.py:127
+msgid "Your voice"
+msgstr "Ваш глас"
+
+#: ../pulsecaster/ui.py:129
+msgid "Subject's voice"
+msgstr "Глас субјекта"
+
+#: ../pulsecaster/ui.py:162
+msgid "Standard settings"
+msgstr "Уобичајена подешавања"
+
+#: ../pulsecaster/ui.py:163
+msgid "Expert settings"
+msgstr "Напредна подешавања"
+
+#: ../pulsecaster/ui.py:164
+msgid ""
+"Save the conversation as a single audio file with compression. This is the "
+"right option for most people."
+msgstr "Сачувајте разговор као једну звучну датотеку са сажимањем. Ово је прави избор за већину људи."
+
+#: ../pulsecaster/ui.py:167
+msgid ""
+"Save each voice as a separate audio file without compression. Use this "
+"option to mix and encode audio yourself."
+msgstr "Сачувајте сваки глас као засебну звучну датотеку без сажимања. Користите овај избор да сами измешате и кодирате звук."
+
+#: ../pulsecaster/ui.py:397
+msgid "Save your recording"
+msgstr "Сачувајте ваше снимање"
+
+#: ../pulsecaster/ui.py:414
+msgid ""
+"Are you sure you want to cancel saving your work? If you choose Yes your "
+"audio recording will be erased permanently."
+msgstr "Да ли сигурно желите да откажете чување вашег рада? Ако потврдите онда ће ваш звучни запис бити трајно обрисан."
+
+#: ../pulsecaster/ui.py:455
+msgid "WAV files are written here:"
+msgstr "ВАВ датотеке се уписују овде:"
+
+#: ../pulsecaster/ui.py:476
+msgid "File exists. OK to overwrite?"
+msgstr "Датотека постоји. Да ли желите да препишете?"
