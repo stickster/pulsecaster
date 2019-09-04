@@ -31,7 +31,15 @@ class PulseCasterGSettings:
         schema = gss.lookup(GIO_ID, True)
         if schema == None:
             # We're probably developing, then.
-            gss = Gio.SettingsSchemaSource.new_from_directory('.', None, False)
+            try:
+                # Maybe we already compiled this.
+                gss = Gio.SettingsSchemaSource.new_from_directory('.', None, False)
+            except:
+                import os, subprocess
+                schemadir = os.path.join(os.path.dirname(__file__), '..')
+                subprocess.run(['glib-compile-schemas', schemadir])
+                gss = Gio.SettingsSchemaSource.new_from_directory(schemadir, None, False)
+
             schema = gss.lookup(GIO_ID, True)
 
         self.gsettings = Gio.Settings.new_full(schema, None, GIO_PATH)
