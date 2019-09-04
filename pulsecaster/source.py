@@ -22,7 +22,6 @@ import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('Gst', '1.0')
 from gi.repository import Gtk, GObject, Gst
-GObject.threads_init()
 Gst.init(None)
 import os
 
