@@ -358,7 +358,7 @@ class PulseCasterUI(Gtk.Application):
             self.pa.disconnect()
         except:
             pass
-        Gtk.main_quit()
+        self.quit()
 
     def hideWarn(self, *args):
         self.gsettings.change_warn(self.swckbox.get_active())
