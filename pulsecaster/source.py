@@ -1,4 +1,4 @@
-# Copyright (C) 2011-2015 Paul W. Frields and others.
+# Copyright (C) 2011-2019 Paul W. Frields and others.
 # -*- coding: utf-8 -*-
 #
 # This program is free software: you can redistribute it and/or modify
