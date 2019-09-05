@@ -489,26 +489,18 @@ class PulseCasterUI(Gtk.Application):
         # This is a really stupid way to do this.
         # FIXME: abstract out the duplicated code, lazybones.
         if self.gsettings.expert is False:
-            self.permfile = open(self.filesinkpath, 'w')
-            self.tempfile.seek(0)
-            while True:
-                buf = self.tempfile.read(1024*1024)
-                if buf:
-                    self.permfile.write(buf)
-                else:
-                    break
-            self.permfile.close()
+            permfile = open(self.filesinkpath, 'wb')
+            self.tempfile.close()
+            self.tempfile = open(self.temppath, 'rb')
+            permfile.write(self.tempfile.read())
+            permfile.close()
         else:
-            self.permfile1 = open(self.filesinkpath + '-1.wav', 'w')
-            self.permfile2 = open(self.filesinkpath + '-2.wav', 'w')
-            for pf, tf in ([1, self.tempfile1], [2, self.tempfile2]):
-                permfile = open(self.filesinkpath + '-%d.wav' % (pf), 'w')
-                while True:
-                    buf = tf.read(1024*1024)
-                    if buf:
-                        permfile.write(buf)
-                    else:
-                        break
+            for i in (1, 2):
+                permfile = open(self.filesinkpath + '-' + str(i) + '.wav', 'wb')
+                tf = eval('self.tempfile' + str(i))
+                tf.close()
+                tempfile = open(eval('self.temppath' + str(i)), 'rb')
+                permfile.write(tempfile.read())
                 permfile.close()
 
     def _remove_tempfile(self, tempfile, temppath):
