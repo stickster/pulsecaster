@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Dennis Tobar <dennis.tobar@gmail.com>, 2011
 # Eduardo Villagrán M <gotencool@gmail.com>, 2012
@@ -13,11 +13,12 @@ msgstr ""
 "POT-Creation-Date: 2019-09-04 16:44-0400\n"
 "PO-Revision-Date: 2019-09-04 20:48+0000\n"
 "Last-Translator: Paul Frields <stickster@gmail.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/stickster/pulsecaster/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/stickster/pulsecaster/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../pulsecaster.appdata.xml.in.h:1
@@ -40,8 +41,8 @@ msgstr ""
 
 #: ../pulsecaster.appdata.xml.in.h:4
 msgid ""
-"There is also an expert mode so you can mix or enhance the recording on your"
-" own."
+"There is also an expert mode so you can mix or enhance the recording on your "
+"own."
 msgstr ""
 
 #: ../pulsecaster/ui.py:66
@@ -63,7 +64,11 @@ msgid ""
 "responsible for adhering to all applicable laws and regulations when using "
 "this program. In general you should not record other parties without their "
 "consent."
-msgstr "Este programa puede ser utilizado para grabar sonidos a distancia. Al utilizarlo, queda bajo su exclusiva responsabilidad el hecho de adherirse a todas las leyes y regulaciones aplicables. Como norma general, no debería grabar a nada ni a nadie sin su consentimiento."
+msgstr ""
+"Este programa puede ser utilizado para grabar sonidos a distancia. Al "
+"utilizarlo, queda bajo su exclusiva responsabilidad el hecho de adherirse a "
+"todas las leyes y regulaciones aplicables. Como norma general, no debería "
+"grabar a nada ni a nadie sin su consentimiento."
 
 #: ../pulsecaster/ui.py:121
 msgid "Do not show this again"
@@ -97,13 +102,17 @@ msgstr "ajustes experto"
 msgid ""
 "Save the conversation as a single audio file with compression. This is the "
 "right option for most people."
-msgstr "Guarda la conversación como un archivo único de audio con compresión. Esta es la opción adecuada para la mayoría."
+msgstr ""
+"Guarda la conversación como un archivo único de audio con compresión. Esta "
+"es la opción adecuada para la mayoría."
 
 #: ../pulsecaster/ui.py:167
 msgid ""
 "Save each voice as a separate audio file without compression. Use this "
 "option to mix and encode audio yourself."
-msgstr "Guarda cada voz como archivos separados de audio sin compresión . Use esta opción para mezclar y codificar el audio usted mismo."
+msgstr ""
+"Guarda cada voz como archivos separados de audio sin compresión . Use esta "
+"opción para mezclar y codificar el audio usted mismo."
 
 #: ../pulsecaster/ui.py:397
 msgid "Save your recording"
@@ -113,7 +122,9 @@ msgstr "Guardar su grabación"
 msgid ""
 "Are you sure you want to cancel saving your work? If you choose Yes your "
 "audio recording will be erased permanently."
-msgstr "¿Está seguro de querer cancelar el proceso almacenamiento de su trabajo? Si elije Si, la grabación será eliminada permanentemente."
+msgstr ""
+"¿Está seguro de querer cancelar el proceso almacenamiento de su trabajo? Si "
+"elije Si, la grabación será eliminada permanentemente."
 
 #: ../pulsecaster/ui.py:455
 msgid "WAV files are written here:"

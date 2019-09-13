@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # fri, 2013
 # fri, 2014
@@ -12,12 +12,14 @@ msgstr ""
 "POT-Creation-Date: 2019-09-04 16:44-0400\n"
 "PO-Revision-Date: 2019-09-04 20:48+0000\n"
 "Last-Translator: Paul Frields <stickster@gmail.com>\n"
-"Language-Team: Czech (http://www.transifex.com/stickster/pulsecaster/language/cs/)\n"
+"Language-Team: Czech (http://www.transifex.com/stickster/pulsecaster/"
+"language/cs/)\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: cs\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
+"<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 #: ../pulsecaster.appdata.xml.in.h:1
 msgid "Record a podcast or interview"
@@ -28,20 +30,28 @@ msgid ""
 "PulseCaster is a PulseAudio-based sound recorder. You can use it to record "
 "podcasts or interviews made at your laptop or from a separate voice-over-IP "
 "(VoIP) app."
-msgstr "PulseCaster je nahrávač zvuku založený na PulseAudio. Můžete jej využít na nahrávání záznamů zvuku nebo rozhovorů udělaných za použití vašeho počítače nebo samostatného programu pro hlas přes IP - voice-over-IP (VoIP)."
+msgstr ""
+"PulseCaster je nahrávač zvuku založený na PulseAudio. Můžete jej využít na "
+"nahrávání záznamů zvuku nebo rozhovorů udělaných za použití vašeho počítače "
+"nebo samostatného programu pro hlas přes IP - voice-over-IP (VoIP)."
 
 #: ../pulsecaster.appdata.xml.in.h:3
 msgid ""
 "PulseCaster allows you to select which sources you use for your podcast. It "
 "then automatically mixes the sound sources into one recording that's ready "
 "to publish."
-msgstr "PulseCaster vám umožňuje vybrat, které zdroje použijete pro svůj záznam. Potom automaticky smíchá zdroje zvuku do jedné nahrávky, která je tím připravena pro zveřejnění."
+msgstr ""
+"PulseCaster vám umožňuje vybrat, které zdroje použijete pro svůj záznam. "
+"Potom automaticky smíchá zdroje zvuku do jedné nahrávky, která je tím "
+"připravena pro zveřejnění."
 
 #: ../pulsecaster.appdata.xml.in.h:4
 msgid ""
-"There is also an expert mode so you can mix or enhance the recording on your"
-" own."
-msgstr "Je tu i režim pro zkušené uživatele, takže můžete nahrávky míchat nebo vylepšovat po svém."
+"There is also an expert mode so you can mix or enhance the recording on your "
+"own."
+msgstr ""
+"Je tu i režim pro zkušené uživatele, takže můžete nahrávky míchat nebo "
+"vylepšovat po svém."
 
 #: ../pulsecaster/ui.py:66
 msgid "loading UI file from current subdir"
@@ -62,7 +72,10 @@ msgid ""
 "responsible for adhering to all applicable laws and regulations when using "
 "this program. In general you should not record other parties without their "
 "consent."
-msgstr "Tento program lze použít na nahrávání rozhovoru ze vzdálených míst. Při používání tohoto programu zodpovídáte za dodržování všech platných zákonů a omezení. Obecně byste neměl nahrávat jiné strany bez jejich souhlasu."
+msgstr ""
+"Tento program lze použít na nahrávání rozhovoru ze vzdálených míst. Při "
+"používání tohoto programu zodpovídáte za dodržování všech platných zákonů a "
+"omezení. Obecně byste neměl nahrávat jiné strany bez jejich souhlasu."
 
 #: ../pulsecaster/ui.py:121
 msgid "Do not show this again"
@@ -96,13 +109,17 @@ msgstr "Znalecká nastavení"
 msgid ""
 "Save the conversation as a single audio file with compression. This is the "
 "right option for most people."
-msgstr "Rozhovor uložit jako jeden zkomprimovaný zvukový soubor. Toto je správná volba pro většinu lidí."
+msgstr ""
+"Rozhovor uložit jako jeden zkomprimovaný zvukový soubor. Toto je správná "
+"volba pro většinu lidí."
 
 #: ../pulsecaster/ui.py:167
 msgid ""
 "Save each voice as a separate audio file without compression. Use this "
 "option to mix and encode audio yourself."
-msgstr "Každý hlas uložit jako jeden nekomprimovaný zvukový soubor. Tuto volbu zvolte, když chcete smíchání a zakódování provést sám."
+msgstr ""
+"Každý hlas uložit jako jeden nekomprimovaný zvukový soubor. Tuto volbu "
+"zvolte, když chcete smíchání a zakódování provést sám."
 
 #: ../pulsecaster/ui.py:397
 msgid "Save your recording"
@@ -112,7 +129,9 @@ msgstr "Uložit nahrávku"
 msgid ""
 "Are you sure you want to cancel saving your work? If you choose Yes your "
 "audio recording will be erased permanently."
-msgstr "Jste si jistý, že chcete zrušit ukládání své práce? Pokud zvolíte Ano, vaše zvuková nahrávka bude smazána trvale."
+msgstr ""
+"Jste si jistý, že chcete zrušit ukládání své práce? Pokud zvolíte Ano, vaše "
+"zvuková nahrávka bude smazána trvale."
 
 #: ../pulsecaster/ui.py:455
 msgid "WAV files are written here:"

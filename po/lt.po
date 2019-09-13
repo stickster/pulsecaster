@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Moo, 2015
 msgid ""
@@ -11,12 +11,15 @@ msgstr ""
 "POT-Creation-Date: 2019-09-04 16:44-0400\n"
 "PO-Revision-Date: 2019-09-04 20:48+0000\n"
 "Last-Translator: Paul Frields <stickster@gmail.com>\n"
-"Language-Team: Lithuanian (http://www.transifex.com/stickster/pulsecaster/language/lt/)\n"
+"Language-Team: Lithuanian (http://www.transifex.com/stickster/pulsecaster/"
+"language/lt/)\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: lt\n"
-"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);\n"
+"Plural-Forms: nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < "
+"11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? "
+"1 : n % 1 != 0 ? 2: 3);\n"
 
 #: ../pulsecaster.appdata.xml.in.h:1
 msgid "Record a podcast or interview"
@@ -27,20 +30,27 @@ msgid ""
 "PulseCaster is a PulseAudio-based sound recorder. You can use it to record "
 "podcasts or interviews made at your laptop or from a separate voice-over-IP "
 "(VoIP) app."
-msgstr "PulseCaster yra PulseAudio grįstas garsarašis. Jūs galite jį naudoti, tinklalaidžių ar interviu įrašymui savo nešiojamame kompiuteryje ar per atskirą interneto telefonijos (VoIP) programą."
+msgstr ""
+"PulseCaster yra PulseAudio grįstas garsarašis. Jūs galite jį naudoti, "
+"tinklalaidžių ar interviu įrašymui savo nešiojamame kompiuteryje ar per "
+"atskirą interneto telefonijos (VoIP) programą."
 
 #: ../pulsecaster.appdata.xml.in.h:3
 msgid ""
 "PulseCaster allows you to select which sources you use for your podcast. It "
 "then automatically mixes the sound sources into one recording that's ready "
 "to publish."
-msgstr "PulseCaster leidžia jums pasirinkti, kuriuos šaltinius norite naudoti tinklalaidei. Tuomet programa automatiškai sumaišo garso šaltinius į vieną, publikavimui paruoštą, įrašą."
+msgstr ""
+"PulseCaster leidžia jums pasirinkti, kuriuos šaltinius norite naudoti "
+"tinklalaidei. Tuomet programa automatiškai sumaišo garso šaltinius į vieną, "
+"publikavimui paruoštą, įrašą."
 
 #: ../pulsecaster.appdata.xml.in.h:4
 msgid ""
-"There is also an expert mode so you can mix or enhance the recording on your"
-" own."
-msgstr "Be to, yra eksperto veiksena, taigi galite patys maišyti ar pagerinti įrašą"
+"There is also an expert mode so you can mix or enhance the recording on your "
+"own."
+msgstr ""
+"Be to, yra eksperto veiksena, taigi galite patys maišyti ar pagerinti įrašą"
 
 #: ../pulsecaster/ui.py:66
 msgid "loading UI file from current subdir"
@@ -61,7 +71,11 @@ msgid ""
 "responsible for adhering to all applicable laws and regulations when using "
 "this program. In general you should not record other parties without their "
 "consent."
-msgstr "Ši programa gali būti naudojama, šnekos iš nuotolinių vietų, įrašymui. Naudodamiesi šia programa, jūs esate atsakingi už visų galiojančių įstatymų ir reguliavimų laikymąsi. Bendrai tariant, jūs neturėtumėte įrašinėti kitų šalių be jų sutikimo."
+msgstr ""
+"Ši programa gali būti naudojama, šnekos iš nuotolinių vietų, įrašymui. "
+"Naudodamiesi šia programa, jūs esate atsakingi už visų galiojančių įstatymų "
+"ir reguliavimų laikymąsi. Bendrai tariant, jūs neturėtumėte įrašinėti kitų "
+"šalių be jų sutikimo."
 
 #: ../pulsecaster/ui.py:121
 msgid "Do not show this again"
@@ -95,13 +109,17 @@ msgstr "Ekspertiniai nustatymai"
 msgid ""
 "Save the conversation as a single audio file with compression. This is the "
 "right option for most people."
-msgstr "Išsaugoti pokalbį kaip vieną garso įrašo failą su glaudinimu. Tai yra daugumai žmonių tinkanti parinktis."
+msgstr ""
+"Išsaugoti pokalbį kaip vieną garso įrašo failą su glaudinimu. Tai yra "
+"daugumai žmonių tinkanti parinktis."
 
 #: ../pulsecaster/ui.py:167
 msgid ""
 "Save each voice as a separate audio file without compression. Use this "
 "option to mix and encode audio yourself."
-msgstr "Išsaugoti kiekvieną balsą kaip atskirą garso įrašo failą be glaudinimo. Naudokite šią parinktį, norėdami patys maišyti ir koduoti garso įrašą ."
+msgstr ""
+"Išsaugoti kiekvieną balsą kaip atskirą garso įrašo failą be glaudinimo. "
+"Naudokite šią parinktį, norėdami patys maišyti ir koduoti garso įrašą ."
 
 #: ../pulsecaster/ui.py:397
 msgid "Save your recording"
@@ -111,7 +129,9 @@ msgstr "Išsaugokite savo įrašą"
 msgid ""
 "Are you sure you want to cancel saving your work? If you choose Yes your "
 "audio recording will be erased permanently."
-msgstr "Ar tikrai norite atšaukti savo darbo išsaugojimą? Jei pasirinksite Taip, jūsų garso įrašas bus ištrintas negrįžtamai."
+msgstr ""
+"Ar tikrai norite atšaukti savo darbo išsaugojimą? Jei pasirinksite Taip, "
+"jūsų garso įrašas bus ištrintas negrįžtamai."
 
 #: ../pulsecaster/ui.py:455
 msgid "WAV files are written here:"

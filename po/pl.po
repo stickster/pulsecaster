@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010
 # Piotr Drąg <piotrdrag@gmail.com>, 2011-2016
@@ -12,12 +12,15 @@ msgstr ""
 "POT-Creation-Date: 2019-09-04 16:44-0400\n"
 "PO-Revision-Date: 2019-09-04 20:48+0000\n"
 "Last-Translator: Paul Frields <stickster@gmail.com>\n"
-"Language-Team: Polish (http://www.transifex.com/stickster/pulsecaster/language/pl/)\n"
+"Language-Team: Polish (http://www.transifex.com/stickster/pulsecaster/"
+"language/pl/)\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pl\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: ../pulsecaster.appdata.xml.in.h:1
 msgid "Record a podcast or interview"
@@ -28,20 +31,27 @@ msgid ""
 "PulseCaster is a PulseAudio-based sound recorder. You can use it to record "
 "podcasts or interviews made at your laptop or from a separate voice-over-IP "
 "(VoIP) app."
-msgstr "PulseCaster to program do nagrywania dźwięku oparty na PulseAudio. Można go używać do nagrywania podcastów lub wywiadów za pomocą laptopa lub oddzielnej aplikacji VoIP."
+msgstr ""
+"PulseCaster to program do nagrywania dźwięku oparty na PulseAudio. Można go "
+"używać do nagrywania podcastów lub wywiadów za pomocą laptopa lub oddzielnej "
+"aplikacji VoIP."
 
 #: ../pulsecaster.appdata.xml.in.h:3
 msgid ""
 "PulseCaster allows you to select which sources you use for your podcast. It "
 "then automatically mixes the sound sources into one recording that's ready "
 "to publish."
-msgstr "PulseCaster umożliwia wybranie źródeł dla podcastu, a następnie automatycznie miksuje źródła dźwięku w jedno nagranie gotowe do publikacji."
+msgstr ""
+"PulseCaster umożliwia wybranie źródeł dla podcastu, a następnie "
+"automatycznie miksuje źródła dźwięku w jedno nagranie gotowe do publikacji."
 
 #: ../pulsecaster.appdata.xml.in.h:4
 msgid ""
-"There is also an expert mode so you can mix or enhance the recording on your"
-" own."
-msgstr "PulseCaster ma także tryb eksperta, w którym można samodzielnie miksować lub ulepszać nagranie."
+"There is also an expert mode so you can mix or enhance the recording on your "
+"own."
+msgstr ""
+"PulseCaster ma także tryb eksperta, w którym można samodzielnie miksować lub "
+"ulepszać nagranie."
 
 #: ../pulsecaster/ui.py:66
 msgid "loading UI file from current subdir"
@@ -62,7 +72,11 @@ msgid ""
 "responsible for adhering to all applicable laws and regulations when using "
 "this program. In general you should not record other parties without their "
 "consent."
-msgstr "Ten program może być używany do nagrywania mowy ze zdalnych położeń. Użytkownik jest odpowiedzialny za stosowanie się do wszelkich praw i zobowiązań podczas używania tego programu. Przede wszystkim nie powinno się nagrywać innych osób bez ich zgody."
+msgstr ""
+"Ten program może być używany do nagrywania mowy ze zdalnych położeń. "
+"Użytkownik jest odpowiedzialny za stosowanie się do wszelkich praw "
+"i zobowiązań podczas używania tego programu. Przede wszystkim nie powinno "
+"się nagrywać innych osób bez ich zgody."
 
 #: ../pulsecaster/ui.py:121
 msgid "Do not show this again"
@@ -96,13 +110,17 @@ msgstr "Wyeksportuj ustawienia"
 msgid ""
 "Save the conversation as a single audio file with compression. This is the "
 "right option for most people."
-msgstr "Zapisanie rozmowy jako pojedynczy plik dźwiękowy z kompresją. Jest to odpowiednia opcja dla większości osób."
+msgstr ""
+"Zapisanie rozmowy jako pojedynczy plik dźwiękowy z kompresją. Jest to "
+"odpowiednia opcja dla większości osób."
 
 #: ../pulsecaster/ui.py:167
 msgid ""
 "Save each voice as a separate audio file without compression. Use this "
 "option to mix and encode audio yourself."
-msgstr "Zapisanie każdego głosu jako oddzielny plik dźwiękowy bez kompresji. Ta opcja umożliwia samodzielne miksowanie i kodowanie dźwięku."
+msgstr ""
+"Zapisanie każdego głosu jako oddzielny plik dźwiękowy bez kompresji. Ta "
+"opcja umożliwia samodzielne miksowanie i kodowanie dźwięku."
 
 #: ../pulsecaster/ui.py:397
 msgid "Save your recording"
@@ -112,7 +130,9 @@ msgstr "Zapis nagrania"
 msgid ""
 "Are you sure you want to cancel saving your work? If you choose Yes your "
 "audio recording will be erased permanently."
-msgstr "Na pewno anulować zapisywanie? Po wybraniu Tak nagranie dźwięku zostanie bezpowrotnie usunięte."
+msgstr ""
+"Na pewno anulować zapisywanie? Po wybraniu Tak nagranie dźwięku zostanie "
+"bezpowrotnie usunięte."
 
 #: ../pulsecaster/ui.py:455
 msgid "WAV files are written here:"

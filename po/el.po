@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Dimitris Glezos <glezos@indifex.com>, 2011
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010
@@ -14,11 +14,12 @@ msgstr ""
 "POT-Creation-Date: 2019-09-04 16:44-0400\n"
 "PO-Revision-Date: 2019-09-04 20:48+0000\n"
 "Last-Translator: Paul Frields <stickster@gmail.com>\n"
-"Language-Team: Greek (http://www.transifex.com/stickster/pulsecaster/language/el/)\n"
+"Language-Team: Greek (http://www.transifex.com/stickster/pulsecaster/"
+"language/el/)\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../pulsecaster.appdata.xml.in.h:1
@@ -41,8 +42,8 @@ msgstr ""
 
 #: ../pulsecaster.appdata.xml.in.h:4
 msgid ""
-"There is also an expert mode so you can mix or enhance the recording on your"
-" own."
+"There is also an expert mode so you can mix or enhance the recording on your "
+"own."
 msgstr ""
 
 #: ../pulsecaster/ui.py:66
@@ -64,7 +65,12 @@ msgid ""
 "responsible for adhering to all applicable laws and regulations when using "
 "this program. In general you should not record other parties without their "
 "consent."
-msgstr "Αυτό το πρόγραμμα μπορεί να χρησιμοποιηθεί για να ηχογραφήσει ομιλία από απομακρυσμένες τοποθεσίες. Εσείς έχετε την ευθύνη για ακολουθήσετε όλους τους νόμους και κανονισμούς που εφαρμόζονται όταν χρησιμοποιείται το παρόν πρόγραμμα. Κατά κανόνα, δεν πρέπει να ηχογραφείτε τρίτους χωρίς την άδεια τους."
+msgstr ""
+"Αυτό το πρόγραμμα μπορεί να χρησιμοποιηθεί για να ηχογραφήσει ομιλία από "
+"απομακρυσμένες τοποθεσίες. Εσείς έχετε την ευθύνη για ακολουθήσετε όλους "
+"τους νόμους και κανονισμούς που εφαρμόζονται όταν χρησιμοποιείται το παρόν "
+"πρόγραμμα. Κατά κανόνα, δεν πρέπει να ηχογραφείτε τρίτους χωρίς την άδεια "
+"τους."
 
 #: ../pulsecaster/ui.py:121
 msgid "Do not show this again"
@@ -98,13 +104,17 @@ msgstr "Εξειδικευμένες ρυθμίσεις"
 msgid ""
 "Save the conversation as a single audio file with compression. This is the "
 "right option for most people."
-msgstr "Αποθήκευση της συνομιλίας σε ένα μοναδικό αρχείο ήχου με συμπίεση. Είναι η κατάλληλη επιλογή για τους περισσότερους χρήστες."
+msgstr ""
+"Αποθήκευση της συνομιλίας σε ένα μοναδικό αρχείο ήχου με συμπίεση. Είναι η "
+"κατάλληλη επιλογή για τους περισσότερους χρήστες."
 
 #: ../pulsecaster/ui.py:167
 msgid ""
 "Save each voice as a separate audio file without compression. Use this "
 "option to mix and encode audio yourself."
-msgstr "Αποθήκευση κάθε φωνής σε ξεχωριστό αρχείο χωρίς συμπίεση. Επιλέξτε αυτό για να μιξάρετε και να κωδικοποιήσετε εσείς τον ήχο."
+msgstr ""
+"Αποθήκευση κάθε φωνής σε ξεχωριστό αρχείο χωρίς συμπίεση. Επιλέξτε αυτό για "
+"να μιξάρετε και να κωδικοποιήσετε εσείς τον ήχο."
 
 #: ../pulsecaster/ui.py:397
 msgid "Save your recording"
@@ -114,7 +124,9 @@ msgstr "Αποθήκευση ηχογράφησης"
 msgid ""
 "Are you sure you want to cancel saving your work? If you choose Yes your "
 "audio recording will be erased permanently."
-msgstr "Σίγουρα θέλετε να ακυρώσετε την αποθήκευση του έργου σας; Επιλέγοντας \"Ναι\" η ηχογράφηση σας θα διαγραφεί οριστικά."
+msgstr ""
+"Σίγουρα θέλετε να ακυρώσετε την αποθήκευση του έργου σας; Επιλέγοντας \"Ναι"
+"\" η ηχογράφηση σας θα διαγραφεί οριστικά."
 
 #: ../pulsecaster/ui.py:455
 msgid "WAV files are written here:"

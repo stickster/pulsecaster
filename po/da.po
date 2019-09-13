@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Kris Thomsen <lakristho@gmail.com>, 2011
 # Peter Larsen <ego.alter@gmail.com>, 2012
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2019-09-04 16:44-0400\n"
 "PO-Revision-Date: 2019-09-04 20:48+0000\n"
 "Last-Translator: Paul Frields <stickster@gmail.com>\n"
-"Language-Team: Danish (http://www.transifex.com/stickster/pulsecaster/language/da/)\n"
+"Language-Team: Danish (http://www.transifex.com/stickster/pulsecaster/"
+"language/da/)\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../pulsecaster.appdata.xml.in.h:1
@@ -39,8 +40,8 @@ msgstr ""
 
 #: ../pulsecaster.appdata.xml.in.h:4
 msgid ""
-"There is also an expert mode so you can mix or enhance the recording on your"
-" own."
+"There is also an expert mode so you can mix or enhance the recording on your "
+"own."
 msgstr ""
 
 #: ../pulsecaster/ui.py:66
@@ -62,7 +63,11 @@ msgid ""
 "responsible for adhering to all applicable laws and regulations when using "
 "this program. In general you should not record other parties without their "
 "consent."
-msgstr "Dette program kan bruges til at optage tale fra fjernplaceringer. Du er ansvarlig for at overholde alle gældende love og regulationer når du bruger dette program. Generelt bør du ikke optage andre mennesker uden deres godkendelse."
+msgstr ""
+"Dette program kan bruges til at optage tale fra fjernplaceringer. Du er "
+"ansvarlig for at overholde alle gældende love og regulationer når du bruger "
+"dette program. Generelt bør du ikke optage andre mennesker uden deres "
+"godkendelse."
 
 #: ../pulsecaster/ui.py:121
 msgid "Do not show this again"
@@ -96,13 +101,17 @@ msgstr "Avanceret konfiguration"
 msgid ""
 "Save the conversation as a single audio file with compression. This is the "
 "right option for most people."
-msgstr "Gem hele samtalen i en enkel komprimeret lydfil. Anbefalet for de fleste brugere."
+msgstr ""
+"Gem hele samtalen i en enkel komprimeret lydfil. Anbefalet for de fleste "
+"brugere."
 
 #: ../pulsecaster/ui.py:167
 msgid ""
 "Save each voice as a separate audio file without compression. Use this "
 "option to mix and encode audio yourself."
-msgstr "Gem hver part i separate ikke komprimeret lydfiler. Brug denne indstilling hvis du selv vil vælge filformat mv."
+msgstr ""
+"Gem hver part i separate ikke komprimeret lydfiler. Brug denne indstilling "
+"hvis du selv vil vælge filformat mv."
 
 #: ../pulsecaster/ui.py:397
 msgid "Save your recording"
@@ -112,7 +121,9 @@ msgstr "Gem din optagelse"
 msgid ""
 "Are you sure you want to cancel saving your work? If you choose Yes your "
 "audio recording will be erased permanently."
-msgstr "Er du sikker på at du vil annullere gemningen af dit arbejde. Hvis du vælger Ja vil din lydoptagelse bliver slettet for bestandigt."
+msgstr ""
+"Er du sikker på at du vil annullere gemningen af dit arbejde. Hvis du vælger "
+"Ja vil din lydoptagelse bliver slettet for bestandigt."
 
 #: ../pulsecaster/ui.py:455
 msgid "WAV files are written here:"

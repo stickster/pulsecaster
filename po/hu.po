@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010
 # Máté Gelei <gelei.mate1@gmail.com>, 2011
@@ -14,11 +14,12 @@ msgstr ""
 "POT-Creation-Date: 2019-09-04 16:44-0400\n"
 "PO-Revision-Date: 2019-09-04 20:48+0000\n"
 "Last-Translator: Paul Frields <stickster@gmail.com>\n"
-"Language-Team: Hungarian (http://www.transifex.com/stickster/pulsecaster/language/hu/)\n"
+"Language-Team: Hungarian (http://www.transifex.com/stickster/pulsecaster/"
+"language/hu/)\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../pulsecaster.appdata.xml.in.h:1
@@ -30,20 +31,27 @@ msgid ""
 "PulseCaster is a PulseAudio-based sound recorder. You can use it to record "
 "podcasts or interviews made at your laptop or from a separate voice-over-IP "
 "(VoIP) app."
-msgstr "A PulseCaster egy PulseAudio alapú podcast-felvevő. Használhatja podcastok vagy interjúk felvételére a laptopján vagy egy különálló IP telefónia (VoIP) alkalmazásból."
+msgstr ""
+"A PulseCaster egy PulseAudio alapú podcast-felvevő. Használhatja podcastok "
+"vagy interjúk felvételére a laptopján vagy egy különálló IP telefónia (VoIP) "
+"alkalmazásból."
 
 #: ../pulsecaster.appdata.xml.in.h:3
 msgid ""
 "PulseCaster allows you to select which sources you use for your podcast. It "
 "then automatically mixes the sound sources into one recording that's ready "
 "to publish."
-msgstr "A PulseCaster megengedi, hogy kiválassza mely forrásokat használja. Majd automatikusan keveri a hangforrásokat egyetlen felvételbe, amely már készen áll a publikálásra."
+msgstr ""
+"A PulseCaster megengedi, hogy kiválassza mely forrásokat használja. Majd "
+"automatikusan keveri a hangforrásokat egyetlen felvételbe, amely már készen "
+"áll a publikálásra."
 
 #: ../pulsecaster.appdata.xml.in.h:4
 msgid ""
-"There is also an expert mode so you can mix or enhance the recording on your"
-" own."
-msgstr "Haladó mód is létezik, így mixelheti vagy javíthatja a felvételt saját maga."
+"There is also an expert mode so you can mix or enhance the recording on your "
+"own."
+msgstr ""
+"Haladó mód is létezik, így mixelheti vagy javíthatja a felvételt saját maga."
 
 #: ../pulsecaster/ui.py:66
 msgid "loading UI file from current subdir"
@@ -64,7 +72,11 @@ msgid ""
 "responsible for adhering to all applicable laws and regulations when using "
 "this program. In general you should not record other parties without their "
 "consent."
-msgstr "Ezzel a programmal távoli helyekről rögzíthet hangot. A program használata során Ön vállalja a felelősséget, hogy betartja a megfelelő törvényeket és szabályozásokat. Harmadik fél hangjának felvétele csak az ő engedélyükkel történhet."
+msgstr ""
+"Ezzel a programmal távoli helyekről rögzíthet hangot. A program használata "
+"során Ön vállalja a felelősséget, hogy betartja a megfelelő törvényeket és "
+"szabályozásokat. Harmadik fél hangjának felvétele csak az ő engedélyükkel "
+"történhet."
 
 #: ../pulsecaster/ui.py:121
 msgid "Do not show this again"
@@ -98,13 +110,17 @@ msgstr "Haladó beállítások"
 msgid ""
 "Save the conversation as a single audio file with compression. This is the "
 "right option for most people."
-msgstr "A beszélgetés mentése egyetlen audio fájlba tömörítéssel. Ez a legmegfelelőbb opció a legtöbb ember számára."
+msgstr ""
+"A beszélgetés mentése egyetlen audio fájlba tömörítéssel. Ez a "
+"legmegfelelőbb opció a legtöbb ember számára."
 
 #: ../pulsecaster/ui.py:167
 msgid ""
 "Save each voice as a separate audio file without compression. Use this "
 "option to mix and encode audio yourself."
-msgstr "Egyes hangok mentése külön-külön audio fájlba tömörítés nélkül. Használja ezt az opciót, ha saját maga szeretné keverni és kódolni."
+msgstr ""
+"Egyes hangok mentése külön-külön audio fájlba tömörítés nélkül. Használja "
+"ezt az opciót, ha saját maga szeretné keverni és kódolni."
 
 #: ../pulsecaster/ui.py:397
 msgid "Save your recording"
@@ -114,7 +130,9 @@ msgstr "A felvétel mentése"
 msgid ""
 "Are you sure you want to cancel saving your work? If you choose Yes your "
 "audio recording will be erased permanently."
-msgstr "Biztosan nem menti el munkáját? Ha az Igenre kattint, a hangfelvétel véglegesen elveszik."
+msgstr ""
+"Biztosan nem menti el munkáját? Ha az Igenre kattint, a hangfelvétel "
+"véglegesen elveszik."
 
 #: ../pulsecaster/ui.py:455
 msgid "WAV files are written here:"
