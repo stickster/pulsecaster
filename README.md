@@ -5,6 +5,12 @@ PulseAudio. (These are now removed in favor of the pulsectl module.)
 Thanks also to Jürgen Geuter for helping me understand distutils and
 contributing some fixes.
 
+## Requirements
+
+PulseCaster has been updated to require Python 3. It will no longer
+run on Python 2. If you must use Python 2, please use a release
+prior to version 0.9.
+
 ## Instructions
 
 If you are looking at the source, 'cd' to the top of this project and
