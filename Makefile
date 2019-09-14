@@ -45,7 +45,7 @@ tx-pull::
 .PHONY:: pot
 pot: po/$(DOMAIN).pot
 
-po/$(DOMAIN).pot:: $(shell cat po/POTFILES.in) po/POTFILES.in
+po/$(DOMAIN).pot: $(shell cat po/POTFILES.in) po/POTFILES.in
 	cd po && intltool-update -p -g $(DOMAIN) && cd ..
 
 .PHONY:: po
