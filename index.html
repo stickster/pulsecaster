@@ -33,17 +33,21 @@
       <section id="main_content" class="inner">
 
 <p>Thanks to Harry Karvonen for his Python ctypes-based bindings for
-PulseAudio.  Thanks also to Jürgen Geuter for helping me understand
-distutils and contributing some fixes.</p>
+PulseAudio. (These are now removed in favor of the pulsectl module.)
+Thanks also to Jürgen Geuter for helping me understand distutils and
+contributing some fixes.</p>
 
 <h2>
 <a name="instructions" class="anchor" href="#instructions"><span class="octicon octicon-link"></span></a>Instructions</h2>
+
+<p>PulseCaster requires Python 3. If you must use Python 2, please use a
+release prior to version 0.9.
 
 <p>If you are looking at the source, 'cd' to the top of this project and
 then run the following command to try it out:</p>
 
 <pre><code>$ cd pulsecaster
-$ python ui.py
+$ ./pulsecaster/pulsecaster
 </code></pre>
 
 <h2>
@@ -53,19 +57,19 @@ $ python ui.py
 record to FLAC (the Free Lossless Audio Codec) instead of Ogg Vorbis,
 which is the default.  To turn that capability on, run this command:</p>
 
-<pre><code>$ gconftool-2 --set --type=string /apps/PulseCaster/codec flac
+<pre><code>$ gsettings set org.pulsecaster.PulseCaster codec flac
 </code></pre>
 
 <p>To switch back to Vorbis:</p>
 
-<pre><code>$ gconftool-2 --set --type=string /apps/PulseCaster/codec vorbis
+<pre><code>$ gsettings set org.pulsecaster.PulseCaster codec vorbis
 </code></pre>
 
 <p>There's an additional function for setting audio rate (default is
 48000 Hz):</p>
 
-<pre><code>$ gconftool-2 --set --type=int /apps/PulseCaster/audiorate 44100
-$ gconftool-2 --set --type=int /apps/PulseCaster/audiorate 48000
+<pre><code>$ gsettings set org.pulsecaster.PulseCaster audiorate 44100
+$ gsettings set org.pulsecaster.PulseCaster audiorate 48000
 </code></pre>
 
 <h2>
@@ -75,7 +79,7 @@ $ gconftool-2 --set --type=int /apps/PulseCaster/audiorate 48000
 your platform's preferred tool set.  To install it using Fedora, run
 the folowing command:</p>
 
-<pre><code>pkcon install pulsecaster
+<pre><code>sudo dnf install pulsecaster
 </code></pre>
 
 <p>To install it on another flavor of Linux, check the documentation for
@@ -95,7 +99,7 @@ operating system's built-in utility for adding and removing software.
 package names for your distribution may be slightly different.</p>
 
 <ul>
-	<li>pygobject3</li>
+	<li>python3-gobject</li>
 	<li>dbus-python >= 0.83</li>
 	<li>pulseaudio-libs >= 0.9.15</li>
 	<li>GStreamer >= 1.0</li>
@@ -103,7 +107,7 @@ package names for your distribution may be slightly different.</p>
 
 <p>If you want to help with development, you may also need these supporting packages:</p>
 <ul>
-	<li>python-babel</li>
+	<li>python3-babel</li>
 	<li>transifex-client</li>
 </ul>
 
