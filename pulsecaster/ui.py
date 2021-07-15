@@ -426,6 +426,8 @@ class PulseCasterUI(Gtk.Application):
                     self._remove_tempfile(self.tempfile1, self.temppath1)
                     self._remove_tempfile(self.tempfile2, self.temppath2)
             else:
+                self.file_chooser.destroy()
+                self.showFileChooser(self)
                 return
         self.file_chooser.destroy()
 
