@@ -261,6 +261,9 @@ class PulseCasterUI(Gtk.Application):
         self.rfilter = Gst.ElementFactory.make('capsfilter', 'rfilter')
         debugPrint('audiorate: %d' % self.gsettings.audiorate)
 
+        # Reset filesinkpath
+        self.filesinkpath = ''
+
         if self.gsettings.expert is not True:
             # Create temporary file
             (self.tempfd, self.temppath) = tempfile.mkstemp(prefix='%s-tmp.'
