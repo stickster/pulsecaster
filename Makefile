@@ -19,11 +19,11 @@ PWD=$(shell pwd)
 GIT=$(shell which git)
 
 LATEST_TAG=$(shell git describe --tags --abbrev=0)
-LATEST_VERSION=$(shell $(PYTHON) -c 'from pulsecaster.config import VERSION; print "%s" % (VERSION)')
+LATEST_VERSION=$(shell $(PYTHON) -c 'from pulsecaster.config import VERSION; print ("%s" % (VERSION))')
 
-AUTHOR=$(shell $(PYTHON) -c 'from $(DOMAIN).config import * ; print AUTHOR')
-EMAIL=$(shell $(PYTHON) -c 'from $(DOMAIN).config import * ; print AUTHOR_EMAIL')
-URL=$(shell $(PYTHON) -c 'from $(DOMAIN).config import * ; print URL')
+AUTHOR=$(shell $(PYTHON) -c 'from $(DOMAIN).config import * ; print (AUTHOR)')
+EMAIL=$(shell $(PYTHON) -c 'from $(DOMAIN).config import * ; print (AUTHOR_EMAIL)')
+URL=$(shell $(PYTHON) -c 'from $(DOMAIN).config import * ; print (URL)')
 
 #####################
 # Initial stuff
