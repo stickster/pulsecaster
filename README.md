@@ -57,6 +57,11 @@ script that's provided:
 Refer to the wiki at http://pulsecaster.org/ for a full list of
 dependencies and requirements.
 
+## Translation
+
+Translation is done via Transifex:
+https://www.transifex.com/stickster/pulsecaster/dashboard/
+
 ## GStreamer
 
 The pipeline for capturing from a running PulseAudio source:
