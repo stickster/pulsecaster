@@ -98,7 +98,7 @@ msgstr "Экспертные настройки"
 msgid ""
 "Save the conversation as a single audio file with compression. This is the "
 "right option for most people."
-msgstr "Сохранить разговор как единый сжатый аудио-файл. Ака правило, это подходящий вариант."
+msgstr "Сохранить разговор как единый сжатый аудио-файл. Как правило, это подходящий вариант для большинства людей."
 
 #: ../pulsecaster/ui.py:167
 msgid ""

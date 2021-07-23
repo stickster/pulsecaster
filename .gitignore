@@ -21,3 +21,8 @@ gschemas.compiled
 
 # VS Code
 .vscode
+
+#virtual env
+venv/
+#intelliJ IDEA
+.idea/
