@@ -417,8 +417,13 @@ class PulseCasterUI(Gtk.Application):
             confirm_message=_('Are you sure you want to cancel saving '+
                               'your work? If you choose Yes your audio '+
                               'recording will be erased permanently.')
+            erase_message=_("Yes, erase my recording")
+            retain_message=_("No, let me save my recording")
             confirm = Gtk.MessageDialog(type=Gtk.MessageType.WARNING,
-                                        buttons=Gtk.ButtonsType.YES_NO,
+                                        buttons=(retain_message,
+                                                 Gtk.ResponseType.NO,
+                                                 erase_message,
+                                                 Gtk.ResponseType.YES),
                                         message_format=confirm_message)
             response = confirm.run()
             confirm.destroy()

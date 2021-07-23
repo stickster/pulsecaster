@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-04 16:44-0400\n"
+"POT-Creation-Date: 2021-07-23 14:33-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,20 +102,28 @@ msgid ""
 "option to mix and encode audio yourself."
 msgstr ""
 
-#: ../pulsecaster/ui.py:397
+#: ../pulsecaster/ui.py:400
 msgid "Save your recording"
 msgstr ""
 
-#: ../pulsecaster/ui.py:414
+#: ../pulsecaster/ui.py:417
 msgid ""
 "Are you sure you want to cancel saving your work? If you choose Yes your "
 "audio recording will be erased permanently."
 msgstr ""
 
-#: ../pulsecaster/ui.py:455
+#: ../pulsecaster/ui.py:420
+msgid "Yes, erase my recording"
+msgstr ""
+
+#: ../pulsecaster/ui.py:421
+msgid "No, let me save my recording"
+msgstr ""
+
+#: ../pulsecaster/ui.py:465
 msgid "WAV files are written here:"
 msgstr ""
 
-#: ../pulsecaster/ui.py:476
+#: ../pulsecaster/ui.py:486
 msgid "File exists. OK to overwrite?"
 msgstr ""
