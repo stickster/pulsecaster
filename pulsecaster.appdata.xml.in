@@ -3,10 +3,10 @@
   <id type="desktop">pulsecaster.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <name>PulseCaster</name>
-  <_summary>Record a podcast or interview</_summary>
+  <_summary>Record a podcast interview or the sound from a meeting</_summary>
   <description>
-    <_p>PulseCaster is a PulseAudio-based sound recorder. You can use it to record podcasts or interviews made at your laptop or from a separate voice-over-IP (VoIP) app.</_p>
-    <_p>PulseCaster allows you to select which sources you use for your podcast. It then automatically mixes the sound sources into one recording that's ready to publish.</_p>
+    <_p>PulseCaster is a PulseAudio-based sound recorder. You can use it to record podcasts, interviews or videoconferencing meetings happening on your Linux computer.</_p>
+    <_p>PulseCaster allows you to select which sources to use for recording (ex.: which microphone device for your voice, and which playback device to get your subject's voice from your separate audio/videoconferencing app). It then automatically mixes the sound sources into one ready-to-publish recording.</_p>
     <_p>There is also an expert mode so you can mix or enhance the recording on your own.</_p>
   </description>
   <screenshot type="default"
