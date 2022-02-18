@@ -145,6 +145,7 @@ class PulseCasterUI(Gtk.Application):
         self.close.connect('clicked', self.on_close)
         self.record = self.builder.get_object('record_button')
         self.record_id = self.record.connect('clicked', self.on_record)
+        self.record.get_style_context().add_class("suggested-action")
         self.record.set_sensitive(True)
         self.main_logo = self.builder.get_object('logo')
         self.main_logo.set_from_icon_name('pulsecaster', Gtk.IconSize.DIALOG)
@@ -334,6 +335,8 @@ class PulseCasterUI(Gtk.Application):
 
         # FIXME: Dim elements other than the 'record' widget
         self.record.set_label(Gtk.STOCK_MEDIA_STOP)
+        self.record.get_style_context().remove_class("suggested-action")
+        self.record.get_style_context().add_class("destructive-action")
         self.record.disconnect(self.record_id)
         self.stop_id = self.record.connect('clicked', self.on_stop)
         self.record.show()
@@ -348,6 +351,8 @@ class PulseCasterUI(Gtk.Application):
         self.combiner.set_state(Gst.State.NULL)
         self.showFileChooser()
         self.record.set_label(Gtk.STOCK_MEDIA_RECORD)
+        self.record.get_style_context().remove_class("destructive-action")
+        self.record.get_style_context().add_class("suggested-action")
         self.record.disconnect(self.stop_id)
         self.record_id = self.record.connect('clicked', self.on_record)
         self.user_vox.cbox.set_sensitive(True)
