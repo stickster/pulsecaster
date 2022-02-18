@@ -409,6 +409,8 @@ class PulseCasterUI(Gtk.Application):
                                                            Gtk.STOCK_OK,
                                                            Gtk.ResponseType.OK))
         self.file_chooser.set_local_only(True)
+        self.file_chooser.set_transient_for(self.main)
+        self.file_chooser.set_modal(True)
         response = self.file_chooser.run()
         if response == Gtk.ResponseType.OK:
             self.updateFileSinkPath()
@@ -430,6 +432,9 @@ class PulseCasterUI(Gtk.Application):
                                                  erase_message,
                                                  Gtk.ResponseType.YES),
                                         message_format=confirm_message)
+
+            confirm.set_transient_for(self.file_chooser)
+            confirm.set_modal(True)
             response = confirm.run()
             confirm.destroy()
             if response == Gtk.ResponseType.YES:
