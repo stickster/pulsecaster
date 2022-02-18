@@ -1,9 +1,12 @@
-A PulseAudio based podcasting application
+A simple tool for recording podcast interviews (or the sound from meetings) on Linux.
 
-Thanks to Harry Karvonen for his Python ctypes-based bindings for
-PulseAudio. (These are now removed in favor of the pulsectl module.)
-Thanks also to Jürgen Geuter for helping me understand distutils and
-contributing some fixes.
+Simply specify the microphone device to be used to record your voice,
+the playback monitor device to be used to record your subject's voice,
+and click the `Record` button. PulseCaster saves the combined result to
+the convenient and lightweight OGG Vorbis format, ready for publication.
+
+You can also record your voice separately from the subject's voice,
+and optionally use the FLAC format, for your post-production needs.
 
 ## Requirements
 
@@ -71,3 +74,9 @@ The pipeline for capturing from a running PulseAudio source:
 	   ! oggmux \
 	   ! filesink location=foo.ogg
 
+# Acknowledgements
+
+Thanks to Harry Karvonen for his Python ctypes-based bindings for
+PulseAudio. (These are now removed in favor of the pulsectl module.)
+Thanks also to Jürgen Geuter for helping me understand distutils and
+contributing some fixes.
