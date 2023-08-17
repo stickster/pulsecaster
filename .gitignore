@@ -26,3 +26,5 @@ gschemas.compiled
 venv/
 #intelliJ IDEA
 .idea/
+#tags ctags
+tags
