@@ -72,13 +72,22 @@ class PulseCasterUI(Gtk.Application):
                                                         'pulsecaster.ui'))
             except:
                 try:
-                    self.builder.add_from_file(os.path.join
-                                               (os.path.dirname(sys.argv[0]),
-                                                'data', 'pulsecaster.ui'))
-                except Exception as e:
-                    print(e)
-                    raise SystemExit(_("Cannot load resources"))
-
+                    self.builder.add_from_file(
+                        os.path.normpath(
+                            os.path.join(os.path.dirname(__file__),
+                                         '..',
+                                         'usr',
+                                         'share',
+                                         'pulsecaster',
+                                         'pulsecaster.ui')))
+                except:
+                    try:
+                        self.builder.add_from_file(os.path.join
+                                                   (os.path.dirname(sys.argv[0]),
+                                                    'data', 'pulsecaster.ui'))
+                    except Exception as e:
+                        print(e)
+                        raise SystemExit(_("Cannot load resources"))
         self.tempgsettings = Gtk.Settings.get_default()
         self.tempgsettings.set_property('gtk-application-prefer-dark-theme',
                                     True)
@@ -88,6 +97,16 @@ class PulseCasterUI(Gtk.Application):
                                                        'data',
                                                        'icons',
                                                        'scalable'))
+        self.icontheme.append_search_path(
+            os.path.normpath(
+                os.path.join(os.path.dirname(__file__),
+                             '..',
+                             'usr',
+                             'share',
+                             'icons',
+                             'hicolor',
+                             'scalable',
+                             'apps')))
         self.icontheme.append_search_path(os.path.join
                                           (os.path.dirname(sys.argv[0]),
                                            'data', 'icons', 'scalable'))
